@@ -22,6 +22,8 @@ class GitHubClient:
                 res=self.client.get(path,params=params)
                 if res.status_code in (403,429):
                     reset=int(res.headers.get("x-ratelimit-reset",time.time()+2)); time.sleep(min(30,max(1,reset-int(time.time())))); continue
+                if 400 <= res.status_code < 500:
+                    raise RuntimeError(f"GitHub 返回不可重试状态 {res.status_code}: {path}")
                 res.raise_for_status(); data=res.json(); file.write_text(json.dumps(data,ensure_ascii=False),encoding="utf-8"); return data
             except (httpx.HTTPError, json.JSONDecodeError) as exc:
                 last=exc; time.sleep(2**attempt)
