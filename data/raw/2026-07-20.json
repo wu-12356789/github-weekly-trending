@@ -1,0 +1,260 @@
+[
+  {
+    "full_name": "demo/agent-lab",
+    "name": "agent-lab",
+    "description": "用于演示的AI Agent开源项目，提供清晰安装教程与可运行示例。",
+    "html_url": "https://github.com/demo/agent-lab",
+    "homepage": "https://example.com/agent-lab",
+    "docs_url": "https://example.com/agent-lab/docs",
+    "license": "MIT",
+    "language": "Python",
+    "stars": 30000,
+    "forks": 2200,
+    "open_issues": 80,
+    "watchers": 0,
+    "created_at": "2026-03-21T15:07:53.381588Z",
+    "updated_at": "2026-07-19T14:07:53.381588Z",
+    "pushed_at": "2026-07-19T14:07:53.381588Z",
+    "latest_release": "v1.0.0",
+    "latest_release_at": "2026-07-18T15:07:53.381588Z",
+    "readme": "# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n",
+    "topics": [
+      "AI Agent",
+      "developer-tools"
+    ],
+    "weekly_stars": 0,
+    "weekly_forks": 0,
+    "score": 58.08,
+    "category": "人工智能与大模型",
+    "score_details": {
+      "周新增Star": 0.0,
+      "异常增速": 0.0,
+      "总Star": 8.0,
+      "提交活跃": 11.97,
+      "Release新鲜度": 7.75,
+      "协作活跃": 5.71,
+      "Fork增长": 0.0,
+      "项目新鲜度": 3.67,
+      "README质量": 10.0,
+      "安装与示例": 4.0,
+      "维护状态": 4.99,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "agent-lab 是人工智能与大模型领域项目。用于演示的AI Agent开源项目，提供清晰安装教程与可运行示例。",
+      "why_hot": "近期提交活跃，综合热度得分 58.1；本周新增 Star 0。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 2.9,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 3.5,
+        "推荐指数": 2.9
+      }
+    }
+  },
+  {
+    "full_name": "demo/local-llm-kit",
+    "name": "local-llm-kit",
+    "description": "用于演示的人工智能与大模型开源项目，提供清晰安装教程与可运行示例。",
+    "html_url": "https://github.com/demo/local-llm-kit",
+    "homepage": "https://example.com/local-llm-kit",
+    "docs_url": "https://example.com/local-llm-kit/docs",
+    "license": "MIT",
+    "language": "Python",
+    "stars": 28200,
+    "forks": 2080,
+    "open_issues": 83,
+    "watchers": 0,
+    "created_at": "2026-02-09T15:07:53.381588Z",
+    "updated_at": "2026-07-19T13:07:53.381588Z",
+    "pushed_at": "2026-07-19T12:07:53.381588Z",
+    "latest_release": "v1.1.0",
+    "latest_release_at": "2026-07-17T15:07:53.381588Z",
+    "readme": "# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n",
+    "topics": [
+      "人工智能与大模型",
+      "developer-tools"
+    ],
+    "weekly_stars": 0,
+    "weekly_forks": 0,
+    "score": 57.36,
+    "category": "人工智能与大模型",
+    "score_details": {
+      "周新增Star": 0.0,
+      "异常增速": 0.0,
+      "总Star": 8.0,
+      "提交活跃": 11.9,
+      "Release新鲜度": 7.5,
+      "协作活跃": 5.76,
+      "Fork增长": 0.0,
+      "项目新鲜度": 3.22,
+      "README质量": 10.0,
+      "安装与示例": 4.0,
+      "维护状态": 4.98,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "local-llm-kit 是人工智能与大模型领域项目。用于演示的人工智能与大模型开源项目，提供清晰安装教程与可运行示例。",
+      "why_hot": "近期提交活跃，综合热度得分 57.4；本周新增 Star 0。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 2.9,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 3.44,
+        "推荐指数": 2.9
+      }
+    }
+  },
+  {
+    "full_name": "demo/swift-web",
+    "name": "swift-web",
+    "description": "用于演示的Web 前端开源项目，提供清晰安装教程与可运行示例。",
+    "html_url": "https://github.com/demo/swift-web",
+    "homepage": "https://example.com/swift-web",
+    "docs_url": "https://example.com/swift-web/docs",
+    "license": "MIT",
+    "language": "TypeScript",
+    "stars": 26400,
+    "forks": 1960,
+    "open_issues": 86,
+    "watchers": 0,
+    "created_at": "2025-12-31T15:07:53.381588Z",
+    "updated_at": "2026-07-19T12:07:53.381588Z",
+    "pushed_at": "2026-07-19T10:07:53.381588Z",
+    "latest_release": "v1.2.0",
+    "latest_release_at": "2026-07-16T15:07:53.381588Z",
+    "readme": "# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n# Install\npip install demo\n## Usage\nQuickstart example with Docker and API.\n",
+    "topics": [
+      "Web 前端",
+      "developer-tools"
+    ],
+    "weekly_stars": 0,
+    "weekly_forks": 0,
+    "score": 56.59,
+    "category": "编程开发工具",
+    "score_details": {
+      "周新增Star": 0.0,
+      "异常增速": 0.0,
+      "总Star": 7.96,
+      "提交活跃": 11.83,
+      "Release新鲜度": 7.25,
+      "协作活跃": 5.81,
+      "Fork增长": 0.0,
+      "项目新鲜度": 2.78,
+      "README质量": 10.0,
+      "安装与示例": 4.0,
+      "维护状态": 4.96,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "swift-web 是编程开发工具领域项目。用于演示的Web 前端开源项目，提供清晰安装教程与可运行示例。",
+      "why_hot": "近期提交活跃，综合热度得分 56.6；本周新增 Star 0。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 2.8,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 3.38,
+        "推荐指数": 2.8
+      }
+    }
+  }
+]

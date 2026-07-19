@@ -1,0 +1,65 @@
+name: Weekly GitHub Trending Report
+on:
+  schedule:
+    - cron: "0 7 * * 5"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: weekly-github-trending
+  cancel-in-progress: false
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN || github.token }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      REPORT_TIMEZONE: Asia/Tokyo
+      PROJECT_COUNT: 10
+      GENERATE_IMAGES: true
+      IMAGE_PROJECT_LIMIT: 10
+      REPORT_LANGUAGE: zh-CN
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT || '587' }}
+      SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      REPORT_RECIPIENT: ${{ secrets.REPORT_RECIPIENT }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          pip install -r requirements.txt
+      - name: Run tests
+        run: pytest -q
+      - name: Generate report
+        run: python -m src.main
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-weekly-report-${{ github.run_number }}
+          path: |
+            output/reports/*.docx
+            output/reports/*.md
+            output/images/**
+          if-no-files-found: error
+          retention-days: 90
+      - name: Commit reports and history
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/repository_history.json data/raw output/reports output/images
+          if git diff --cached --quiet; then exit 0; fi
+          REPORT_DATE=$(TZ=Asia/Tokyo date +%F)
+          git commit -m "chore: generate weekly GitHub trending report ${REPORT_DATE}"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

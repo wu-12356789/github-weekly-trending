@@ -1,0 +1,29 @@
+{
+  "demo/agent-lab": {
+    "full_name": "demo/agent-lab",
+    "stars": 30000,
+    "forks": 2200,
+    "open_issues": 80,
+    "updated_at": "2026-07-19T14:07:53.381588Z",
+    "latest_release": "v1.0.0",
+    "collected_at": "2026-07-20T00:07:53.380587+09:00"
+  },
+  "demo/local-llm-kit": {
+    "full_name": "demo/local-llm-kit",
+    "stars": 28200,
+    "forks": 2080,
+    "open_issues": 83,
+    "updated_at": "2026-07-19T13:07:53.381588Z",
+    "latest_release": "v1.1.0",
+    "collected_at": "2026-07-20T00:07:53.380587+09:00"
+  },
+  "demo/swift-web": {
+    "full_name": "demo/swift-web",
+    "stars": 26400,
+    "forks": 1960,
+    "open_issues": 86,
+    "updated_at": "2026-07-19T12:07:53.381588Z",
+    "latest_release": "v1.2.0",
+    "collected_at": "2026-07-20T00:07:53.380587+09:00"
+  }
+}
