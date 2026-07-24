@@ -1,66 +1,66 @@
 {
   "openclaw/openclaw": {
     "full_name": "openclaw/openclaw",
-    "stars": 383472,
-    "forks": 80551,
-    "open_issues": 6895,
-    "updated_at": "2026-07-19T16:04:01Z",
+    "stars": 383983,
+    "forks": 80676,
+    "open_issues": 6952,
+    "updated_at": "2026-07-24T09:12:30Z",
     "latest_release": "v2026.7.1",
-    "collected_at": "2026-07-20T01:05:12.518334+09:00"
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
   },
   "n8n-io/n8n": {
     "full_name": "n8n-io/n8n",
-    "stars": 197048,
-    "forks": 59465,
-    "open_issues": 1396,
-    "updated_at": "2026-07-19T15:59:03Z",
-    "latest_release": "n8n@2.30.7",
-    "collected_at": "2026-07-20T01:05:12.518334+09:00"
+    "stars": 197732,
+    "forks": 59579,
+    "open_issues": 1405,
+    "updated_at": "2026-07-24T09:16:22Z",
+    "latest_release": "n8n@2.31.6",
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
   },
   "ollama/ollama": {
     "full_name": "ollama/ollama",
-    "stars": 176447,
-    "forks": 17029,
-    "open_issues": 3480,
-    "updated_at": "2026-07-19T15:32:27Z",
-    "latest_release": "v0.32.1",
-    "collected_at": "2026-07-20T01:05:12.518334+09:00"
+    "stars": 176769,
+    "forks": 17089,
+    "open_issues": 3532,
+    "updated_at": "2026-07-24T08:53:30Z",
+    "latest_release": "v0.32.3",
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
   },
   "Significant-Gravitas/AutoGPT": {
     "full_name": "Significant-Gravitas/AutoGPT",
-    "stars": 185611,
-    "forks": 46072,
-    "open_issues": 508,
-    "updated_at": "2026-07-19T14:42:28Z",
-    "latest_release": "autogpt-platform-beta-v0.6.68",
-    "collected_at": "2026-07-20T01:05:12.518334+09:00"
+    "stars": 185665,
+    "forks": 46069,
+    "open_issues": 487,
+    "updated_at": "2026-07-24T08:48:02Z",
+    "latest_release": "autogpt-platform-beta-v0.6.69",
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
   },
   "anomalyco/opencode": {
     "full_name": "anomalyco/opencode",
-    "stars": 187438,
-    "forks": 23552,
-    "open_issues": 4756,
-    "updated_at": "2026-07-19T15:59:30Z",
-    "latest_release": "v1.18.3",
-    "collected_at": "2026-07-20T01:05:12.518334+09:00"
+    "stars": 189180,
+    "forks": 23916,
+    "open_issues": 4827,
+    "updated_at": "2026-07-24T09:16:02Z",
+    "latest_release": "v1.18.4",
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
   },
   "microsoft/vscode": {
     "full_name": "microsoft/vscode",
-    "stars": 187679,
-    "forks": 41296,
-    "open_issues": 19403,
-    "updated_at": "2026-07-19T15:59:26Z",
-    "latest_release": "1.129.1",
-    "collected_at": "2026-07-20T01:05:12.518334+09:00"
+    "stars": 187840,
+    "forks": 41227,
+    "open_issues": 19520,
+    "updated_at": "2026-07-24T09:14:30Z",
+    "latest_release": "1.130.0",
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
   },
   "mattpocock/skills": {
     "full_name": "mattpocock/skills",
-    "stars": 177226,
-    "forks": 15194,
-    "open_issues": 198,
-    "updated_at": "2026-07-19T16:04:27Z",
+    "stars": 185616,
+    "forks": 15924,
+    "open_issues": 221,
+    "updated_at": "2026-07-24T09:16:32Z",
     "latest_release": "v1.1.0",
-    "collected_at": "2026-07-20T01:05:12.518334+09:00"
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
   },
   "CluvexStudio/Aether": {
     "full_name": "CluvexStudio/Aether",
@@ -82,11 +82,29 @@
   },
   "yt-dlp/yt-dlp": {
     "full_name": "yt-dlp/yt-dlp",
-    "stars": 178872,
-    "forks": 15210,
-    "open_issues": 2546,
-    "updated_at": "2026-07-19T16:02:49Z",
+    "stars": 179801,
+    "forks": 15308,
+    "open_issues": 2554,
+    "updated_at": "2026-07-24T09:11:51Z",
     "latest_release": "2026.07.04",
-    "collected_at": "2026-07-20T01:05:12.518334+09:00"
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+  },
+  "react/react": {
+    "full_name": "react/react",
+    "stars": 246693,
+    "forks": 51163,
+    "open_issues": 1218,
+    "updated_at": "2026-07-24T09:14:01Z",
+    "latest_release": "v19.2.8",
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+  },
+  "andrewyng/openworker": {
+    "full_name": "andrewyng/openworker",
+    "stars": 2304,
+    "forks": 316,
+    "open_issues": 70,
+    "updated_at": "2026-07-24T09:15:27Z",
+    "latest_release": "v0.1.6",
+    "collected_at": "2026-07-24T18:16:50.432229+09:00"
   }
 }
