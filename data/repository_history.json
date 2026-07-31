@@ -1,66 +1,66 @@
 {
   "openclaw/openclaw": {
     "full_name": "openclaw/openclaw",
-    "stars": 383983,
-    "forks": 80676,
-    "open_issues": 6952,
-    "updated_at": "2026-07-24T09:12:30Z",
+    "stars": 384655,
+    "forks": 80845,
+    "open_issues": 5796,
+    "updated_at": "2026-07-31T09:34:54Z",
     "latest_release": "v2026.7.1",
-    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   },
   "n8n-io/n8n": {
     "full_name": "n8n-io/n8n",
-    "stars": 197732,
-    "forks": 59579,
-    "open_issues": 1405,
-    "updated_at": "2026-07-24T09:16:22Z",
-    "latest_release": "n8n@2.31.6",
-    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+    "stars": 198810,
+    "forks": 59799,
+    "open_issues": 1402,
+    "updated_at": "2026-07-31T09:37:22Z",
+    "latest_release": "n8n@2.32.7",
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   },
   "ollama/ollama": {
     "full_name": "ollama/ollama",
-    "stars": 176769,
-    "forks": 17089,
-    "open_issues": 3532,
-    "updated_at": "2026-07-24T08:53:30Z",
-    "latest_release": "v0.32.3",
-    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+    "stars": 177383,
+    "forks": 17213,
+    "open_issues": 3579,
+    "updated_at": "2026-07-31T09:35:15Z",
+    "latest_release": "v0.32.5",
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   },
   "Significant-Gravitas/AutoGPT": {
     "full_name": "Significant-Gravitas/AutoGPT",
-    "stars": 185665,
-    "forks": 46069,
-    "open_issues": 487,
-    "updated_at": "2026-07-24T08:48:02Z",
-    "latest_release": "autogpt-platform-beta-v0.6.69",
-    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+    "stars": 185747,
+    "forks": 46063,
+    "open_issues": 513,
+    "updated_at": "2026-07-31T08:53:43Z",
+    "latest_release": "autogpt-platform-beta-v0.6.70",
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   },
   "anomalyco/opencode": {
     "full_name": "anomalyco/opencode",
-    "stars": 189180,
-    "forks": 23916,
-    "open_issues": 4827,
-    "updated_at": "2026-07-24T09:16:02Z",
-    "latest_release": "v1.18.4",
-    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+    "stars": 191400,
+    "forks": 24419,
+    "open_issues": 4831,
+    "updated_at": "2026-07-31T09:37:00Z",
+    "latest_release": "v1.18.10",
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   },
   "microsoft/vscode": {
     "full_name": "microsoft/vscode",
-    "stars": 187840,
-    "forks": 41227,
-    "open_issues": 19520,
-    "updated_at": "2026-07-24T09:14:30Z",
-    "latest_release": "1.130.0",
-    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+    "stars": 188044,
+    "forks": 41327,
+    "open_issues": 19513,
+    "updated_at": "2026-07-31T09:35:17Z",
+    "latest_release": "1.131.0",
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   },
   "mattpocock/skills": {
     "full_name": "mattpocock/skills",
-    "stars": 185616,
-    "forks": 15924,
-    "open_issues": 221,
-    "updated_at": "2026-07-24T09:16:32Z",
+    "stars": 197059,
+    "forks": 16972,
+    "open_issues": 255,
+    "updated_at": "2026-07-31T09:38:44Z",
     "latest_release": "v1.1.0",
-    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   },
   "CluvexStudio/Aether": {
     "full_name": "CluvexStudio/Aether",
@@ -91,12 +91,12 @@
   },
   "react/react": {
     "full_name": "react/react",
-    "stars": 246693,
-    "forks": 51163,
-    "open_issues": 1218,
-    "updated_at": "2026-07-24T09:14:01Z",
+    "stars": 246810,
+    "forks": 51180,
+    "open_issues": 1233,
+    "updated_at": "2026-07-31T09:32:32Z",
     "latest_release": "v19.2.8",
-    "collected_at": "2026-07-24T18:16:50.432229+09:00"
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   },
   "andrewyng/openworker": {
     "full_name": "andrewyng/openworker",
@@ -106,5 +106,23 @@
     "updated_at": "2026-07-24T09:15:27Z",
     "latest_release": "v0.1.6",
     "collected_at": "2026-07-24T18:16:50.432229+09:00"
+  },
+  "affaan-m/ECC": {
+    "full_name": "affaan-m/ECC",
+    "stars": 236448,
+    "forks": 35948,
+    "open_issues": 107,
+    "updated_at": "2026-07-31T09:33:09Z",
+    "latest_release": "v2.1.0",
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
+  },
+  "wassgha/rescript": {
+    "full_name": "wassgha/rescript",
+    "stars": 433,
+    "forks": 51,
+    "open_issues": 5,
+    "updated_at": "2026-07-31T09:11:19Z",
+    "latest_release": "v1.0.9",
+    "collected_at": "2026-07-31T18:39:09.709137+09:00"
   }
 }
