@@ -1,0 +1,919 @@
+[
+  {
+    "full_name": "anomalyco/opencode",
+    "name": "opencode",
+    "description": "The open source coding agent.",
+    "html_url": "https://github.com/anomalyco/opencode",
+    "homepage": "https://opencode.ai",
+    "docs_url": "https://opencode.ai",
+    "license": "MIT",
+    "language": "TypeScript",
+    "stars": 202165,
+    "forks": 26254,
+    "open_issues": 5668,
+    "watchers": 202165,
+    "created_at": "2025-04-30T20:08:00Z",
+    "updated_at": "2026-08-28T19:06:51Z",
+    "pushed_at": "2026-08-28T19:05:55Z",
+    "latest_release": "v1.18.25",
+    "latest_release_at": "2026-08-28T05:58:20Z",
+    "readme": "<p align=\"center\">\n  <a href=\"https://opencode.ai\">\n    <picture>\n      <source srcset=\"packages/console/app/src/asset/logo-ornate-dark.svg\" media=\"(prefers-color-scheme: dark)\">\n      <source srcset=\"packages/console/app/src/asset/logo-ornate-light.svg\" media=\"(prefers-color-scheme: light)\">\n      <img src=\"packages/console/app/src/asset/logo-ornate-light.svg\" alt=\"OpenCode logo\">\n    </picture>\n  </a>\n</p>\n<p align=\"center\">The open source AI coding agent.</p>\n<p align=\"center\">\n  <a href=\"https://opencode.ai/discord\"><img alt=\"Discord\" src=\"https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord\" /></a>\n  <a href=\"https://www.npmjs.com/package/opencode-ai\"><img alt=\"npm\" src=\"https://img.shields.io/npm/v/opencode-ai?style=flat-square\" /></a>\n  <a href=\"https://github.com/anomalyco/opencode/actions/workflows/publish.yml\"><img alt=\"Build status\" src=\"https://img.shields.io/github/actions/workflow/status/anomalyco/opencode/publish.yml?style=flat-square&branch=dev\" /></a>\n</p>\n\n<p align=\"center\">\n  <a href=\"README.md\">English</a> |\n  <a href=\"README.zh.md\">简体中文</a> |\n  <a href=\"README.zht.md\">繁體中文</a> |\n  <a href=\"README.ko.md\">한국어</a> |\n  <a href=\"README.de.md\">Deutsch</a> |\n  <a href=\"README.es.md\">Español</a> |\n  <a href=\"README.fr.md\">Français</a> |\n  <a href=\"README.it.md\">Italiano</a> |\n  <a href=\"README.da.md\">Dansk</a> |\n  <a href=\"README.ja.md\">日本語</a> |\n  <a href=\"README.pl.md\">Polski</a> |\n  <a href=\"README.ru.md\">Русский</a> |\n  <a href=\"README.bs.md\">Bosanski</a> |\n  <a href=\"README.ar.md\">العربية</a> |\n  <a href=\"README.no.md\">Norsk</a> |\n  <a href=\"README.br.md\">Português (Brasil)</a> |\n  <a href=\"README.th.md\">ไทย</a> |\n  <a href=\"README.tr.md\">Türkçe</a> |\n  <a href=\"README.uk.md\">Українська</a> |\n  <a href=\"README.bn.md\">বাংলা</a> |\n  <a href=\"README.gr.md\">Ελληνικά</a> |\n  <a href=\"README.vi.md\">Tiếng Việt</a>\n</p>\n\n[![OpenCode Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opencode.ai)\n\n---\n\n### Installation\n\n```bash\n# YOLO\ncurl -fsSL https://opencode.ai/install | bash\n\n# Package managers\nnpm i -g opencode-ai@latest        # or bun/pnpm/yarn\nscoop install opencode             # Windows\nchoco install opencode             # Windows\nbrew install anomalyco/tap/opencode # macOS and Linux (recommended, always up to date)\nbrew install opencode              # macOS and Linux (official brew formula, updated less)\nsudo pacman -S opencode            # Arch Linux (Stable)\nparu -S opencode-bin               # Arch Linux (Latest from AUR)\nmise use -g opencode               # Any OS\nnix run nixpkgs#opencode           # or github:anomalyco/opencode for latest dev branch\n```\n\n> [!TIP]\n> Remove versions older than 0.1.x before installing.\n\n### Desktop App (BETA)\n\nOpenCode is also available as a desktop application. Download directly from the [releases page](https://github.com/anomalyco/opencode/releases) or [opencode.ai/download](https://opencode.ai/download).\n\n| Platform              | Download                           |\n| --------------------- | ---------------------------------- |\n| macOS (Apple Silicon) | `opencode-desktop-mac-arm64.dmg`   |\n| macOS (Intel)         | `opencode-desktop-mac-x64.dmg`     |\n| Windows               | `opencode-desktop-windows-x64.exe` |\n| Linux                 | `.deb`, `.rpm`, or `.AppImage`     |\n\n```bash\n# macOS (Homebrew)\nbrew install --cask opencode-desktop\n# Windows (Scoop)\nscoop bucket add extras; scoop install extras/opencode-desktop\n```\n\n#### Installation Directory\n\nThe install script respects the following priority order for the installation path:\n\n1. `$OPENCODE_INSTALL_DIR` - Custom installation directory\n2. `$XDG_BIN_DIR` - XDG Base Directory Specification compliant path\n3. `$HOME/bin` - Standard user binary directory (if it exists or can be created)\n4. `$HOME/.opencode/bin` - Default fallback\n\n```bash\n# Examples\nOPENCODE_INSTALL_DIR=/usr/local/bin curl -fsSL https://opencode.ai/install | bash\nXDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://opencode.ai/install | bash\n```\n\n### Agents\n\nOpenCode includes two built-in agents you can switch between with the `Tab` key.\n\n- **build** - Default, full-access agent for development work\n- **plan** - Read-only agent for analysis and code exploration\n  - Denies file edits by default\n  - Asks permission before running bash commands\n  - Ideal for exploring unfamiliar codebases or planning changes\n\nAlso included is a **general** subagent for complex searches and multistep tasks.\nThis is used internally and can be invoked using `@general` in messages.\n\nLearn more about [agents](https://opencode.ai/docs/agents).\n\n### Documentation\n\nFor more info on how to configure OpenCode, [**head over to our docs**](https://opencode.ai/docs).\n\n### Contributing\n\nIf you're interested in contributing to OpenCode, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.\n\n### Building on OpenCode\n\nIf you are working on a project that's related to OpenCode and is using \"opencode\" as part of its name, for example \"opencode-dashboard\" or \"opencode-mobile\", please add a note to your README to clarify that it is not built by the OpenCode team and is not affiliated with us in any way.\n\n---\n\n**Join our community** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)\n",
+    "topics": [],
+    "weekly_stars": 2479,
+    "weekly_forks": 478,
+    "score": 85.96,
+    "category": "AI Agent",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 3.1,
+      "总Star": 8.0,
+      "提交活跃": 12.0,
+      "Release新鲜度": 7.86,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "opencode 是AI Agent领域项目。The open source coding agent.",
+      "why_hot": "近期提交活跃，综合热度得分 86.0；本周新增 Star 2479。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.3,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.3
+      }
+    }
+  },
+  {
+    "full_name": "mattpocock/skills",
+    "name": "skills",
+    "description": "Skills for Real Engineers. Straight from my .agents directory.",
+    "html_url": "https://github.com/mattpocock/skills",
+    "homepage": "https://aihero.dev/skills",
+    "docs_url": "https://aihero.dev/skills",
+    "license": "MIT",
+    "language": "Shell",
+    "stars": 240091,
+    "forks": 20422,
+    "open_issues": 435,
+    "watchers": 240091,
+    "created_at": "2026-02-03T11:15:53Z",
+    "updated_at": "2026-08-28T19:10:01Z",
+    "pushed_at": "2026-08-24T14:20:17Z",
+    "latest_release": "v1.2.3",
+    "latest_release_at": "2026-08-06T14:05:28Z",
+    "readme": "<p>\n  <a href=\"https://www.aihero.dev/s/skills-newsletter\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skills-repo-dark_2x.png\">\n      <source media=\"(prefers-color-scheme: light)\" srcset=\"https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png\">\n      <img alt=\"Skills\" src=\"https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png\" width=\"369\">\n    </picture>\n  </a>\n</p>\n\n# Skills For Real Engineers\n\n[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)\n\nMy agent skills that I use every day to do real engineering - not vibe coding.\n\nDeveloping real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.\n\nThese skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.\n\nIf you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:\n\n[Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)\n\n## Installation (30-second setup)\n\nTwo ways in, two philosophies. **The [Claude Code plugin](https://code.claude.com/docs/en/plugins)** installs the whole set as a managed, read-only bundle that updates when I ship, so you subscribe rather than fork. **[skills.sh](https://skills.sh/mattpocock/skills)** copies editable skill files into your project, so you can hack on them and make them your own. Pick one: installing both leaves you with every skill twice.\n\n### 1. Get the skills\n\n<details>\n<summary><strong>Claude Code</strong></summary>\n\n```bash\nclaude plugins install mattpocock-skills\n```\n\nOr, from inside a session:\n\n```\n/plugin install mattpocock-skills\n```\n\nIt's in Claude Code's official marketplace, so there's nothing to add first, and updates arrive automatically.\n\n</details>\n\n<details>\n<summary><strong>Codex, and other agents</strong></summary>\n\n```bash\nnpx skills@latest add mattpocock/skills\n```\n\nPick the skills you want, and which coding agents to install them on. **The installer lets you choose which skills to take, so make sure `setup-matt-pocock-skills` is one of them.**\n\nA native Codex plugin is on the roadmap (see [`.agents/adr/0002-ship-as-a-claude-code-plugin.md`](./.agents/adr/0002-ship-as-a-claude-code-plugin.md)).\n\n</details>\n\n<details>\n<summary><strong>For tinkerers</strong></summary>\n\nUse the same installer, on any agent, including Claude Code:\n\n```bash\nnpx skills@latest add mattpocock/skills\n```\n\nIt writes the skills into your repo as ordinary files you own and can edit. Nothing updates behind your back; pull my latest changes when you want them with `npx skills update`.\n\n</details>\n\n### 2. Run `/setup-matt-pocock-skills`\n\nIn your agent, run it once per repo. It will:\n\n- Ask you which issue tracker you want to use (GitHub, Linear, or local files)\n- Ask you what labels you apply to tickets when you triage them (`/triage` uses labels)\n- Ask you where you want to save any docs we create\n\n### 3. Bam - you're ready to go.\n\n## Why These Skills Exist\n\nI built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.\n\n### #1: The Agent Didn't Do What I Want\n\n> \"No-one knows exactly what they want\"\n>\n> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)\n\n**The Problem**. The most common failure mode in software development is misalignment. You think the dev knows what you want. Then you see what they've built - and you realize it didn't understand you at all.\n\nThis is just the same in the AI age. There is a communication gap between you and the agent. The fix for this is a **grilling session** - getting the agent to ask you detailed questions about what you're building.\n\n**The Fix** is to use:\n\n- [`/grill-me`](./skills/productivity/grill-me/SKILL.md) - for non-code uses\n- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) - same as [`/grill-me`](./skills/productivity/grill-me/SKILL.md), but adds more goodies (see below)\n\nThese are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them _every_ time you want to make a change.\n\n### #2: The Agent Is Way Too Verbose\n\n> With a ubiquitous language, conversations among developers and expressions of the code are all derived from the same domain model.\n>\n> Eric Evans, [Domain-Driven-Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)\n\n**The Problem**: At the start of a project, devs and the people they're building the software for (the domain experts) are usually speaking different languages.\n\nI felt the same tension with my agents. Agents are usually dropped into a project and asked to figure out the jargon as they go. So they use 20 words where 1 will do.\n\n**The Fix** for this is a shared language. It's a document that helps agents decode the jargon used in the project.\n\n<details>\n<summary>\nExample\n</summary>\n\nHere's an example [`CONTEXT.md`](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md), from my `course-video-manager` repo. Which one is easier to read?\n\n- **BEFORE**: \"There's a problem when a lesson inside a section of a course is made 'real' (i.e. given a spot in the file system)\"\n- **AFTER**: \"There's a problem with the materialization cascade\"\n\nThis concision pays off session after session.\n\n</details>\n\nThis is built into [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). It's a grilling session, but that helps you build a shared language with the AI, and document hard-to-explain decisions in ADR's.\n\nIt's hard to explain how powerful this is. It might be the single coolest technique in this repo. Try it, and see.\n\n> [!TIP]\n> A shared language has many other benefits than reducing verbosity:\n>\n> - **Variables, functions and files are named consistently**, using the shared language\n> - As a result, the **codebase is easier to navigate** for the agent\n> - The agent also **spends fewer tokens on thinking**, because it has access to a more concise language\n\n### #3: The Code Doesn't Work\n\n> \"Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big.\"\n>\n> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)\n\n**The Problem**: Let's say that you and the agent are aligned on what to build. What happens when the agent _still_ produces crap?\n\nIt's time to look at your feedback loops. Without feedback on how the code it produces actually runs, the agent will be flying blind.\n\n**The Fix**: You need the usual tranche of feedback loops: static types, browser access, and automated tests.\n\nFor automated tests, a red-green-refactor loop is critical. This is where the agent writes a failing test first, then fixes the test. This helps give the agent a consistent level of feedback that results in far better code.\n\nI've built a **[`/tdd`](./skills/engineering/tdd/SKILL.md) skill** you can slot into any project. It encourages red-green-refactor and gives the agent plenty of guidance on what makes good and bad tests.\n\nFor debugging, I've also built a **[`/diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md)** skill that wraps best debugging practices into a disciplined loop, gated phase by phase.\n\n### #4: We Built A Ball Of Mud\n\n> \"Invest in the design of the system _every day_.\"\n>\n> Kent Beck, [Extreme Programming Explained](https://www.amazon.co.uk/Extreme-Programming-Explained-Embrace-Change/dp/0321278658)\n\n> \"The best modules are deep. They allow a lot of functionality to be accessed through a simple interface.\"\n>\n> John Ousterhout, [A Philosophy Of Software Design](https://www.amazon.co.uk/Philosophy-Software-Design-2nd/dp/173210221X)\n\n**The Problem**: Most apps built with agents are complex and hard to change. Because agents can radically speed up coding, they also accelerate software entropy. Codebases get more complex at an unprecedented rate.\n\n**The Fix** for this is a radical new approach to AI-powered development: caring about the design of the code.\n\nThis is built in to every layer of these skills:\n\n- [`/to-spec`](./skills/engineering/to-spec/SKILL.md) quizzes you about which modules you're touching before creating a spec\n\nAnd crucially, [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) surveys a codebase for deepening opportunities and hands you the candidates. I recommend running it on your codebase once every few days. It is a survey, not a rescue: on a genuinely old codebase it will find real candidates, but it won't untangle the mud for you.\n\n### Summary\n\nSoftware engineering fundamentals matter more than ever. These skills are my best effort at condensing these fundamentals into repeatable practices, to help you ship the best apps of your career. Enjoy.\n\n## Reference\n\nThese split on one axis: who can invoke them. **User-invoked** skills are reachable only when you type them (e.g. `/grill-me`); their job is to orchestrate. **Model-invoked** skills can be invoked by you _or_ reached for automatically by the agent when the task fits; they hold the reusable discipline. A user-invoked skill may invoke model-invoked skills, but never another user-invoked one.\n\n### Engineering\n\nSkills I use daily for code work.\n\n**User-invoked**\n\n- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)**: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.\n- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)**: Grilling session that also builds your project's domain model, sharpening terminology and updating `CONTEXT.md` and ADRs inline.\n- **[triage](./skills/engineering/triage/SKILL.md)**: Move issues through a state machine of triage roles.\n- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.\n- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.\n- **[to-spec](./skills/engineering/to-spec/SKILL.md)**: Turn the current conversation into a spec and publish it to the issue tracker. No interview, just synthesizes what you've already discussed.\n- **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**: Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges, written as text in a local file, or as native blocking links on a real tracker.\n- **[implement](./skills/engineering/implement/SKILL.md)**: Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.\n- **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**: Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker, and resolve them one at a time until the way to the destination is clear.\n\n**Model-invoked**\n\n- **[prototype](./skills/engineering/prototype/SKILL.md)**: Build a throwaway prototype to answer a design question, either a single shareable HTML file for state/logic questions, or several radically different UI variations toggleable from one route.\n- **[diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md)**: Disciplined diagnosis loop for hard bugs and performance regressions: build a feedback loop that goes red on this bug → minimise → hypothesise → instrument → fix → regression-test.\n- **[research](./skills/engineering/research/SKILL.md)**: Investigate a question against high-trust primary sources and capture the findings as a cited Markdown file in the repo, run as a background agent.\n- **[tdd](./skills/engineering/tdd/SKILL.md)**: Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.\n- **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms against the glossary, stress-test with edge-case scenarios, and update `CONTEXT.md` and ADRs inline.\n- **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.\n- **[code-review](./skills/engineering/code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.\n- **[resolving-merge-conflicts](./skills/engineering/resolving-merge-conflicts/SKILL.md)**: Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation (never `--abort`).\n- **[wizard](./skills/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.\n\n### Productivity\n\nGeneral workflow tools, not code-specific.\n\n**User-invoked**\n\n- **[grill-me](./skills/productivity/grill-me/SKILL.md)**: Get relentlessly interviewed about a plan or design until every branch of the design tree is resolved.\n- **[handoff](./skills/productivity/handoff/SKILL.md)**: Compact the current conversation into a handoff document so another agent can continue the work.\n- **[teach](./skills/productivity/teach/SKILL.md)**: Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.\n- **[to-questionnaire](./skills/productivity/to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can, filled in async, or together over a meeting. It grills you about the send (who it's for, what you need back), not the subject.\n- **[wait-what](./skills/productivity/wait-what/SKILL.md)**: Fire this the moment a message doesn't land. The agent re-pitches it with the context you're missing, in plain English, using your `CONTEXT.md` vocabulary.\n\n**Model-invoked**\n\n- **[grilling](./skills/productivity/grilling/SKILL.md)**: Interview the user relentlessly about a plan, decision, or idea until every branch of the design tree is resolved. The reusable interview primitive behind `grill-me`, `grill-with-docs`, `triage`, `wayfinder` and `improve-codebase-architecture`.\n- **[writing-for-agents](./skills/productivity/writing-for-agents/SKILL.md)**: Writing documents for agents: skills, AGENTS.md/CLAUDE.md, and any doc an agent reaches by a pointer.\n",
+    "topics": [],
+    "weekly_stars": 12597,
+    "weekly_forks": 940,
+    "score": 85.69,
+    "category": "AI Agent",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 10.0,
+      "总Star": 8.0,
+      "提交活跃": 8.64,
+      "Release新鲜度": 2.45,
+      "协作活跃": 7.9,
+      "Fork增长": 5.0,
+      "项目新鲜度": 2.71,
+      "README质量": 10.0,
+      "安装与示例": 2.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "skills 是AI Agent领域项目。Skills for Real Engineers. Straight from my .agents directory.",
+      "why_hot": "近期提交活跃，综合热度得分 85.7；本周新增 Star 12597。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.3,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.3
+      }
+    }
+  },
+  {
+    "full_name": "n8n-io/n8n",
+    "name": "n8n",
+    "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
+    "html_url": "https://github.com/n8n-io/n8n",
+    "homepage": "https://n8n.io",
+    "docs_url": "https://n8n.io",
+    "license": "NOASSERTION",
+    "language": "TypeScript",
+    "stars": 202702,
+    "forks": 60442,
+    "open_issues": 1115,
+    "watchers": 202702,
+    "created_at": "2019-06-22T09:24:21Z",
+    "updated_at": "2026-08-28T18:48:57Z",
+    "pushed_at": "2026-08-28T18:52:05Z",
+    "latest_release": "n8n@2.36.8",
+    "latest_release_at": "2026-08-28T08:00:29Z",
+    "readme": "![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)\n\n# n8n – The Platform for AI Agents and Workflow Automation\n\nFair-code platform to build and deploy AI agents and workflows. Combine a visual canvas with custom code, run it self-hosted or in the [cloud](https://app.n8n.cloud/login), and connect to 1500+ integrations. AI automation you can trust with real work, from prototype to production.\n\n![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-screenshot-readme.png)\n\n## Key Capabilities\n\n- **AI-Native Automation Platform**: Build and operationalize AI workflows and multi-step agents using your own data, models, and tools\n- **Model Flexibility, No Lock-In**: Connect to OpenAI, Anthropic, Google, or open-source models and switch providers without changing your architecture\n- **From Prototype to Production**: Design multi-step AI workflows with logic, tool use, human approvals, and full observability\n- **Code When You Need It**: Combine visual building with JavaScript, Python, and npm packages for advanced AI workflows\n- **Enterprise-Ready AI**: Self-host or deploy securely with role-based access, audit trails, and support for sensitive data\n- **Leverage What Already Exists**: 1500+ integrations and 9,000+ workflow [templates](https://n8n.io/workflows) to connect AI with your existing systems\n\n## Quick Start\n\nTry n8n instantly with our install script (requires [Docker](https://www.docker.com/)):\n\n```sh\ncurl -fsSL https://get.n8n.io | sh\n```\n\nOr deploy manually with [Docker](https://docs.n8n.io/hosting/installation/docker/):\n\n```\ndocker volume create n8n_data\ndocker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n\n```\n\nAccess the editor at http://localhost:5678\n\n## Resources\n\n- 📚 [Documentation](https://docs.n8n.io)\n- 🔧 [1500+ Integrations](https://n8n.io/integrations)\n- 💡 [Example Workflows](https://n8n.io/workflows)\n- 🤖 [AI & LangChain Guide](https://docs.n8n.io/advanced-ai/)\n- 👥 [Community Forum](https://community.n8n.io)\n- 📖 [Community Tutorials](https://community.n8n.io/c/tutorials/28)\n\n## Support\n\nNeed help? Our community forum is the place to get support and connect with other users:\n[community.n8n.io](https://community.n8n.io)\n\n## License\n\nn8n is [fair-code](https://faircode.io) distributed under the [Sustainable Use License](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) and [n8n Enterprise License](https://github.com/n8n-io/n8n/blob/master/LICENSE_EE.md).\n\n- **Source Available**: Always visible source code\n- **Self-Hostable**: Deploy anywhere\n- **Extensible**: Add your own nodes and functionality\n\n[Enterprise Licenses](mailto:license@n8n.io) available for additional features and support.\n\nAdditional information about the license model can be found in the [docs](https://docs.n8n.io/sustainable-use-license/).\n\n## Contributing\n\nFound a bug 🐛 or have a feature idea ✨? Check our [Contributing Guide](https://github.com/n8n-io/n8n/blob/master/CONTRIBUTING.md) for a setup guide & best practices.\n\n## Join the Team\n\nWant to shape the future of automation? Check out our [job posts](https://n8n.io/careers) and join our team!\n\n## What does n8n mean?\n\n**Short answer:** It means \"nodemation\" and is pronounced as n-eight-n.\n\n**Long answer:** \"I get that question quite often (more often than I expected) so I decided it is probably best to answer it here. While looking for a good name for the project with a free domain I realized very quickly that all the good ones I could think of were already taken. So, in the end, I chose nodemation. 'node-' in the sense that it uses a Node-View and that it uses Node.js and '-mation' for 'automation' which is what the project is supposed to help with. However, I did not like how long the name was and I could not imagine writing something that long every time in the CLI. That is when I then ended up on 'n8n'.\" - **Jan Oberhauser, Founder and CEO, n8n.io**\n",
+    "topics": [
+      "ai",
+      "apis",
+      "automation",
+      "cli",
+      "data-flow",
+      "development",
+      "integration-framework",
+      "integrations",
+      "ipaas",
+      "low-code",
+      "low-code-platform",
+      "mcp",
+      "mcp-client",
+      "mcp-server",
+      "n8n",
+      "no-code",
+      "self-hosted",
+      "typescript",
+      "workflow",
+      "workflow-automation"
+    ],
+    "weekly_stars": 1257,
+    "weekly_forks": 185,
+    "score": 85.43,
+    "category": "自动化工具",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 1.56,
+      "总Star": 8.0,
+      "提交活跃": 11.99,
+      "Release新鲜度": 7.88,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 4.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "n8n 是自动化工具领域项目。Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
+      "why_hot": "近期提交活跃，综合热度得分 85.4；本周新增 Star 1257。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.3,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.3
+      }
+    }
+  },
+  {
+    "full_name": "ollama/ollama",
+    "name": "ollama",
+    "description": "Get up and running with Kimi-K2.6, GLM-5.2, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+    "html_url": "https://github.com/ollama/ollama",
+    "homepage": "https://ollama.com",
+    "docs_url": "https://ollama.com",
+    "license": "MIT",
+    "language": "Go",
+    "stars": 179651,
+    "forks": 17595,
+    "open_issues": 3821,
+    "watchers": 179651,
+    "created_at": "2023-06-26T19:39:32Z",
+    "updated_at": "2026-08-28T18:59:28Z",
+    "pushed_at": "2026-08-28T16:34:11Z",
+    "latest_release": "v0.33.1",
+    "latest_release_at": "2026-08-26T18:09:57Z",
+    "readme": "<p align=\"center\">\n  <a href=\"https://ollama.com\">\n    <img src=\"https://github.com/ollama/ollama/assets/3325447/0d0b44e2-8f4a-4e99-9b52-a5c1c741c8f7\" alt=\"ollama\" width=\"200\"/>\n  </a>\n</p>\n\n# Ollama\n\nStart building with open models.\n\n## Download\n\n### macOS\n\n```shell\ncurl -fsSL https://ollama.com/install.sh | sh\n```\n\nor [download manually](https://ollama.com/download/Ollama.dmg)\n\n### Windows\n\n```shell\nirm https://ollama.com/install.ps1 | iex\n```\n\nor [download manually](https://ollama.com/download/OllamaSetup.exe)\n\n### Linux\n\n```shell\ncurl -fsSL https://ollama.com/install.sh | sh\n```\n\n[Manual install instructions](https://docs.ollama.com/linux#manual-install)\n\n### Docker\n\nThe official [Ollama Docker image](https://hub.docker.com/r/ollama/ollama) `ollama/ollama` is available on Docker Hub.\n\n### Libraries\n\n- [ollama-python](https://github.com/ollama/ollama-python)\n- [ollama-js](https://github.com/ollama/ollama-js)\n\n### Community\n\n- [Discord](https://discord.gg/ollama)\n- [𝕏 (Twitter)](https://x.com/ollama)\n- [Reddit](https://reddit.com/r/ollama)\n\n## Get started\n\n```\nollama\n```\n\nYou'll be prompted to run a model or connect Ollama to your existing agents or applications such as `Claude Code`, `OpenClaw`, `OpenCode` , `Codex`, `Copilot`,  and more.\n\n### Coding\n\nTo launch a specific integration:\n\n```\nollama launch claude\n```\n\nSupported integrations include [Claude Code](https://docs.ollama.com/integrations/claude-code), [Codex](https://docs.ollama.com/integrations/codex), [Copilot CLI](https://docs.ollama.com/integrations/copilot-cli), [DeepSeek Harness](https://docs.ollama.com/integrations/deepseek-harness), [Droid](https://docs.ollama.com/integrations/droid), and [OpenCode](https://docs.ollama.com/integrations/opencode).\n\n### AI assistant\n\nUse [OpenClaw](https://docs.ollama.com/integrations/openclaw) to turn Ollama into a personal AI assistant across WhatsApp, Telegram, Slack, Discord, and more:\n\n```\nollama launch openclaw\n```\n\n### Chat with a model\n\nRun and chat with [Gemma 4](https://ollama.com/library/gemma4):\n\n```\nollama run gemma4\n```\n\nSee [ollama.com/library](https://ollama.com/library) for the full list.\n\nSee the [quickstart guide](https://docs.ollama.com/quickstart) for more details.\n\n## REST API\n\nOllama has a REST API for running and managing models.\n\n```\ncurl http://localhost:11434/api/chat -d '{\n  \"model\": \"gemma4\",\n  \"messages\": [{\n    \"role\": \"user\",\n    \"content\": \"Why is the sky blue?\"\n  }],\n  \"stream\": false\n}'\n```\n\nSee the [API documentation](https://docs.ollama.com/api) for all endpoints.\n\n### Python\n\n```\npip install ollama\n```\n\n```python\nfrom ollama import chat\n\nresponse = chat(model='gemma4', messages=[\n  {\n    'role': 'user',\n    'content': 'Why is the sky blue?',\n  },\n])\nprint(response.message.content)\n```\n\n### JavaScript\n\n```\nnpm i ollama\n```\n\n```javascript\nimport ollama from \"ollama\";\n\nconst response = await ollama.chat({\n  model: \"gemma4\",\n  messages: [{ role: \"user\", content: \"Why is the sky blue?\" }],\n});\nconsole.log(response.message.content);\n```\n\n## Supported backends\n\n- [llama.cpp](https://github.com/ggml-org/llama.cpp) project founded by Georgi Gerganov.\n\n## Documentation\n\n- [CLI reference](https://docs.ollama.com/cli)\n- [REST API reference](https://docs.ollama.com/api)\n- [Importing models](https://docs.ollama.com/import)\n- [Modelfile reference](https://docs.ollama.com/modelfile)\n- [Building from source](https://github.com/ollama/ollama/blob/main/docs/development.md)\n\n## Community Integrations\n\n> Want to add your project? Open a pull request.\n\n### Chat Interfaces\n\n#### Web\n\n- [Open WebUI](https://github.com/open-webui/open-webui) - Extensible, self-hosted AI interface\n- [Onyx](https://github.com/onyx-dot-app/onyx) - Connected AI workspace\n- [LibreChat](https://github.com/danny-avila/LibreChat) - Enhanced ChatGPT clone with multi-provider support\n- [Lobe Chat](https://github.com/lobehub/lobe-chat) - Modern chat framework with plugin ecosystem ([docs](https://lobehub.com/docs/self-hosting/examples/ollama))\n- [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web) - Cross-platform ChatGPT UI ([docs](https://docs.nextchat.dev/models/ollama))\n- [Perplexica](https://github.com/ItzCrazyKns/Perplexica) - AI-powered search engine, open-source Perplexity alternative\n- [big-AGI](https://github.com/enricoros/big-AGI) - AI suite for professionals\n- [Lollms WebUI](https://github.com/ParisNeo/lollms-webui) - Multi-model web interface\n- [ChatOllama](https://github.com/sugarforever/chat-ollama) - Chatbot with knowledge bases\n- [Bionic GPT](https://github.com/bionic-gpt/bionic-gpt) - On-premise AI platform\n- [Chatbot UI](https://github.com/ivanfioravanti/chatbot-ollama) - ChatGPT-style web interface\n- [Hollama](https://github.com/fmaclen/hollama) - Minimal web interface\n- [Chatbox](https://github.com/Bin-Huang/Chatbox) - Desktop and web AI client\n- [chat](https://github.com/swuecho/chat) - Chat web app for teams\n- [Ollama RAG Chatbot](https://github.com/datvodinh/rag-chatbot.git) - Chat with multiple PDFs using RAG\n- [Tkinter-based client](https://github.com/chyok/ollama-gui) - Python desktop client\n\n#### Desktop\n\n- [Dify.AI](https://github.com/langgenius/dify) - LLM app development platform\n- [AnythingLLM](https://github.com/Mintplex-Labs/anything-llm) - All-in-one AI app for Mac, Windows, and Linux\n- [Maid](https://github.com/Mobile-Artificial-Intelligence/maid) - Cross-platform mobile and desktop client\n- [Witsy](https://github.com/nbonamy/witsy) - AI desktop app for Mac, Windows, and Linux\n- [Cherry Studio](https://github.com/kangfenmao/cherry-studio) - Multi-provider desktop client\n- [Ollama App](https://github.com/JHubi1/ollama-app) - Multi-platform client for desktop and mobile\n- [PyGPT](https://github.com/szczyglis-dev/py-gpt) - AI desktop assistant for Linux, Windows, and Mac\n- [Alpaca](https://github.com/Jeffser/Alpaca) - GTK4 client for Linux and macOS\n- [SwiftChat](https://github.com/aws-samples/swift-chat) - Cross-platform including iOS, Android, and Apple Vision Pro\n- [Enchanted](https://github.com/AugustDev/enchanted) - Native macOS and iOS client\n- [RWKV-Runner](https://github.com/josStorer/RWKV-Runner) - Multi-model desktop runner\n- [Ollama Grid Search](https://github.com/dezoito/ollama-grid-search) - Evaluate and compare models\n- [macai](https://github.com/Renset/macai) - macOS client for Ollama and ChatGPT\n- [AI Studio](https://github.com/MindWorkAI/AI-Studio) - Multi-provider desktop IDE\n- [Reins](https://github.com/ibrahimcetin/reins) - Parameter tuning and reasoning model support\n- [ConfiChat](https://github.com/1runeberg/confichat) - Privacy-focused with optional encryption\n- [LLocal.in](https://github.com/kartikm7/llocal) - Electron desktop client\n- [MindMac](https://mindmac.app) - AI chat client for Mac\n- [Msty](https://msty.app) - Multi-model desktop client\n- [BoltAI for Mac](https://boltai.com) - AI chat client for Mac\n- [IntelliBar](https://intellibar.app/) - AI-powered assistant for macOS\n- [Kerlig AI](https://www.kerlig.com/) - AI writing assistant for macOS\n- [Hillnote](https://hillnote.com) - Markdown-first AI workspace\n- [Perfect Memory AI](https://www.perfectmemory.ai/) - Productivity AI personalized by screen and meeting history\n\n#### Mobile\n\n- [Ollama Android Chat](https://github.com/sunshine0523/OllamaServer) - One-click Ollama on Android\n\n> SwiftChat, Enchanted, Maid, Ollama App, Reins, and ConfiChat listed above also support mobile platforms.\n\n### Code Editors & Development\n\n- [Cline](https://github.com/cline/cline) - VS Code extension for multi-file/whole-repo coding\n- [Continue](https://github.com/continuedev/continue) - Open-source AI code assistant for any IDE\n- [Void](https://github.com/voideditor/void) - Open source AI code editor, Cursor alternative\n- [Copilot for Obsidian](https://github.com/logancyang/obsidian-copilot) - AI assistant for Obsidian\n- [twinny](https://github.com/rjmacarthy/twinny) - Copilot and Copilot chat alternative\n- [gptel Emacs client](https://github.com/karthink/gptel) - LLM client for Emacs\n- [Ollama Copilot](https://github.com/bernardo-bruning/ollama-copilot) - Use Ollama as GitHub Copilot\n- [Obsidian Local GPT](https://github.com/pfrankov/obsidian-local-gpt) - Local AI for Obsidian\n- [Ellama Emacs client](https://github.com/s-kostyaev/ellama) - LLM tool for Emacs\n- [orbiton](https://github.com/xyproto/orbiton) - Config-free text editor with Ollama tab completion\n- [AI ST Completion](https://github.com/yaroslavyaroslav/OpenAI-sublime-text) - Sublime Text 4 AI assistant\n- [VT Code](https://github.com/vinhnx/vtcode) - Rust-based terminal coding agent with Tree-sitter\n- [QodeAssist](https://github.com/Palm1r/QodeAssist) - AI coding assistant for Qt Creator\n- [AI Toolkit for VS Code](https://aka.ms/ai-tooklit/ollama-docs) - Microsoft-official VS Code extension\n- [Open Interpreter](https://docs.openinterpreter.com/language-model-setup/local-models/ollama) - Natural language interface for computers\n\n### Libraries & SDKs\n\n- [LiteLLM](https://github.com/BerriAI/litellm) - Unified API for 100+ LLM providers\n- [Semantic Kernel](https://github.com/microsoft/semantic-kernel/tree/main/python/semantic_kernel/connectors/ai/ollama) - Microsoft AI orchestration SDK\n- [LangChain4j](https://github.com/langchain4j/langchain4j) - Java LangChain ([example](https://github.com/langchain4j/langchain4j-examples/tree/main/ollama-examples/src/main/java))\n- [LangChainGo](https://github.com/tmc/langchaingo/) - Go LangChain ([example](https://github.com/tmc/langchaingo/tree/main/examples/ollama-completion-example))\n- [Spring AI](https://github.com/spring-projects/spring-ai) - Spring framework AI support ([docs](https://docs.spring.io/spring-ai/reference/api/chat/ollama-chat.html))\n- [LangChain](https://python.langchain.com/docs/integrations/chat/ollama/) and [LangChain.js](https://js.langchain.com/docs/integrations/chat/ollama/) with [example](https://js.langchain.com/docs/tutorials/local_rag/)\n- [Ollama for Ruby](https://github.com/crmne/ruby_llm) - Ruby LLM library\n- [any-llm](https://github.com/mozilla-ai/any-llm) - Unified LLM interface by Mozilla\n- [OllamaSharp for .NET](https://github.com/awaescher/OllamaSharp) - .NET SDK\n- [LangChainRust](https://github.com/Abraxas-365/langchain-rust) - Rust LangChain ([example](https://github.com/Abraxas-365/langchain-rust/blob/main/examples/llm_ollama.rs))\n- [Agents-Flex for Java](https://github.com/agents-flex/agents-flex) - Java agent framework ([example](https://github.com/agents-flex/agents-flex/tree/main/agents-flex-llm/agents-flex-llm-ollama/src/test/java/com/agentsflex/llm/ollama))\n- [Elixir LangChain](https://github.com/brainlid/langchain) - Elixir LangChain\n- [Ollama-rs for Rust](https://github.com/pepperoni21/ollama-rs) - Rust SDK\n- [LangChain for .NET](https://github.com/tryAGI/LangChain) - .NET LangChain ([example](https://github.com/tryAGI/LangChain/blob/main/examples/LangChain.Samples.OpenAI/Program.cs))\n- [chromem-go](https://github.com/philippgille/chromem-go) - Go vector database with Ollama embeddings ([example](https://github.com/philippgille/chromem-go/tree/v0.5.0/examples/rag-wikipedia-ollama))\n- [LangChainDart](https://github.com/davidmigloz/langchain_dart) - Dart LangChain\n- [LlmTornado](https://github.com/lofcz/llmtornado) - Unified C# interface for multiple inference APIs\n- [Ollama4j for Java](https://github.com/ollama4j/ollama4j) - Java SDK\n- [Ollama for Laravel](https://github.com/cloudstudio/ollama-laravel) - Laravel integration\n- [Ollama for Swift](https://github.com/mattt/ollama-swift) - Swift SDK\n- [LlamaIndex](https://docs.llamaindex.ai/en/stable/examples/llm/ollama/) and [LlamaIndexTS](https://ts.llamaindex.ai/modules/llms/available_llms/ollama) - Data framework for LLM apps\n- [Haystack](https://github.com/deepset-ai/haystack-integrations/blob/main/integrations/ollama.md) - AI pipeline framework\n- [Firebase Genkit](https://firebase.google.com/docs/genkit/plugins/ollama) - Google AI framework\n- [Ollama-hpp for C++](https://github.com/jmont-dev/ollama-hpp) - C++ SDK\n- [PromptingTools.jl](https://github.com/svilupp/PromptingTools.jl) - Julia LLM toolkit ([example](https://svilupp.github.io/PromptingTools.jl/dev/examples/working_with_ollama))\n- [Ollama for R - rollama](https://github.com/JBGruber/rollama) - R SDK\n- [Portkey](https://portkey.ai/docs/welcome/integration-guides/ollama) - AI gateway\n- [Testcontainers](https://testcontainers.com/modules/ollama/) - Container-based testing\n- [LLPhant](https://github.com/theodo-group/LLPhant?tab=readme-ov-file#ollama) - PHP AI framework\n\n### Frameworks & Agents\n\n- [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT/blob/master/docs/content/platform/ollama.md) - Autonomous AI agent platform\n- [crewAI](https://github.com/crewAIInc/crewAI) - Multi-agent orchestration framework\n- [Strands Agents](https://github.com/strands-agents/sdk-python) - Model-driven agent building by AWS\n- [Cheshire Cat](https://github.com/cheshire-cat-ai/core) - AI assistant framework\n- [any-agent](https://github.com/mozilla-ai/any-agent) - Unified agent framework interface by Mozilla\n- [Stakpak](https://github.com/stakpak/agent) - Open source DevOps agent\n- [Hexabot](https://github.com/hexastack/hexabot) - Conversational AI builder\n- [Neuro SAN](https://github.com/cognizant-ai-lab/neuro-san-studio) - Multi-agent orchestration ([docs](https://github.com/cognizant-ai-lab/neuro-san-studio/blob/main/docs/user_guide.md#ollama))\n\n### RAG & Knowledge Bases\n\n- [RAGFlow](https://github.com/infiniflow/ragflow) - RAG engine based on deep document understanding\n- [R2R](https://github.com/SciPhi-AI/R2R) - Open-source RAG engine\n- [MaxKB](https://github.com/1Panel-dev/MaxKB/) - Ready-to-use RAG chatbot\n- [Minima](https://github.com/dmayboroda/minima) - On-premises or fully local RAG\n- [Chipper](https://github.com/TilmanGriesel/chipper) - AI interface with Haystack RAG\n- [ARGO](https://github.com/xark-argo/argo) - RAG and deep research on Mac/Windows/Linux\n- [Archyve](https://github.com/nickthecook/archyve) - RAG-enabling document library\n- [Casibase](https://casibase.org) - AI knowledge base with RAG and SSO\n- [BrainSoup](https://www.nurgo-software.com/products/brainsoup) - Native client with RAG and multi-agent automation\n\n### Bots & Messaging\n\n- [LangBot](https://github.com/RockChinQ/LangBot) - Multi-platform messaging bots with agents and RAG\n- [AstrBot](https://github.com/Soulter/AstrBot/) - Multi-platform chatbot with RAG and plugins\n- [Discord-Ollama Chat Bot](https://github.com/kevinthedang/discord-ollama) - TypeScript Discord bot\n- [Ollama Telegram Bot](https://github.com/ruecat/ollama-telegram) - Telegram bot\n- [LLM Telegram Bot](https://github.com/innightwolfsleep/llm_telegram_bot) - Telegram bot for roleplay\n\n### Terminal & CLI\n\n- [aichat](https://github.com/sigoden/aichat) - All-in-one LLM CLI with Shell Assistant, RAG, and AI tools\n- [oterm](https://github.com/ggozad/oterm) - Terminal client for Ollama\n- [gollama](https://github.com/sammcj/gollama) - Go-based model manager for Ollama\n- [tlm](https://github.com/yusufcanb/tlm) - Local shell copilot\n- [tenere](https://github.com/pythops/tenere) - TUI for LLMs\n- [ParLlama](https://github.com/paulrobello/parllama) - TUI for Ollama\n- [llm-ollama](https://github.com/taketwo/llm-ollama) - Plugin for [Datasette's LLM CLI](https://llm.datasette.io/en/stable/)\n- [ShellOracle](https://github.com/djcopley/ShellOracle) - Shell command suggestions\n- [LLM-X](https://github.com/mrdjohnson/llm-x) - Progressive web app for LLMs\n- [cmdh](https://github.com/pgibler/cmdh) - Natural language to shell commands\n- [VT](https://github.com/vinhnx/vt.ai) - Minimal multimodal AI chat app\n\n### Productivity & Apps\n\n- [AppFlowy](https://github.com/AppFlowy-IO/AppFlowy) - AI collaborative workspace, self-hostable Notion alternative\n- [Screenpipe](https://github.com/mediar-ai/screenpipe) - 24/7 screen and mic recording with AI-powered search\n- [Vibe](https://github.com/thewh1teagle/vibe) - Transcribe and analyze meetings\n- [Page Assi",
+    "topics": [
+      "deepseek",
+      "gemma",
+      "gemma3",
+      "glm",
+      "go",
+      "golang",
+      "gpt-oss",
+      "llama",
+      "llama3",
+      "llm",
+      "llms",
+      "minimax",
+      "mistral",
+      "ollama",
+      "qwen"
+    ],
+    "weekly_stars": 564,
+    "weekly_forks": 106,
+    "score": 85.19,
+    "category": "人工智能与大模型",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 0.79,
+      "总Star": 8.0,
+      "提交活跃": 11.91,
+      "Release新鲜度": 7.49,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 5.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "ollama 是人工智能与大模型领域项目。Get up and running with Kimi-K2.6, GLM-5.2, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+      "why_hot": "近期提交活跃，综合热度得分 85.2；本周新增 Star 564。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.3,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.3
+      }
+    }
+  },
+  {
+    "full_name": "microsoft/vscode",
+    "name": "vscode",
+    "description": "Visual Studio Code",
+    "html_url": "https://github.com/microsoft/vscode",
+    "homepage": "https://code.visualstudio.com",
+    "docs_url": "https://code.visualstudio.com",
+    "license": "MIT",
+    "language": "TypeScript",
+    "stars": 189754,
+    "forks": 41871,
+    "open_issues": 20163,
+    "watchers": 189754,
+    "created_at": "2015-09-03T20:23:38Z",
+    "updated_at": "2026-08-28T18:57:16Z",
+    "pushed_at": "2026-08-28T19:09:00Z",
+    "latest_release": "1.135.0",
+    "latest_release_at": "2026-08-26T16:52:46Z",
+    "readme": "# Visual Studio Code - Open Source (\"Code - OSS\")\n[![Feature Requests](https://img.shields.io/github/issues/microsoft/vscode/feature-request.svg)](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)\n[![Bugs](https://img.shields.io/github/issues/microsoft/vscode/bug.svg)](https://github.com/microsoft/vscode/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)\n\n## The Repository\n\nThis repository (\"`Code - OSS`\") is where we (Microsoft) develop the [Visual Studio Code](https://code.visualstudio.com) product together with the community. Not only do we work on code and issues here, but we also publish our [roadmap](https://github.com/microsoft/vscode/wiki/Roadmap), [monthly iteration plans](https://github.com/microsoft/vscode/wiki/Iteration-Plans), and our [endgame plans](https://github.com/microsoft/vscode/wiki/Running-the-Endgame). This source code is available to everyone under the standard [MIT license](https://github.com/microsoft/vscode/blob/main/LICENSE.txt).\n\n## Visual Studio Code\n\n<p align=\"center\">\n  <img alt=\"VS Code in action\" src=\"https://github.com/user-attachments/assets/56af271c-949d-454c-a3ea-16188c063414\">\n</p>\n\n[Visual Studio Code](https://code.visualstudio.com) is a distribution of the `Code - OSS` repository with Microsoft-specific customizations released under a traditional [Microsoft product license](https://code.visualstudio.com/License/).\n\n[Visual Studio Code](https://code.visualstudio.com) combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle. It provides comprehensive code editing, navigation, and understanding support along with lightweight debugging, a rich extensibility model, and lightweight integration with existing tools.\n\nVisual Studio Code is updated monthly with new features and bug fixes. You can download it for Windows, macOS, and Linux on the [Visual Studio Code website](https://code.visualstudio.com/Download). To get the latest releases every day, install the [Insiders build](https://code.visualstudio.com/insiders).\n\n## Contributing\n\nThere are many ways in which you can participate in this project, for example:\n\n* [Submit bugs and feature requests](https://github.com/microsoft/vscode/issues), and help us verify them as they are checked in\n* Review [source code changes](https://github.com/microsoft/vscode/pulls)\n* Review the [documentation](https://github.com/microsoft/vscode-docs) and make pull requests for anything from typos to new content.\n\nIf you are interested in fixing issues and contributing directly to the codebase, please see the document [How to Contribute](https://github.com/microsoft/vscode/wiki/How-to-Contribute), which covers the following:\n\n* [How to build and run from source](https://github.com/microsoft/vscode/wiki/How-to-Contribute)\n* [The development workflow, including debugging and running tests](https://github.com/microsoft/vscode/wiki/How-to-Contribute#debugging)\n* [Coding guidelines](https://github.com/microsoft/vscode/wiki/Coding-Guidelines)\n* [Submitting pull requests](https://github.com/microsoft/vscode/wiki/How-to-Contribute#pull-requests)\n* [Finding an issue to work on](https://github.com/microsoft/vscode/wiki/How-to-Contribute#where-to-contribute)\n* [Contributing to translations](https://aka.ms/vscodeloc)\n\n## Feedback\n\n* Ask a question on [Stack Overflow](https://stackoverflow.com/questions/tagged/vscode)\n* [Request a new feature](CONTRIBUTING.md)\n* Upvote [popular feature requests](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)\n* [File an issue](https://github.com/microsoft/vscode/issues)\n* Connect with the extension author community on [GitHub Discussions](https://github.com/microsoft/vscode-discussions/discussions) or [Slack](https://aka.ms/vscode-dev-community)\n* Follow [@code](https://x.com/code) and let us know what you think!\n\nSee our [wiki](https://github.com/microsoft/vscode/wiki/Feedback-Channels) for a description of each of these channels and information on some other available community-driven channels.\n\n## Related Projects\n\nMany of the core components and extensions to VS Code live in their own repositories on GitHub. For example, the [node debug adapter](https://github.com/microsoft/vscode-node-debug) and the [mono debug adapter](https://github.com/microsoft/vscode-mono-debug) repositories are separate from each other. For a complete list, please visit the [Related Projects](https://github.com/microsoft/vscode/wiki/Related-Projects) page on our [wiki](https://github.com/microsoft/vscode/wiki).\n\n## Bundled Extensions\n\nVS Code includes a set of built-in extensions located in the [extensions](extensions) folder, including grammars and snippets for many languages. Extensions that provide rich language support (inline suggestions, Go to Definition) for a language have the suffix `language-features`. For example, the `json` extension provides coloring for `JSON` and the `json-language-features` extension provides rich language support for `JSON`.\n\n## Development Container\n\nThis repository includes a Visual Studio Code Dev Containers / GitHub Codespaces development container.\n\n* For [Dev Containers](https://aka.ms/vscode-remote/download/containers), use the **Dev Containers: Clone Repository in Container Volume...** command, which creates a Docker volume for better disk I/O on macOS and Windows.\n  * If you already have VS Code and Docker installed, you can also click [here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode) to get started. This will cause VS Code to automatically install the Dev Containers extension if needed, clone the source code into a container volume, and spin up a dev container for use.\n\n* For Codespaces, install the [GitHub Codespaces](https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces) extension in VS Code, and use the **Codespaces: Create New Codespace** command.\n\nDocker / the Codespace should have at least **4 cores and 6 GB of RAM (8 GB recommended)** to run a full build. See the [development container README](.devcontainer/README.md) for more information.\n\n## Code of Conduct\n\nThis project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.\n\n## License\n\nCopyright (c) Microsoft Corporation. All rights reserved.\n\nLicensed under the [MIT](LICENSE.txt) license.\n",
+    "topics": [
+      "editor",
+      "electron",
+      "microsoft",
+      "typescript",
+      "visual-studio-code"
+    ],
+    "weekly_stars": 651,
+    "weekly_forks": 136,
+    "score": 83.33,
+    "category": "Web 前端",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 0.86,
+      "总Star": 8.0,
+      "提交活跃": 12.0,
+      "Release新鲜度": 7.48,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "vscode 是Web 前端领域项目。Visual Studio Code",
+      "why_hot": "近期提交活跃，综合热度得分 83.3；本周新增 Star 651。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.2,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.2
+      }
+    }
+  },
+  {
+    "full_name": "yt-dlp/yt-dlp",
+    "name": "yt-dlp",
+    "description": "A feature-rich command-line audio/video downloader",
+    "html_url": "https://github.com/yt-dlp/yt-dlp",
+    "homepage": "https://discord.gg/H5MNcFW63r",
+    "docs_url": "https://discord.gg/H5MNcFW63r",
+    "license": "Unlicense",
+    "language": "Python",
+    "stars": 187544,
+    "forks": 16206,
+    "open_issues": 2599,
+    "watchers": 187544,
+    "created_at": "2020-10-26T04:22:55Z",
+    "updated_at": "2026-08-28T19:08:52Z",
+    "pushed_at": "2026-08-27T23:05:39Z",
+    "latest_release": "2026.08.19",
+    "latest_release_at": "2026-08-19T23:48:43Z",
+    "readme": "<!-- MANPAGE: BEGIN EXCLUDED SECTION -->\n<div align=\"center\">\n\n[![YT-DLP](https://raw.githubusercontent.com/yt-dlp/yt-dlp/master/.github/banner.svg)](#readme)\n\n[![Release version](https://img.shields.io/github/v/release/yt-dlp/yt-dlp?color=brightgreen&label=Latest&style=for-the-badge)](#installation \"Installation\")\n[![Python Version](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fyt-dlp%2Fyt-dlp%2Frefs%2Fheads%2Fmaster%2Fpyproject.toml&style=for-the-badge)](https://github.com/yt-dlp/yt-dlp/blob/master/pyproject.toml \"Python Version\")\n[![PyPI](https://img.shields.io/badge/-PyPI-blue.svg?logo=pypi&labelColor=555555&style=for-the-badge)](https://pypi.org/project/yt-dlp \"PyPI\")\n[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/H5MNcFW63r \"Discord\")\n[![License: Unlicense](https://img.shields.io/badge/-Unlicense-red.svg?style=for-the-badge)](LICENSE \"License\")\n[![Commits](https://img.shields.io/github/commit-activity/m/yt-dlp/yt-dlp?label=commits&style=for-the-badge)](https://github.com/yt-dlp/yt-dlp/commits \"Commit History\")\n\n</div>\n<!-- MANPAGE: END EXCLUDED SECTION -->\n\nyt-dlp is a feature-rich command-line audio/video downloader with support for [thousands of sites](supportedsites.md). The project is a fork of [youtube-dl](https://github.com/ytdl-org/youtube-dl) based on the now inactive [youtube-dlc](https://github.com/blackjack4494/yt-dlc).\n\n<!-- MANPAGE: MOVE \"USAGE AND OPTIONS\" SECTION HERE -->\n\n<!-- MANPAGE: BEGIN EXCLUDED SECTION -->\n* [INSTALLATION](#installation)\n    * [Detailed instructions](https://github.com/yt-dlp/yt-dlp/wiki/Installation)\n    * [Release Files](#release-files)\n    * [Update](#update)\n    * [Dependencies](#dependencies)\n    * [Compile](#compile)\n* [USAGE AND OPTIONS](#usage-and-options)\n    * [General Options](#general-options)\n    * [Network Options](#network-options)\n    * [Geo-restriction](#geo-restriction)\n    * [Video Selection](#video-selection)\n    * [Download Options](#download-options)\n    * [Filesystem Options](#filesystem-options)\n    * [Thumbnail Options](#thumbnail-options)\n    * [Internet Shortcut Options](#internet-shortcut-options)\n    * [Verbosity and Simulation Options](#verbosity-and-simulation-options)\n    * [Workarounds](#workarounds)\n    * [Video Format Options](#video-format-options)\n    * [Subtitle Options](#subtitle-options)\n    * [Authentication Options](#authentication-options)\n    * [Post-processing Options](#post-processing-options)\n    * [SponsorBlock Options](#sponsorblock-options)\n    * [Extractor Options](#extractor-options)\n    * [Preset Aliases](#preset-aliases)\n* [CONFIGURATION](#configuration)\n    * [Configuration file encoding](#configuration-file-encoding)\n    * [Authentication with netrc](#authentication-with-netrc)\n    * [Notes about environment variables](#notes-about-environment-variables)\n* [OUTPUT TEMPLATE](#output-template)\n    * [Output template examples](#output-template-examples)\n* [FORMAT SELECTION](#format-selection)\n    * [Filtering Formats](#filtering-formats)\n    * [Sorting Formats](#sorting-formats)\n    * [Format Selection examples](#format-selection-examples)\n* [MODIFYING METADATA](#modifying-metadata)\n    * [Modifying metadata examples](#modifying-metadata-examples)\n* [EXTRACTOR ARGUMENTS](#extractor-arguments)\n* [PLUGINS](#plugins)\n    * [Installing Plugins](#installing-plugins)\n    * [Developing Plugins](#developing-plugins)\n* [EMBEDDING YT-DLP](#embedding-yt-dlp)\n    * [Embedding examples](#embedding-examples)\n* [CHANGES FROM YOUTUBE-DL](#changes-from-youtube-dl)\n    * [New features](#new-features)\n    * [Differences in default behavior](#differences-in-default-behavior)\n    * [Deprecated options](#deprecated-options)\n* [CONTRIBUTING](CONTRIBUTING.md#contributing-to-yt-dlp)\n    * [Opening an Issue](CONTRIBUTING.md#opening-an-issue)\n    * [Developer Instructions](CONTRIBUTING.md#developer-instructions)\n* [WIKI](https://github.com/yt-dlp/yt-dlp/wiki)\n    * [FAQ](https://github.com/yt-dlp/yt-dlp/wiki/FAQ)\n<!-- MANPAGE: END EXCLUDED SECTION -->\n\n\n# INSTALLATION\n\n<!-- MANPAGE: BEGIN EXCLUDED SECTION -->\n[![Windows](https://img.shields.io/badge/-Windows_x64-blue.svg?style=for-the-badge&logo=windows)](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe)\n[![Unix](https://img.shields.io/badge/-Linux/BSD-red.svg?style=for-the-badge&logo=linux)](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp)\n[![MacOS](https://img.shields.io/badge/-MacOS-lightblue.svg?style=for-the-badge&logo=apple)](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos)\n[![PyPI](https://img.shields.io/badge/-PyPI-blue.svg?logo=pypi&labelColor=555555&style=for-the-badge)](https://pypi.org/project/yt-dlp)\n[![Source Tarball](https://img.shields.io/badge/-Source_tar-green.svg?style=for-the-badge)](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz)\n[![Other variants](https://img.shields.io/badge/-Other-grey.svg?style=for-the-badge)](#release-files)\n[![All versions](https://img.shields.io/badge/-All_Versions-lightgrey.svg?style=for-the-badge)](https://github.com/yt-dlp/yt-dlp/releases)\n<!-- MANPAGE: END EXCLUDED SECTION -->\n\nYou can install yt-dlp using [the binaries](#release-files), [pip](https://pypi.org/project/yt-dlp) or one using a third-party package manager. See [the wiki](https://github.com/yt-dlp/yt-dlp/wiki/Installation) for detailed instructions\n\n\n<!-- MANPAGE: BEGIN EXCLUDED SECTION -->\n## RELEASE FILES\n\n#### Recommended\n\nFile|Description\n:---|:---\n[yt-dlp](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp)|Platform-independent [zipimport](https://docs.python.org/3/library/zipimport.html) binary. Needs Python (recommended for **Linux/BSD**)\n[yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe)|Windows (Win8+) standalone x64 binary (recommended for **Windows**)\n[yt-dlp_macos](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos)|Universal MacOS (10.15+) standalone executable (recommended for **MacOS**)\n\n#### Alternatives\n\nFile|Description\n:---|:---\n[yt-dlp_linux](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux)|Linux (glibc 2.17+) standalone x86_64 binary\n[yt-dlp_linux.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux.zip)|Unpackaged Linux (glibc 2.17+) x86_64 executable (no auto-update)\n[yt-dlp_linux_aarch64](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux_aarch64)|Linux (glibc 2.17+) standalone aarch64 binary\n[yt-dlp_linux_aarch64.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux_aarch64.zip)|Unpackaged Linux (glibc 2.17+) aarch64 executable (no auto-update)\n[yt-dlp_linux_armv7l.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux_armv7l.zip)|Unpackaged Linux (glibc 2.31+) armv7l executable (no auto-update)\n[yt-dlp_musllinux](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_musllinux)|Linux (musl 1.2+) standalone x86_64 binary\n[yt-dlp_musllinux.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_musllinux.zip)|Unpackaged Linux (musl 1.2+) x86_64 executable (no auto-update)\n[yt-dlp_musllinux_aarch64](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_musllinux_aarch64)|Linux (musl 1.2+) standalone aarch64 binary\n[yt-dlp_musllinux_aarch64.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_musllinux_aarch64.zip)|Unpackaged Linux (musl 1.2+) aarch64 executable (no auto-update)\n[yt-dlp_x86.exe](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_x86.exe)|Windows (Win8+) standalone x86 (32-bit) binary\n[yt-dlp_win_x86.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_win_x86.zip)|Unpackaged Windows (Win8+) x86 (32-bit) executable (no auto-update)\n[yt-dlp_arm64.exe](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_arm64.exe)|Windows (Win10+) standalone ARM64 binary\n[yt-dlp_win_arm64.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_win_arm64.zip)|Unpackaged Windows (Win10+) ARM64 executable (no auto-update)\n[yt-dlp_win.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_win.zip)|Unpackaged Windows (Win8+) x64 executable (no auto-update)\n[yt-dlp_macos.zip](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_macos.zip)|Unpackaged MacOS (10.15+) executable (no auto-update)\n\n#### Misc\n\nFile|Description\n:---|:---\n[yt-dlp.tar.gz](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz)|Source tarball\n[SHA2-512SUMS](https://github.com/yt-dlp/yt-dlp/releases/latest/download/SHA2-512SUMS)|GNU-style SHA512 sums\n[SHA2-512SUMS.sig](https://github.com/yt-dlp/yt-dlp/releases/latest/download/SHA2-512SUMS.sig)|GPG signature file for SHA512 sums\n[SHA2-256SUMS](https://github.com/yt-dlp/yt-dlp/releases/latest/download/SHA2-256SUMS)|GNU-style SHA256 sums\n[SHA2-256SUMS.sig](https://github.com/yt-dlp/yt-dlp/releases/latest/download/SHA2-256SUMS.sig)|GPG signature file for SHA256 sums\n\nThe public key that can be used to verify the GPG signatures is [available here](https://github.com/yt-dlp/yt-dlp/blob/master/public.key)\nExample usage:\n```\ncurl -L https://github.com/yt-dlp/yt-dlp/raw/master/public.key | gpg --import\ngpg --verify SHA2-256SUMS.sig SHA2-256SUMS\ngpg --verify SHA2-512SUMS.sig SHA2-512SUMS\n```\n\n#### Licensing\n\nWhile yt-dlp is licensed under the [Unlicense](LICENSE), many of the release files contain code from other projects with different licenses.\n\nMost notably, the PyInstaller-bundled executables include GPLv3+ licensed code, and as such the combined work is licensed under [GPLv3+](https://www.gnu.org/licenses/gpl-3.0.html).\n\nThe zipimport Unix executable (`yt-dlp`) and release tarball (`yt-dlp.tar.gz`) contain [ISC](https://github.com/meriyah/meriyah/blob/main/LICENSE.md) licensed code from [`meriyah`](https://github.com/meriyah/meriyah) and [MIT](https://github.com/davidbonnet/astring/blob/main/LICENSE) licensed code from [`astring`](https://github.com/davidbonnet/astring).\n\nSee [THIRD_PARTY_LICENSES.txt](THIRD_PARTY_LICENSES.txt) for more details.\n\nThe git repository, the PyPI source distribution and the PyPI built distribution (wheel) only contain code licensed under the [Unlicense](LICENSE).\n\n<!-- MANPAGE: END EXCLUDED SECTION -->\n\n**Note**: The manpages, shell completion (autocomplete) files etc. are available inside the [source tarball](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.tar.gz)\n\n\n## UPDATE\nYou can use `yt-dlp -U` to update if you are using the [release binaries](#release-files)\n\nIf you [installed with pip](https://github.com/yt-dlp/yt-dlp/wiki/Installation#with-pip), simply re-run the same command that was used to install the program\n\nFor other third-party package managers, see [the wiki](https://github.com/yt-dlp/yt-dlp/wiki/Installation#third-party-package-managers) or refer to their documentation\n\n<a id=\"update-channels\"></a>\n\nThere are currently three release channels for binaries: `stable`, `nightly` and `master`.\n\n* `stable` is the default channel, which offers releases published on a (mostly) monthly schedule. While it is named `stable` due to many of its changes having been tested by users of the `nightly` or `master` release channels, the latest `stable` release is often \"stale\" and prone to external breakage (i.e. sites changing things on their end and breaking yt-dlp).\n* The `nightly` channel offers releases that publish shortly before midnight UTC on any day that sees changes to the codebase. This channel serves as a snapshot of the project's development, and it is the **recommended channel for regular users** of yt-dlp. The `nightly` releases are available from [yt-dlp/yt-dlp-nightly-builds](https://github.com/yt-dlp/yt-dlp-nightly-builds/releases) or as development releases of the `yt-dlp` PyPI package (which can be installed with pip's `--pre` flag).\n* The `master` channel offers \"canary\" releases that publish after each push to the master branch. This channel will always provide the very latest fixes and features, but may be prone to bugs or regressions. The `master` releases are available from [yt-dlp/yt-dlp-master-builds](https://github.com/yt-dlp/yt-dlp-master-builds/releases).\n\nWhen using `--update`/`-U`, a release binary will only update to its current channel.\n`--update-to CHANNEL` can be used to switch to a different channel when a newer version is available. `--update-to [CHANNEL@]TAG` can also be used to upgrade or downgrade to specific tags from a channel.\n\nYou may also use `--update-to <repository>` (`<owner>/<repository>`) to update to a channel on a completely different repository. Be careful with what repository you are updating to though, there is no verification done for binaries from different repositories.\n\nExample usage:\n\n* `yt-dlp --update-to master` switch to the `master` channel and update to its latest release\n* `yt-dlp --update-to stable@2023.07.06` upgrade/downgrade to release to `stable` channel tag `2023.07.06`\n* `yt-dlp --update-to 2023.10.07` upgrade/downgrade to tag `2023.10.07` if it exists on the current channel\n* `yt-dlp --update-to example/yt-dlp@2023.09.24` upgrade/downgrade to the release from the `example/yt-dlp` repository, tag `2023.09.24`\n\n**Important**: Any user experiencing an issue with the `stable` release should install or update to the `nightly` release before submitting a bug report:\n```\n# To update to nightly from stable executable/binary:\nyt-dlp --update-to nightly\n\n# To install nightly with pip:\npython -m pip install -U --pre \"yt-dlp[default]\"\n```\n\nWhen running a yt-dlp version that is older than 90 days, you will see a warning message suggesting to update to the latest version.\nYou can suppress this warning by adding `--no-update` to your command or configuration file.\n\n## DEPENDENCIES\nPython versions 3.10+ (CPython) and 3.11+ (PyPy) are supported. Other versions and implementations may or may not work correctly.\n\n<!-- Python 3.5+ uses VC++14 and it is already embedded in the binary created\n<!x-- https://www.microsoft.com/en-us/download/details.aspx?id=26999 --x>\nOn Windows, [Microsoft Visual C++ 2010 SP1 Redistributable Package (x86)](https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/vcredist_x86.exe) is also necessary to run yt-dlp. You probably already have this, but if the executable throws an error due to missing `MSVCR100.dll` you need to install it manually.\n-->\n\nWhile all the other dependencies are optional, `ffmpeg`, `ffprobe`, `yt-dlp-ejs` and a supported JavaScript runtime/engine are highly recommended\n\n### Strongly recommended\n\n* [**ffmpeg** and **ffprobe**](https://www.ffmpeg.org) - Required for [merging separate video and audio files](#format-selection), as well as for various [post-processing](#post-processing-options) tasks. License [depends on the build](https://www.ffmpeg.org/legal.html)\n\n    Since ffmpeg is such an important dependency, we provide our own builds at [yt-dlp/FFmpeg-Builds](https://github.com/yt-dlp/FFmpeg-Builds). In the past, patches were applied to these builds in order to fix common issues for yt-dlp users, but currently our builds are equivalent to upstream ffmpeg. See [the readme](https://github.com/yt-dlp/FFmpeg-Builds#patches-applied) for details\n\n    **Important**: What you need is ffmpeg *binary*, **NOT** [the Python package of the same name](https://pypi.org/project/ffmpeg)\n\n* [**yt-dlp-ejs**](https://github.com/yt-dlp/ejs) - Required for full YouTube support. Licensed under [Unlicense](https://github.com/yt-dlp/ejs/blob/main/LICENSE), bundles [MIT](https://github.com/davidbonnet/astring/blob/main/LICENSE) and [ISC](https://github.com/meriyah/meriyah/blob/main/LICENSE.md) components.\n\n    A JavaScript runtime/engine like [**deno**](https://deno.land) (recommended), [**node.js**](https://nodejs.org), [**bun**",
+    "topics": [
+      "cli",
+      "downloader",
+      "python",
+      "sponsorblock",
+      "youtube-dl",
+      "youtube-downloader",
+      "yt-dlp"
+    ],
+    "weekly_stars": 1598,
+    "weekly_forks": 176,
+    "score": 82.28,
+    "category": "效率工具",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 2.15,
+      "总Star": 8.0,
+      "提交活跃": 11.33,
+      "Release新鲜度": 5.8,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "yt-dlp 是效率工具领域项目。A feature-rich command-line audio/video downloader",
+      "why_hot": "近期提交活跃，综合热度得分 82.3；本周新增 Star 1598。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.1,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.1
+      }
+    }
+  },
+  {
+    "full_name": "Significant-Gravitas/AutoGPT",
+    "name": "AutoGPT",
+    "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+    "html_url": "https://github.com/Significant-Gravitas/AutoGPT",
+    "homepage": "https://agpt.co",
+    "docs_url": "https://agpt.co",
+    "license": "NOASSERTION",
+    "language": "Python",
+    "stars": 186961,
+    "forks": 46049,
+    "open_issues": 523,
+    "watchers": 186961,
+    "created_at": "2023-03-16T09:21:07Z",
+    "updated_at": "2026-08-28T18:19:56Z",
+    "pushed_at": "2026-08-28T18:23:53Z",
+    "latest_release": "autogpt-platform-beta-v0.7.3",
+    "latest_release_at": "2026-08-28T06:48:00Z",
+    "readme": "<p align=\"center\">\n  <a href=\"https://platform.agpt.co/signup?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=hero_banner\">\n    <img src=\"docs/home/.gitbook/assets/Banner_image.png\" alt=\"AutoGPT\" width=\"100%\" />\n  </a>\n</p>\n\n<h1 align=\"center\">AutoGPT — AI agents that finish the work</h1>\n\n<p align=\"center\">\n  <strong>Get 10 hours back every week.</strong><br />\n  Describe what you want done. AutoGPT builds the agent, runs it, and reports back.\n</p>\n\n<p align=\"center\">\n  <a href=\"https://platform.agpt.co/signup?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=header_get_started\"><strong>Get started</strong></a>\n  ·\n  <a href=\"https://platform.agpt.co/tour?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=tour_header\">Tour</a>\n  ·\n  <a href=\"https://agpt.co/pricing?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=header_pricing\">Pricing</a>\n  ·\n  <a href=\"https://docs.agpt.co\">Docs</a>\n  ·\n  <a href=\"https://discord.gg/autogpt\">Discord</a>\n  ·\n  <a href=\"#self-host-autogpt\">Self-host</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://discord.gg/autogpt\">\n    <img src=\"https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white\" alt=\"Join Discord\" />\n  </a>\n  <a href=\"https://docs.agpt.co\">\n    <img src=\"https://img.shields.io/badge/Docs-read-0A7AFF?logo=gitbook&logoColor=white\" alt=\"Read the docs\" />\n  </a>\n</p>\n\n---\n\n## The open-source platform for AI agents\n\nAutoGPT lets you build, deploy, and run AI agents that carry out complete workflows. Describe an outcome in plain English or shape every step in the visual builder, then run the agent on demand, on a schedule, or from a trigger.\n\n**185,000+ GitHub stars. Cited by:**\n\n| | |\n|---|---|\n| “Next frontier of prompt engineering imo: ‘AutoGPTs’.” | **Andrej Karpathy**, founding member of OpenAI |\n| “If you have a phone you can run AutoGPT. You don't even need to learn how to code.” | **Amjad Masad**, co-founder & CEO of Replit |\n| “AutoGPT might be the next big step in AI.” | **Lior Alexander**, CEO of AlphaSignal |\n\n---\n\n## Four surfaces, one platform\n\n<table>\n  <tr>\n    <td width=\"50%\" align=\"center\" valign=\"top\">\n      <a href=\"https://agpt.co/product/autopilot/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=autopilot\">\n        <img src=\"docs/content/imgs/readme/autogpt_autopilot_chat.jpg\" alt=\"AutoPilot chat creating an AutoGPT agent\" />\n      </a>\n      <br /><strong><a href=\"https://agpt.co/product/autopilot/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=autopilot\">AutoPilot</a></strong>\n      <br />Describe the job in plain English and turn the conversation into a working agent.\n    </td>\n    <td width=\"50%\" align=\"center\" valign=\"top\">\n      <a href=\"https://agpt.co/product/agents/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=agents\">\n        <img src=\"docs/content/imgs/readme/autogpt_agent_dashboard.jpg\" alt=\"Agents dashboard showing statuses, runs, and costs\" />\n      </a>\n      <br /><strong><a href=\"https://agpt.co/product/agents/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=agents\">Agents</a></strong>\n      <br />See every agent, run, cost, and action that needs your attention.\n    </td>\n  </tr>\n  <tr>\n    <td width=\"50%\" align=\"center\" valign=\"top\">\n      <a href=\"https://agpt.co/product/marketplace/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=marketplace\">\n        <img src=\"docs/content/imgs/readme/autogpt_marketplace.png\" alt=\"AutoGPT Marketplace showing ready-made community agents\" />\n      </a>\n      <br /><strong><a href=\"https://agpt.co/product/marketplace/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=marketplace\">Marketplace</a></strong>\n      <br />Start from proven agents, add one to your library, and customize it for your work.\n    </td>\n    <td width=\"50%\" align=\"center\" valign=\"top\">\n      <a href=\"https://agpt.co/product/build/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=build\">\n        <img src=\"docs/content/imgs/readme/build_screen.jpg\" alt=\"The AutoGPT Build canvas showing a real agent workflow\" />\n      </a>\n      <br /><strong><a href=\"https://agpt.co/product/build/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=build\">Build</a></strong>\n      <br />Drag, connect, branch, and inspect blocks for exact control over every step.\n    </td>\n  </tr>\n</table>\n\n---\n\n## Get started\n\n### AutoGPT Platform — public, hosted, and managed\n\nThe hosted Platform is publicly available. We manage the infrastructure, model access, credentials, reliability, and updates so you can focus on the work your agents perform.\n\n**[Get started on AutoGPT Platform →](https://platform.agpt.co/signup?utm_source=github&utm_medium=referral&utm_campaign=autogpt_readme&utm_content=platform_get_started)**\n\n[Take the interactive tour →](https://platform.agpt.co/tour?utm_source=github&utm_medium=referral&utm_campaign=autogpt_readme&utm_content=tour_get_started)\n\n- AutoPilot, Agents, Marketplace, and Build\n- 45+ connected platforms and hundreds of AI models\n- No model API keys or infrastructure setup\n- Agents that run on demand, on schedules, and from triggers\n\nThe hosted Platform is a paid service with usage-based agent runs. [Compare plans and pricing →](https://agpt.co/pricing?utm_source=github&utm_medium=referral&utm_campaign=autogpt_readme&utm_content=platform_pricing)\n\n### Self-host AutoGPT\n\n> [!NOTE]\n> Self-hosting is the free path. You provide the infrastructure and model API keys, and you maintain the deployment. If you want zero setup, use the [managed Platform](https://platform.agpt.co/signup?utm_source=github&utm_medium=referral&utm_campaign=autogpt_readme&utm_content=self_host_note).\n\n**macOS and Linux:**\n\n```bash\ncurl -fsSL https://setup.agpt.co/install.sh -o install.sh && bash install.sh\n```\n\n**Windows PowerShell:**\n\n```powershell\npowershell -c \"iwr https://setup.agpt.co/install.bat -o install.bat; ./install.bat\"\n```\n\n[Read the self-hosting guide →](https://docs.agpt.co/platform/getting-started)\n\n---\n\n## Managed Platform vs. self-hosting\n\n| | **AutoGPT Platform** | **Self-hosted** |\n|---|---|---|\n| Access | Public signup | Clone and install |\n| Cost | Paid plan plus agent usage | No license fee; pay your own infrastructure and model providers |\n| Setup | Managed | Docker and configuration required |\n| Model access | Built in | Bring your own API keys |\n| Updates and operations | Managed by AutoGPT | Managed by you |\n| Core builder and agent runtime | Included | Included |\n| Data and infrastructure control | Hosted by AutoGPT | Runs on your infrastructure |\n| Support | Plan-dependent | Community support |\n\nBoth paths use the same repository. Choose the managed Platform when you want agents running immediately; self-host when infrastructure control matters more than operational convenience.\n\n---\n\n## Why the hosted Platform is paid\n\nEvery agent run consumes real model usage, compute, storage, secrets management, and operational support. The managed Platform covers that infrastructure and funds continued development of the open-source project.\n\nSelf-hosting remains available without a license fee for people and teams that want to provide and operate those resources themselves.\n\n---\n\n## What you can automate\n\n| Area | Example |\n|---|---|\n| **Executive operations** | Prepare a daily brief from internal and external signals |\n| **Sales** | Research every account before tomorrow's meetings |\n| **Marketing** | Turn a launch brief into campaign drafts across channels |\n| **Engineering** | Triage incidents and start with a likely cause |\n| **Customer support** | Draft replies, collect context, and flag escalations |\n| **Research** | Monitor sources and return structured reports when something changes |\n\n---\n\n## Integrations\n\nConnect the apps that are yours. AutoGPT provides access to hundreds of AI models and connects agents to 45+ platforms, including:\n\n`Gmail` · `Google Calendar` · `Google Docs` · `Google Sheets` · `GitHub` · `Slack` · `Discord` · `Notion` · `HubSpot` · `Linear` · `Airtable` · `Jira` · `Salesforce` · `Stripe` · `Webflow`\n\n[Explore the integrations →](https://agpt.co/docs/integrations)\n\n---\n\n## Community and support\n\n| Resource | Link |\n|---|---|\n| Discord | [Join the AutoGPT community](https://discord.gg/autogpt) |\n| Documentation | [docs.agpt.co](https://docs.agpt.co) |\n| Bug reports | [GitHub Issues](https://github.com/Significant-Gravitas/AutoGPT/issues/new/choose) |\n| Feature requests | [GitHub Discussions](https://github.com/Significant-Gravitas/AutoGPT/discussions) |\n| Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |\n\n---\n\n## License\n\n| Component | License | What it means |\n|---|---|---|\n| `autogpt_platform/` | [Polyform Shield](https://polyformproject.org/licenses/shield/1.0.0) | Free for personal and internal business use; cannot be sold as a competing hosted service |\n| `classic/` and everything else | [MIT](LICENSE) | Permissive open-source use |\n\n---\n\n## AutoGPT Classic\n\nLooking for the original standalone AutoGPT agent? It remains available in [`classic/`](classic/) under the MIT License.\n\n- [Build an agent with Forge](classic/FORGE-QUICKSTART.md)\n- [Benchmark an agent with `agbenchmark`](https://pypi.org/project/agbenchmark/)\n- [Explore the Classic project](classic/README.md)\n\n---\n\n## Contributors\n\n<a href=\"https://github.com/Significant-Gravitas/AutoGPT/graphs/contributors\">\n  <img src=\"https://contrib.rocks/image?repo=Significant-Gravitas/AutoGPT&max=1000&columns=10\" alt=\"AutoGPT contributors\" />\n</a>\n\n<p align=\"center\">\n  <a href=\"https://platform.agpt.co/signup?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=footer_get_started\"><strong>Get started with AutoGPT →</strong></a>\n</p>\n\n---\n\n<!-- Keep these links. Translations will automatically update with the README. -->\n[Deutsch](https://zdoc.app/de/Significant-Gravitas/AutoGPT) |\n[Español](https://zdoc.app/es/Significant-Gravitas/AutoGPT) |\n[français](https://zdoc.app/fr/Significant-Gravitas/AutoGPT) |\n[日本語](https://zdoc.app/ja/Significant-Gravitas/AutoGPT) |\n[한국어](https://zdoc.app/ko/Significant-Gravitas/AutoGPT) |\n[Português](https://zdoc.app/pt/Significant-Gravitas/AutoGPT) |\n[Русский](https://zdoc.app/ru/Significant-Gravitas/AutoGPT) |\n[中文](https://zdoc.app/zh/Significant-Gravitas/AutoGPT)\n",
+    "topics": [
+      "agentic-ai",
+      "agents",
+      "ai",
+      "artificial-intelligence",
+      "autonomous-agents",
+      "claude",
+      "gpt",
+      "llama-api",
+      "llm",
+      "openai",
+      "python"
+    ],
+    "weekly_stars": 265,
+    "weekly_forks": 5,
+    "score": 81.41,
+    "category": "人工智能与大模型",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 0.35,
+      "总Star": 8.0,
+      "提交活跃": 11.97,
+      "Release新鲜度": 7.87,
+      "协作活跃": 8.0,
+      "Fork增长": 3.23,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 4.99,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "AutoGPT 是人工智能与大模型领域项目。AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+      "why_hot": "近期提交活跃，综合热度得分 81.4；本周新增 Star 265。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.1,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.1
+      }
+    }
+  },
+  {
+    "full_name": "openclaw/openclaw",
+    "name": "openclaw",
+    "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 ",
+    "html_url": "https://github.com/openclaw/openclaw",
+    "homepage": "https://openclaw.ai",
+    "docs_url": "https://openclaw.ai",
+    "license": "NOASSERTION",
+    "language": "TypeScript",
+    "stars": 387933,
+    "forks": 81451,
+    "open_issues": 5810,
+    "watchers": 387933,
+    "created_at": "2025-11-24T10:16:47Z",
+    "updated_at": "2026-08-28T19:09:35Z",
+    "pushed_at": "2026-08-28T19:10:25Z",
+    "latest_release": "v2026.7.1-2",
+    "latest_release_at": "2026-08-04T00:41:26Z",
+    "readme": "# OpenClaw 🦞 — Your assistant, on your devices, in your chats\n\n<p align=\"center\">\n  <picture>\n    <source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-banner-light.png\">\n    <img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-banner-dark.png\" alt=\"OpenClaw — EXFOLIATE! EXFOLIATE! Your AI assistant, running on your own devices.\">\n  </picture>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/openclaw/openclaw/actions/workflows/ci.yml\"><img src=\"https://img.shields.io/github/actions/workflow/status/openclaw/openclaw/ci.yml?branch=main&style=flat-square&label=ci\" alt=\"CI status\"></a>\n  <a href=\"https://www.npmjs.com/package/openclaw\"><img src=\"https://img.shields.io/npm/v/openclaw?style=flat-square&label=npm\" alt=\"npm version\"></a>\n  <a href=\"https://nodejs.org\"><img src=\"https://img.shields.io/node/v/openclaw?style=flat-square\" alt=\"Node.js version\"></a>\n  <a href=\"LICENSE\"><img src=\"https://img.shields.io/badge/license-MIT-green?style=flat-square\" alt=\"License: MIT\"></a>\n  <a href=\"https://discord.gg/clawd\"><img src=\"https://img.shields.io/discord/1456350064065904867?label=discord&logo=discord&logoColor=white&color=5865F2&style=flat-square\" alt=\"Discord\"></a>\n</p>\n\nOpenClaw is an AI assistant that runs on your devices and meets you in the channels you already use. It connects models, tools, messaging channels, and optional companion apps through one Gateway, for a single operator or for a team whose members trust each other: the same gateway runs as a personal assistant on one laptop or as a shared [team deployment](https://docs.openclaw.ai/start/teams), and configuration is the only difference. The architecture case — trusted gateway, untrusted execution, deterministic policy — is in [Why OpenClaw](https://docs.openclaw.ai/start/why-openclaw).\n\n[Website](https://openclaw.ai) · [Docs](https://docs.openclaw.ai) · [Getting started](https://docs.openclaw.ai/start/getting-started) · [Why OpenClaw](https://docs.openclaw.ai/start/why-openclaw) · [Showcase](https://docs.openclaw.ai/start/showcase) · [FAQ](https://docs.openclaw.ai/help/faq) · [Vision](VISION.md) · [DeepWiki](https://deepwiki.com/openclaw/openclaw)\n\n## Install\n\nThe installer supports macOS, Linux, and Windows. It provisions a supported Node.js runtime when needed.\n\n```bash\n# macOS / Linux / WSL2\ncurl -fsSL https://openclaw.ai/install.sh | bash\n```\n\n```powershell\n# Windows PowerShell\niwr -useb https://openclaw.ai/install.ps1 | iex\n```\n\nAlready manage Node.js? Install the published package instead (Node 22.22.3+, 24.15+, or 25.9+):\n\n```bash\nnpm install -g openclaw@latest --allow-scripts=openclaw\n```\n\nThat command is for npm 12 or npm 11.16+. On npm 11.15 and earlier, omit\n`--allow-scripts=openclaw`. See the\n[installation guide](https://docs.openclaw.ai/install) for the lifecycle script\ncontract, Docker, Nix, and other deployment paths.\n\n## Quick start\n\nOn a fresh install, the installer scripts start onboarding automatically.\nComplete the wizard they open. If you installed the package directly with npm,\npnpm, or Bun, run:\n\n```bash\nopenclaw onboard --install-daemon\n```\n\nAfter onboarding:\n\n```bash\nopenclaw gateway status\nopenclaw dashboard\n```\n\nOnboarding verifies model access, creates the workspace, and configures the Gateway. The last command opens the Control UI; send a message there to confirm the assistant is working. See the [getting started guide](https://docs.openclaw.ai/start/getting-started) for channel setup and troubleshooting.\n\n## How it fits together\n\n- The [Gateway](https://docs.openclaw.ai/gateway) is the local control plane for sessions, tools, events, and channel connections.\n- The [Control UI](https://docs.openclaw.ai/web/control-ui), CLI, and [TUI](https://docs.openclaw.ai/web/tui) connect to the Gateway.\n- [Channels](https://docs.openclaw.ai/channels) bring the assistant to WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, and other messaging services.\n- [Companion apps and nodes](https://docs.openclaw.ai/platforms) add voice, Canvas, camera, screen, and device-local actions on supported platforms.\n\nOpenClaw works with hosted and local [model providers](https://docs.openclaw.ai/concepts/model-providers). Its [tools](https://docs.openclaw.ai/tools), [skills](https://docs.openclaw.ai/tools/skills), and [plugins](https://docs.openclaw.ai/plugins) extend what an assistant can do.\n\n## Security\n\nTreat inbound messages as untrusted input. DM-capable channels pair unknown senders by default; approve a pairing request with `openclaw pairing approve <channel> <code>`.\n\nTools run on the host for the main session unless you configure sandboxing. Read the [security guide](https://docs.openclaw.ai/gateway/security), [exposure runbook](https://docs.openclaw.ai/gateway/security/exposure-runbook), and [sandboxing guide](https://docs.openclaw.ai/gateway/sandboxing) before connecting other users or exposing the Gateway remotely.\n\n## Documentation\n\n| Goal                             | Start here                                                                                                                                                                                                                                                           |\n| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Configure models and auth        | [Models](https://docs.openclaw.ai/concepts/models) · [Model providers](https://docs.openclaw.ai/concepts/model-providers)                                                                                                                                            |\n| Connect a messaging service      | [Channels](https://docs.openclaw.ai/channels)                                                                                                                                                                                                                        |\n| Add tools, skills, and plugins   | [Tools](https://docs.openclaw.ai/tools) · [Skills](https://docs.openclaw.ai/tools/skills) · [Plugins](https://docs.openclaw.ai/plugins) · [ClawHub](https://clawhub.ai)                                                                                              |\n| Run apps and device nodes        | [Platforms](https://docs.openclaw.ai/platforms) · [Nodes](https://docs.openclaw.ai/nodes)                                                                                                                                                                            |\n| Use the CLI and chat commands    | [CLI reference](https://docs.openclaw.ai/cli) · [Slash commands](https://docs.openclaw.ai/tools/slash-commands)                                                                                                                                                      |\n| Configure or operate the Gateway | [Configuration](https://docs.openclaw.ai/gateway/configuration) · [Architecture](https://docs.openclaw.ai/concepts/architecture) · [Updating](https://docs.openclaw.ai/install/updating) · [Release channels](https://docs.openclaw.ai/install/development-channels) |\n\n## Development\n\nThe repository is a pnpm workspace. Plain `npm install` at the repository root is not supported.\n\n```bash\ngit clone https://github.com/openclaw/openclaw.git\ncd openclaw\npnpm install\npnpm build\npnpm ui:build\n```\n\nSee [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and the [source setup guide](https://docs.openclaw.ai/start/setup) for the development loop.\n\n## Community\n\nOpenClaw is developed in the open by the [OpenClaw Foundation](https://openclaw.org), a non-profit. See [CONTRIBUTING.md](CONTRIBUTING.md) for maintainers and contribution guidelines; AI-assisted PRs are welcome.\n\nUse the [issue chooser](https://github.com/openclaw/openclaw/issues/new/choose) for bugs and feature requests, ask setup questions in [Discord](https://discord.gg/clawd), and report vulnerabilities through [SECURITY.md](SECURITY.md). New capabilities usually belong in plugins built on the [plugin SDK](https://docs.openclaw.ai/plugins/building-plugins) and shared through [ClawHub](https://clawhub.ai).\n\nOpenClaw was built for **Molty**, a space lobster AI assistant, by Peter Steinberger and the community. Explore the [project lore](https://docs.openclaw.ai/start/lore), [soul.md](https://soul.md), [Peter's site](https://steipete.me), [Star History](https://www.star-history.com/#openclaw/openclaw&type=date&legend=top-left), and [@openclaw](https://x.com/openclaw).\n\nSpecial thanks to [Mario Zechner](https://mariozechner.at/) for his support and for [pi](https://github.com/earendil-works/pi), and to Adam Doppelt for the lobster.bot domain.\n\n## Sponsors\n\n<table>\n  <tr>\n    <td align=\"center\"><a href=\"https://github.com/openai\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/openai-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/openai.svg\" alt=\"OpenAI\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://github.com/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/github-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/github.svg\" alt=\"GitHub\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://www.nvidia.com/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/nvidia.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/nvidia-dark.svg\" alt=\"NVIDIA\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://vercel.com/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/vercel-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/vercel.svg\" alt=\"Vercel\" height=\"24\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://blacksmith.sh/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/blacksmith-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/blacksmith.svg\" alt=\"Blacksmith\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://www.convex.dev/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/convex-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/convex.svg\" alt=\"Convex\" height=\"24\"></picture></a></td>\n  </tr>\n</table>\n\n## Contributors\n\nThanks to all clawtributors:\n\n<!-- clawtributors:start -->\n\n<a href=\"https://github.com/steipete\"><img src=\"https://avatars.githubusercontent.com/u/58493?v=4&s=48\" width=\"48\" height=\"48\" alt=\"steipete\"></a> <a href=\"https://github.com/vincentkoc\"><img src=\"https://avatars.githubusercontent.com/u/25068?v=4&s=48\" width=\"48\" height=\"48\" alt=\"vincentkoc\"></a> <a href=\"https://github.com/Takhoffman\"><img src=\"https://avatars.githubusercontent.com/u/781889?v=4&s=48\" width=\"48\" height=\"48\" alt=\"Takhoffman\"></a> <a href=\"https://github.com/obviyus\"><img src=\"https://avatars.githubusercontent.com/u/22031114?v=4&s=48\" width=\"48\" height=\"48\" alt=\"obviyus\"></a> <a href=\"https://github.com/gumadeiras\"><img src=\"https://avatars.githubusercontent.com/u/5599352?v=4&s=48\" width=\"48\" height=\"48\" alt=\"gumadeiras\"></a> <a href=\"https://github.com/mbelinky\"><img src=\"https://avatars.githubusercontent.com/u/132747814?v=4&s=48\" width=\"48\" height=\"48\" alt=\"Mariano Belinky\"></a> <a href=\"https://github.com/vignesh07\"><img src=\"https://avatars.githubusercontent.com/u/1436853?v=4&s=48\" width=\"48\" height=\"48\" alt=\"vignesh07\"></a> <a href=\"https://github.com/joshavant\"><img src=\"https://avatars.githubusercontent.com/u/830519?v=4&s=48\" width=\"48\" height=\"48\" alt=\"joshavant\"></a> <a href=\"https://github.com/scoootscooob\"><img src=\"https://avatars.githubusercontent.com/u/167050519?v=4&s=48\" width=\"48\" height=\"48\" alt=\"scoootscooob\"></a> <a href=\"https://github.com/jacobtomlinson\"><img src=\"https://avatars.githubusercontent.com/u/1610850?v=4&s=48\" width=\"48\" height=\"48\" alt=\"jacobtomlinson\"></a>\n<a href=\"https://github.com/shakkernerd\"><img src=\"https://avatars.githubusercontent.com/u/165377636?v=4&s=48\" width=\"48\" height=\"48\" alt=\"shakkernerd\"></a> <a href=\"https://github.com/sebslight\"><img src=\"https://avatars.githubusercontent.com/u/19554889?v=4&s=48\" width=\"48\" height=\"48\" alt=\"sebslight\"></a> <a href=\"https://github.com/tyler6204\"><img src=\"https://avatars.githubusercontent.com/u/64381258?v=4&s=48\" width=\"48\" height=\"48\" alt=\"tyler6204\"></a> <a href=\"https://github.com/ngutman\"><img src=\"https://avatars.githubusercontent.com/u/1540134?v=4&s=48\" width=\"48\" height=\"48\" alt=\"ngutman\"></a> <a href=\"https://github.com/thewilloftheshadow\"><img src=\"https://avatars.githubusercontent.com/u/35580099?v=4&s=48\" width=\"48\" height=\"48\" alt=\"thewilloftheshadow\"></a> <a href=\"https://github.com/Sid-Qin\"><img src=\"https://avatars.githubusercontent.com/u/201593046?v=4&s=48\" width=\"48\" height=\"48\" alt=\"Sid-Qin\"></a> <a href=\"https://github.com/mcaxtr\"><img src=\"https://avatars.githubusercontent.com/u/7562095?v=4&s=48\" width=\"48\" height=\"48\" alt=\"mcaxtr\"></a> <a href=\"https://github.com/eleqtrizit\"><img src=\"https://avatars.githubusercontent.com/u/31522568?v=4&s=48\" width=\"48\" height=\"48\" alt=\"eleqtrizit\"></a> <a href=\"https://github.com/BunsDev\"><img src=\"https://avatars.githubusercontent.com/u/68980965?v=4&s=48\" width=\"48\" height=\"48\" alt=\"BunsDev\"></a> <a href=\"https://github.com/cpojer\"><img src=\"https://avatars.githubusercontent.com/u/13352?v=4&s=48\" width=\"48\" height=\"48\" alt=\"cpojer\"></a>\n<a href=\"https://github.com/Glucksberg\"><img src=\"https://avatars.githubusercontent.com/u/80581902?v=4&s=48\" width=\"48\" height=\"48\" alt=\"Glucksberg\"></a> <a href=\"https://github.com/osolmaz\"><img src=\"https://avatars.githubusercontent.com/u/2453968?v=4&s=48\" width=\"48\" height=\"48\" alt=\"osolmaz\"></a> <a href=\"https://github.com/bmendonca3\"><img src=\"https://avatars.githubusercontent.com/u/208517100?v=4&s=48\" width=\"48\" height=\"48\" alt=\"bmendonca3\"></a> <a href=\"https://github.com/jalehman\"><img src=\"https://avatars.githubusercontent.com/u/550978?v=4&s=48\" width=\"48\" height=\"48\" alt=\"jalehman\"></a> <a href=\"https://github.com/huntharo\"><img src=\"https://avatars.githubusercontent.com/u/5617868?v=4&s=48\" width=\"48\" height=\"48\" alt=\"huntharo\"></a> <a href=\"https://github.com/neeravmakwana\"><img src=\"https://avatars.githubusercontent.com/u/261249544?v=4&s=48\" width=\"48\" height=\"48\" alt=\"neeravmakwana\"></a> <a href=\"https://github.com/openperf\"><img src=\"https://avatars.githubusercontent.com/u/80630709?v=4&s=48\" width=\"48\" height=\"48\" alt=\"openperf\"></a> <a href=\"https://github.com/joshp123\"><img src=\"https://avatars.githubusercontent.com/u/1497361?v=4&s=48\" width=\"48\" height=\"48\" alt=\"joshp123\"></a> <a href=\"https://github.com/pgondhi987\"><img src=\"https://avatars.githubusercontent.com/u/270720687?v=4&s=48\" width=\"48\" height=\"48\" alt=\"pgondhi987\"></a> <a href=\"https://github.com/altaywtf\"><img src=\"https://avatars.githubusercontent.com/u/9790196?v=4&s=48\" width=\"48\" height=\"48\" alt=\"altaywtf\"></a>\n<a href=\"https://github.com/quotentiroler\"><img src=\"https://avatars.githubusercontent.com/u/40643627?v=4&s=48\" width=\"48\" height=\"48\" alt=\"quot",
+    "topics": [
+      "ai",
+      "assistant",
+      "crustacean",
+      "molty",
+      "openclaw",
+      "own-your-data",
+      "personal"
+    ],
+    "weekly_stars": 971,
+    "weekly_forks": 170,
+    "score": 79.35,
+    "category": "人工智能与大模型",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 0.63,
+      "总Star": 8.0,
+      "提交活跃": 12.0,
+      "Release新鲜度": 1.81,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 1.92,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "openclaw 是人工智能与大模型领域项目。Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞 ",
+      "why_hot": "近期提交活跃，综合热度得分 79.3；本周新增 Star 971。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.0,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.0
+      }
+    }
+  },
+  {
+    "full_name": "affaan-m/ECC",
+    "name": "ECC",
+    "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+    "html_url": "https://github.com/affaan-m/ECC",
+    "homepage": "https://ecc.tools",
+    "docs_url": "https://ecc.tools",
+    "license": "MIT",
+    "language": "JavaScript",
+    "stars": 243936,
+    "forks": 36893,
+    "open_issues": 177,
+    "watchers": 243936,
+    "created_at": "2026-01-18T00:51:51Z",
+    "updated_at": "2026-08-28T19:08:56Z",
+    "pushed_at": "2026-08-28T18:02:10Z",
+    "latest_release": "v2.1.0",
+    "latest_release_at": "2026-07-27T18:10:46Z",
+    "readme": "<p align=\"center\">\n  <img src=\"assets/hero.png\" alt=\"ECC - the agent harness operating system\" width=\"100%\" />\n</p>\n\n<p align=\"center\">\n  <a href=\"https://www.star-history.com/affaan-m/ecc\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://api.star-history.com/badge?repo=affaan-m/ECC&type=trending&theme=dark\" />\n      <img src=\"https://api.star-history.com/badge?repo=affaan-m/ECC&type=trending\" alt=\"GitHub Trending Repository of the Day\" height=\"46\" />\n    </picture>\n  </a>\n  <a href=\"https://www.star-history.com/affaan-m/ecc\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://api.star-history.com/badge?repo=affaan-m/ECC&type=rank&theme=dark\" />\n      <img src=\"https://api.star-history.com/badge?repo=affaan-m/ECC&type=rank\" alt=\"Star History Global Rank\" height=\"46\" />\n    </picture>\n  </a>\n</p>\n\n<p align=\"center\">\n  <strong>Language:</strong>\n  <a href=\"README.md\">English</a> |\n  <a href=\"docs/pt-BR/README.md\">Português (Brasil)</a> |\n  <a href=\"README.zh-CN.md\">简体中文</a> |\n  <a href=\"docs/zh-TW/README.md\">繁體中文</a> |\n  <a href=\"docs/ja-JP/README.md\">日本語</a> |\n  <a href=\"docs/ko-KR/README.md\">한국어</a> |\n  <a href=\"docs/tr/README.md\">Türkçe</a> |\n  <a href=\"docs/ru/README.md\">Русский</a> |\n  <a href=\"docs/vi-VN/README.md\">Tiếng Việt</a> |\n  <a href=\"docs/th/README.md\">ไทย</a> |\n  <a href=\"docs/de-DE/README.md\">Deutsch</a> |\n  <a href=\"docs/es/README.md\">Español</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://discord.gg/36yGMHGFbR\"><img src=\"https://img.shields.io/discord/1496644400590094540?logo=discord&logoColor=white&label=Discord&color=5865F2\" alt=\"Discord\" /></a>\n  <a href=\"https://ecc.tools\"><img src=\"https://img.shields.io/badge/Website-ecc.tools-E07856?logo=googlechrome&logoColor=white\" alt=\"Website\" /></a>\n  <a href=\"https://github.com/apps/ecc-tools\"><img src=\"https://img.shields.io/badge/GitHub%20App-ECC%20Tools-181717?logo=github&logoColor=white\" alt=\"GitHub App\" /></a>\n  <a href=\"LICENSE\"><img src=\"https://img.shields.io/badge/license-MIT-blue.svg\" alt=\"MIT license\" /></a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/affaan-m/ECC/stargazers\"><img src=\"https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Fstars&style=flat\" alt=\"Stars\" /></a>\n  <a href=\"https://github.com/affaan-m/ECC/network/members\"><img src=\"https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Fforks&style=flat\" alt=\"Forks\" /></a>\n  <a href=\"https://github.com/affaan-m/ECC/graphs/contributors\"><img src=\"https://img.shields.io/github/contributors/affaan-m/ECC?style=flat\" alt=\"Contributors\" /></a>\n  <a href=\"https://github.com/marketplace/ecc-tools\"><img src=\"https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Finstalls&logo=github\" alt=\"GitHub App installs\" /></a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://www.npmjs.com/package/ecc-universal\"><img src=\"https://img.shields.io/npm/dw/ecc-universal?label=ecc-universal&logo=npm\" alt=\"ecc-universal npm downloads\" /></a>\n  <a href=\"https://www.npmjs.com/package/ecc-agentshield\"><img src=\"https://img.shields.io/npm/dw/ecc-agentshield?label=ecc-agentshield&logo=npm\" alt=\"ecc-agentshield npm downloads\" /></a>\n</p>\n\n<p align=\"center\">\n  <img src=\"https://img.shields.io/badge/-Shell-4EAA25?logo=gnu-bash&logoColor=white\" alt=\"Shell\" />\n  <img src=\"https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white\" alt=\"TypeScript\" />\n  <img src=\"https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white\" alt=\"Python\" />\n  <img src=\"https://img.shields.io/badge/-Go-00ADD8?logo=go&logoColor=white\" alt=\"Go\" />\n  <img src=\"https://img.shields.io/badge/-Java-ED8B00?logo=openjdk&logoColor=white\" alt=\"Java\" />\n  <img src=\"https://img.shields.io/badge/-Perl-39457E?logo=perl&logoColor=white\" alt=\"Perl\" />\n  <img src=\"https://img.shields.io/badge/-Markdown-000000?logo=markdown&logoColor=white\" alt=\"Markdown\" />\n</p>\n\n> [!WARNING]\n> **Official sources only.** Install ECC only from verified channels: the GitHub repository [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC), the npm packages [`ecc-universal`](https://www.npmjs.com/package/ecc-universal) and [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield), the [GitHub App](https://github.com/apps/ecc-tools), the plugin slug `ecc@ecc`, and the project website [ecc.tools](https://ecc.tools). Third-party re-uploads and unofficial mirrors are not maintained or reviewed by the project and may contain malware.\n\n## Install with Claude Code\n\nRun these commands inside Claude Code:\n\n```text\n/plugin marketplace add https://github.com/affaan-m/ECC\n/plugin install ecc@ecc\n```\n\nThat installs ECC's skills, agents, commands, and plugin-managed hooks. If you choose this path, stop there. Do not also run a full manual install into Claude Code.\n\n> ECC 2.2 includes guided package setup through `ecc-universal`. The native\n> Claude plugin commands above remain the simplest Claude Code install path.\n\n<div align=\"center\">\n\n<table aria-label=\"ECC primary links\">\n<tr>\n<td width=\"33%\" align=\"center\">\n  <a href=\"https://ecc.tools/pricing\">\n    <img src=\"assets/images/community/ecc-tools-mark.svg\" height=\"42\" alt=\"ECC Tools\" /><br />\n    <strong>ECC Pro + GitHub App</strong>\n  </a><br />\n  <sub><a href=\"https://github.com/apps/ecc-tools\">Install free</a> · <a href=\"https://ecc.tools/pricing\">Private repos from $19/seat/mo</a></sub>\n</td>\n<td width=\"33%\" align=\"center\">\n  <a href=\"https://github.com/sponsors/affaan-m\">\n    <img src=\"assets/images/community/heart.svg\" height=\"42\" alt=\"\" /><br />\n    <strong>Sponsor ECC</strong>\n  </a><br />\n  <sub>Fund the open-source project</sub>\n</td>\n<td width=\"33%\" align=\"center\">\n  <a href=\"https://discord.gg/36yGMHGFbR\">\n    <img src=\"assets/images/community/discord.svg\" height=\"42\" alt=\"Discord\" /><br />\n    <strong>Community</strong>\n  </a><br />\n  <sub>Discord · Q&amp;A · Show and Tell</sub>\n</td>\n</tr>\n</table>\n\n</div>\n\n<sub>**OSS stays free.** This repo is MIT-licensed forever. ECC Pro is the hosted GitHub App for private repos. <a href=\"https://github.com/sponsors/affaan-m\">Sponsors</a> and <a href=\"https://ecc.tools/pricing\">Pro subscribers</a> fund the work. That's why a single maintainer ships weekly across 7 harnesses.</sub>\n\n<div align=\"center\">\n\n<sub><strong>Partners &amp; sponsors</strong></sub>\n\n<p align=\"center\" aria-label=\"Partners and sponsors\">\n  <a href=\"https://www.coderabbit.ai\" title=\"CodeRabbit\"><img src=\"assets/images/sponsors/coderabbit.png\" height=\"54\" alt=\"CodeRabbit\" /></a>&nbsp;&nbsp;&nbsp;\n  <a href=\"https://www.greptile.com/go/ecc\" title=\"Greptile\"><img src=\"assets/images/sponsors/greptile.png\" height=\"54\" alt=\"Greptile\" /></a>&nbsp;&nbsp;&nbsp;\n  <a href=\"https://www.atlascloud.ai/?utm_source=github&amp;utm_medium=link&amp;utm_campaign=ECC\" title=\"Atlas Cloud\"><picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"assets/images/sponsors/atlascloud-dark.svg\" /><img src=\"assets/images/sponsors/atlascloud.svg\" width=\"154\" alt=\"Atlas Cloud\" /></picture></a>&nbsp;&nbsp;&nbsp;\n  <a href=\"https://www.moonshot.ai\" title=\"Moonshot AI - Kimi\"><picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"assets/images/sponsors/moonshot-dark.png\" /><img src=\"assets/images/sponsors/moonshot.png\" width=\"132\" alt=\"Moonshot AI - Kimi\" /></picture></a>&nbsp;&nbsp;&nbsp;\n  <a href=\"https://compute.itomarkets.com\" title=\"Itô Markets\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"assets/images/sponsors/ito-transparent-light.png\" /><img src=\"assets/images/sponsors/ito-transparent.png\" width=\"96\" alt=\"Itô Markets\" /></picture></a>\n</p>\n\n<sub><strong>Community sponsors:</strong> <a href=\"https://github.com/mikejmorgan-ai\">Mike Morgan</a> · <a href=\"https://github.com/jasonwu513\">@jasonwu513</a> · <a href=\"https://github.com/1anter\">@1anter</a> · <a href=\"https://github.com/massimotodaro\">@massimotodaro</a> · <a href=\"https://github.com/meadmccabe\">@meadmccabe</a></sub>\n\n<sub><a href=\"https://github.com/sponsors/affaan-m\"><strong>Become a Sponsor</strong></a> · <a href=\"SPONSORS.md\">Sponsor Tiers</a> · <a href=\"SPONSORING.md\">Sponsorship Program</a></sub>\n\n</div>\n\n<p align=\"center\"><a href=\"#install-ecc\">Jump to install ↓</a></p>\n\n# ECC\n\nYour agent can write code, but ECC gives it a coordinated engineering system and toolbox: it plans before it builds, verifies changes with tests, reviews its own work from a fresh context, remembers what matters, and turns repeated wins into reusable skills and workflows.\n\n```text\nplan -> test -> implement -> review -> verify -> remember -> improve\n```\n\nInstead of rebuilding that process in every prompt, you install it once and make it part of how your agent works.\n\n> Optimize the context window. Persist everything else.\n\nECC is MIT-licensed open source. It works best with Claude Code today, has a supported Codex sync path, and provides capability-limited adapters for Cursor, OpenCode, Gemini, Zed, GitHub Copilot, Antigravity, Qwen, and other harnesses. See the [support status matrix](#platform-support) before assuming feature parity.\n\nAccess to 68 agents, 286 skills, and 94 legacy command shims, plus hooks, rules, memory, continuous learning, and AgentShield security scanning. The agents are specialized for planning, review, build repair, security, architecture, and domain work.\n\n| Included         |       Count | What it gives you                                                                    |\n| ---------------- | ----------: | ------------------------------------------------------------------------------------ |\n| Agents           |   68 agents | Planning, review, build repair, security, architecture, and domain work              |\n| Skills           |  286 skills | TDD, research, security, docs, frontend, data, ML, operations, and more              |\n| Commands         | 94 commands | Convenient entry points while ECC moves to a skills-first surface                    |\n| Hooks and memory |     Runtime | Enforcement, session summaries, continuous learning, instincts, and context controls |\n| Rules            |   Selective | Always-loaded standards you choose by language or project                            |\n| AgentShield      |    Included | Scanning for prompts, hooks, MCP config, permissions, secrets, and agent files       |\n\n<p align=\"center\">\n  <a href=\"https://www.star-history.com/affaan-m/ecc\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"assets/star-history-dark.svg\" />\n      <img src=\"assets/star-history-light.svg\" alt=\"ECC star history: first 40,000 stars, January 18 to February 7, 2026\" width=\"100%\" />\n    </picture>\n  </a>\n</p>\n\n## Install ECC\n\n> [!IMPORTANT]\n> ECC 2.2 includes guided package setup for Claude Code, Codex, and Kimi Code.\n> During registry propagation, run `npm view ecc-universal version` before\n> using the package commands. If it still reports 2.1.0, the native Claude\n> plugin commands at the top of this README remain available.\n\n### Pick one path only (per harness)\n\nYou can use ECC with Claude Code, Codex, and other harnesses at the same time. Choose one install method for each harness:\n\n- **Recommended default:** run the guided Claude plugin setup below once `npm view ecc-universal version` reports 2.2.0\n- **Available throughout npm propagation:** use the [native plugin commands above](#install-with-claude-code)\n- **Available in release 2.2:** guided package setup for Claude Code, Codex, and Kimi Code\n- **Works:** Claude Code plugin + Codex native plugin\n- **Works:** Claude Code plugin + the legacy Codex sync flow\n- **Avoid:** Claude Code plugin + full Claude manual install\n- **Avoid:** Codex sync + Codex marketplace plugin\n\n**Do not stack install methods.** Installing ECC twice into the same harness can duplicate skills, commands, hooks, or configuration; installing it once into multiple harnesses does not.\n\nIf you already layered multiple installs and things look duplicated, skip straight to [Reset / Uninstall ECC](#reset--uninstall-ecc).\n\n**Install trouble?** Open the short [install or runtime problem form](https://github.com/affaan-m/ECC/issues/new?template=install-problem.yml), or run `ecc feedback`. ECC never uploads diagnostics automatically.\n\n### Claude Code details\n\nClaude Code owns these built-in commands, including their errors when a marketplace, plugin, or conflicting scope already exists. ECC cannot intercept that parser. If either native command reports an existing install or scope conflict, use the 2.2 guided setup or resolve the conflicting Claude plugin scope before retrying; do not layer a manual install on top.\n\nAfter ECC is installed, `/ecc:configure-ecc` is the namespaced in-Claude reconfiguration skill. It delegates to the same safe setup flow, but it is available only after the plugin is installed and cannot replace Claude Code's built-in `/plugin` command during a first install.\n\nClaude Code plugins cannot distribute `rules`, so add only the rule packs you actually want:\n\n```bash\ngit clone https://github.com/affaan-m/ECC.git\ncd ECC\nmkdir -p ~/.claude/rules/ecc\ncp -R rules/common ~/.claude/rules/ecc/\ncp -R rules/typescript ~/.claude/rules/ecc/  # replace with your stack\n```\n\nStart with `rules/common` plus one language or framework pack you actually use. If you install the plugin, do not run `./install.sh --profile full` afterward.\n\n<details>\n<summary><strong>Prefer settings.json? Add the marketplace declaratively</strong></summary>\n\nAdd directly to your `~/.claude/settings.json`:\n\n```json\n{\n  \"extraKnownMarketplaces\": {\n    \"ecc\": {\n      \"source\": {\n        \"source\": \"github\",\n        \"repo\": \"affaan-m/ECC\"\n      }\n    }\n  },\n  \"enabledPlugins\": {\n    \"ecc@ecc\": true\n  }\n}\n```\n\nThis gives you the same result as the two `/plugin` commands above.\n</details>\n\n<details>\n<summary><strong>Naming + migration note (ecc@ecc, affaan-m/ECC, ecc-universal)</strong></summary>\n\nECC has three public identifiers, and they are not interchangeable:\n\n- GitHub source repo: `affaan-m/ECC`\n- Claude marketplace/plugin identifier: `ecc@ecc`\n- npm package: `ecc-universal`\n\nThis is intentional. Anthropic marketplace/plugin installs are keyed by a canonical plugin identifier, so ECC uses `ecc@ecc` to keep tool names and slash-command namespaces short enough for strict Desktop/API validators. Older posts may still show the former long marketplace identifier; treat that as a legacy alias only. Separately, the npm package stayed on `ecc-universal`, so npm installs and marketplace installs intentionally use different names.\n\nnpm releases are cut per version tag, not per commit, so `ecc-universal` tracks releases (2.1, 2.2, ...) rather than every push to `main`. Install from git if you want the bleeding edge.\n\nIf your local Claude setup was wiped or reset, that does not mean you need to repurchase anything. Start with `node scripts/ecc.js list-installed`, then run `node scripts/ecc.js doctor` and `node scripts/ecc.js repair` before reinstalling. That usually restores ECC-managed files without rebuilding your setup.\n</details>\n\n### Codex App and CLI\n\nCurrent Codex releases can install ECC as a native repo-marketplace plugin. The marketplace entry uses the repository root so Codex's cache receives the manifest together with all referenced skills, MCP configuration, hook runtime, scripts, and assets:\n\n```bash\ncodex plugin marketplace add affaan-m/ECC\ncodex plugin add ecc@ecc\ncodex plugin list --json\nnode scripts/codex/check-plugin-cache.js\n```\n\nBoth add commands are idempotent. To refresh later, run `codex plugin marketplace upgrade ecc` followed by `codex plugin add ecc@ecc`. Codex stores one enabled plugin state in the active `CODEX_HOME`; it does not offer Claude's `user`, `project`, and `local` scopes. Its native hooks require an explicit trust decision and do not use Claude's four ECC hook profiles. Inside Codex, invoke `$configure-ecc` for the guided provider-aware flow.\n\nThe older `scripts/sync-ecc-to-codex.sh` path is ",
+    "topics": [
+      "ai-agents",
+      "anthropic",
+      "claude",
+      "claude-code",
+      "developer-tools",
+      "llm",
+      "mcp",
+      "productivity"
+    ],
+    "weekly_stars": 2393,
+    "weekly_forks": 270,
+    "score": 77.7,
+    "category": "AI Agent",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 2.48,
+      "总Star": 8.0,
+      "提交活跃": 11.96,
+      "Release新鲜度": 0.0,
+      "协作活跃": 6.74,
+      "Fork增长": 5.0,
+      "项目新鲜度": 2.52,
+      "README质量": 10.0,
+      "安装与示例": 2.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "ECC 是AI Agent领域项目。The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "why_hot": "近期提交活跃，综合热度得分 77.7；本周新增 Star 2393。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 3.9,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 3.9
+      }
+    }
+  },
+  {
+    "full_name": "react/react",
+    "name": "react",
+    "description": "The library for web and native user interfaces.",
+    "html_url": "https://github.com/react/react",
+    "homepage": "https://react.dev",
+    "docs_url": "https://react.dev",
+    "license": "MIT",
+    "language": "JavaScript",
+    "stars": 248007,
+    "forks": 51256,
+    "open_issues": 1282,
+    "watchers": 248007,
+    "created_at": "2013-05-24T16:15:54Z",
+    "updated_at": "2026-08-28T18:57:56Z",
+    "pushed_at": "2026-08-28T11:10:40Z",
+    "latest_release": "v19.2.8",
+    "latest_release_at": "2026-07-21T15:49:09Z",
+    "readme": "# [React](https://react.dev/) &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/facebook/react/blob/main/LICENSE) [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react) [![(Runtime) Build and Test](https://github.com/facebook/react/actions/workflows/runtime_build_and_test.yml/badge.svg)](https://github.com/facebook/react/actions/workflows/runtime_build_and_test.yml) [![(Compiler) TypeScript](https://github.com/facebook/react/actions/workflows/compiler_typescript.yml/badge.svg?branch=main)](https://github.com/facebook/react/actions/workflows/compiler_typescript.yml) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://legacy.reactjs.org/docs/how-to-contribute.html#your-first-pull-request)\n\nReact is a JavaScript library for building user interfaces.\n\n* **Declarative:** React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. Declarative views make your code more predictable, simpler to understand, and easier to debug.\n* **Component-Based:** Build encapsulated components that manage their own state, then compose them to make complex UIs. Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep the state out of the DOM.\n* **Learn Once, Write Anywhere:** We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code. React can also render on the server using [Node](https://nodejs.org/en) and power mobile apps using [React Native](https://reactnative.dev/).\n\n[Learn how to use React in your project](https://react.dev/learn).\n\n## Installation\n\nReact has been designed for gradual adoption from the start, and **you can use as little or as much React as you need**:\n\n* Use [Quick Start](https://react.dev/learn) to get a taste of React.\n* [Add React to an Existing Project](https://react.dev/learn/add-react-to-an-existing-project) to use as little or as much React as you need.\n* [Create a New React App](https://react.dev/learn/start-a-new-react-project) if you're looking for a powerful JavaScript toolchain.\n\n## Documentation\n\nYou can find the React documentation [on the website](https://react.dev/).\n\nCheck out the [Getting Started](https://react.dev/learn) page for a quick overview.\n\nThe documentation is divided into several sections:\n\n* [Quick Start](https://react.dev/learn)\n* [Tutorial](https://react.dev/learn/tutorial-tic-tac-toe)\n* [Thinking in React](https://react.dev/learn/thinking-in-react)\n* [Installation](https://react.dev/learn/installation)\n* [Describing the UI](https://react.dev/learn/describing-the-ui)\n* [Adding Interactivity](https://react.dev/learn/adding-interactivity)\n* [Managing State](https://react.dev/learn/managing-state)\n* [Advanced Guides](https://react.dev/learn/escape-hatches)\n* [API Reference](https://react.dev/reference/react)\n* [Where to Get Support](https://react.dev/community)\n* [Contributing Guide](https://legacy.reactjs.org/docs/how-to-contribute.html)\n\nYou can improve it by sending pull requests to [this repository](https://github.com/reactjs/react.dev).\n\n## Examples\n\nWe have several examples [on the website](https://react.dev/). Here is the first one to get you started:\n\n```jsx\nimport { createRoot } from 'react-dom/client';\n\nfunction HelloMessage({ name }) {\n  return <div>Hello {name}</div>;\n}\n\nconst root = createRoot(document.getElementById('container'));\nroot.render(<HelloMessage name=\"Taylor\" />);\n```\n\nThis example will render \"Hello Taylor\" into a container on the page.\n\nYou'll notice that we used an HTML-like syntax; [we call it JSX](https://react.dev/learn#writing-markup-with-jsx). JSX is not required to use React, but it makes code more readable, and writing it feels like writing HTML.\n\n## Contributing\n\nThe main purpose of this repository is to continue evolving React core, making it faster and easier to use. Development of React happens in the open on GitHub, and we are grateful to the community for contributing bugfixes and improvements. Read below to learn how you can take part in improving React.\n\n### [Code of Conduct](https://code.fb.com/codeofconduct)\n\nFacebook has adopted a Code of Conduct that we expect project participants to adhere to. Please read [the full text](https://code.fb.com/codeofconduct) so that you can understand what actions will and will not be tolerated.\n\n### [Contributing Guide](https://legacy.reactjs.org/docs/how-to-contribute.html)\n\nRead our [contributing guide](https://legacy.reactjs.org/docs/how-to-contribute.html) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to React.\n\n### [Good First Issues](https://github.com/facebook/react/labels/good%20first%20issue)\n\nTo help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/facebook/react/labels/good%20first%20issue) that contain bugs that have a relatively limited scope. This is a great place to get started.\n\n### License\n\nReact is [MIT licensed](./LICENSE).\n",
+    "topics": [
+      "declarative",
+      "frontend",
+      "javascript",
+      "library",
+      "react",
+      "ui"
+    ],
+    "weekly_stars": 477,
+    "weekly_forks": 18,
+    "score": 75.21,
+    "category": "Web 前端",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 0.48,
+      "总Star": 8.0,
+      "提交活跃": 11.73,
+      "Release新鲜度": 0.0,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "react 是Web 前端领域项目。The library for web and native user interfaces.",
+      "why_hot": "近期提交活跃，综合热度得分 75.2；本周新增 Star 477。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 3.8,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 3.8
+      }
+    }
+  }
+]
