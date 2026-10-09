@@ -1,66 +1,66 @@
 {
   "openclaw/openclaw": {
     "full_name": "openclaw/openclaw",
-    "stars": 391204,
-    "forks": 82241,
-    "open_issues": 9166,
-    "updated_at": "2026-10-02T13:21:08Z",
-    "latest_release": "v2026.9.7",
-    "collected_at": "2026-10-02T22:25:16.201790+09:00"
+    "stars": 391535,
+    "forks": 82305,
+    "open_issues": 9360,
+    "updated_at": "2026-10-09T13:54:40Z",
+    "latest_release": "v2026.9.9",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   },
   "n8n-io/n8n": {
     "full_name": "n8n-io/n8n",
-    "stars": 206508,
-    "forks": 60976,
-    "open_issues": 1091,
-    "updated_at": "2026-10-02T13:23:46Z",
-    "latest_release": "n8n@2.41.6",
-    "collected_at": "2026-10-02T22:25:16.201790+09:00"
+    "stars": 206804,
+    "forks": 61032,
+    "open_issues": 1174,
+    "updated_at": "2026-10-09T13:58:51Z",
+    "latest_release": "n8n@2.42.6",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   },
   "ollama/ollama": {
     "full_name": "ollama/ollama",
-    "stars": 182049,
-    "forks": 18085,
-    "open_issues": 4146,
-    "updated_at": "2026-10-02T13:04:36Z",
-    "latest_release": "v0.35.0",
-    "collected_at": "2026-10-02T22:25:16.201790+09:00"
+    "stars": 182490,
+    "forks": 18175,
+    "open_issues": 4229,
+    "updated_at": "2026-10-09T13:49:19Z",
+    "latest_release": "v0.40.2",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   },
   "Significant-Gravitas/AutoGPT": {
     "full_name": "Significant-Gravitas/AutoGPT",
-    "stars": 187655,
-    "forks": 45971,
-    "open_issues": 591,
-    "updated_at": "2026-10-02T12:20:58Z",
-    "latest_release": "autogpt-platform-beta-v0.8.2",
-    "collected_at": "2026-10-02T22:25:16.201790+09:00"
+    "stars": 187496,
+    "forks": 45929,
+    "open_issues": 688,
+    "updated_at": "2026-10-09T13:52:21Z",
+    "latest_release": "autogpt-platform-beta-v0.8.3",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   },
   "anomalyco/opencode": {
     "full_name": "anomalyco/opencode",
-    "stars": 211424,
-    "forks": 28056,
-    "open_issues": 6192,
-    "updated_at": "2026-10-02T13:24:07Z",
-    "latest_release": "v1.18.34",
-    "collected_at": "2026-10-02T22:25:16.201790+09:00"
+    "stars": 212334,
+    "forks": 28361,
+    "open_issues": 6199,
+    "updated_at": "2026-10-09T13:56:30Z",
+    "latest_release": "v1.18.35",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   },
   "microsoft/vscode": {
     "full_name": "microsoft/vscode",
-    "stars": 193351,
-    "forks": 44020,
-    "open_issues": 21307,
-    "updated_at": "2026-10-02T13:10:48Z",
-    "latest_release": "1.140.0",
-    "collected_at": "2026-10-02T22:25:16.201790+09:00"
+    "stars": 193493,
+    "forks": 44775,
+    "open_issues": 21648,
+    "updated_at": "2026-10-09T13:23:09Z",
+    "latest_release": "1.141.0",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   },
   "mattpocock/skills": {
     "full_name": "mattpocock/skills",
-    "stars": 274390,
-    "forks": 23051,
-    "open_issues": 544,
-    "updated_at": "2026-10-02T13:25:01Z",
-    "latest_release": "v1.2.3",
-    "collected_at": "2026-10-02T22:25:16.201790+09:00"
+    "stars": 282093,
+    "forks": 23641,
+    "open_issues": 157,
+    "updated_at": "2026-10-09T14:02:34Z",
+    "latest_release": "v1.3.1",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   },
   "CluvexStudio/Aether": {
     "full_name": "CluvexStudio/Aether",
@@ -109,12 +109,12 @@
   },
   "affaan-m/ECC": {
     "full_name": "affaan-m/ECC",
-    "stars": 270965,
-    "forks": 40507,
-    "open_issues": 340,
-    "updated_at": "2026-10-02T13:19:25Z",
+    "stars": 275712,
+    "forks": 41149,
+    "open_issues": 272,
+    "updated_at": "2026-10-09T14:00:23Z",
     "latest_release": "v2.2.3",
-    "collected_at": "2026-10-02T22:25:16.201790+09:00"
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   },
   "wassgha/rescript": {
     "full_name": "wassgha/rescript",
@@ -151,5 +151,23 @@
     "updated_at": "2026-09-25T12:28:14Z",
     "latest_release": "v0.3.20",
     "collected_at": "2026-09-25T21:29:09.362469+09:00"
+  },
+  "sganggs/Stronghold-Protocol": {
+    "full_name": "sganggs/Stronghold-Protocol",
+    "stars": 1045,
+    "forks": 240,
+    "open_issues": 77,
+    "updated_at": "2026-10-09T13:45:41Z",
+    "latest_release": "v0.2.2",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
+  },
+  "storytold/wordcraft": {
+    "full_name": "storytold/wordcraft",
+    "stars": 1247,
+    "forks": 421,
+    "open_issues": 39,
+    "updated_at": "2026-10-09T14:01:34Z",
+    "latest_release": "v0.3.0",
+    "collected_at": "2026-10-09T23:02:33.442401+09:00"
   }
 }

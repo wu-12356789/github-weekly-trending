@@ -1,0 +1,911 @@
+[
+  {
+    "full_name": "mattpocock/skills",
+    "name": "skills",
+    "description": "Skills for Real Engineers. Straight from my .agents directory.",
+    "html_url": "https://github.com/mattpocock/skills",
+    "homepage": "https://aihero.dev/skills",
+    "docs_url": "https://aihero.dev/skills",
+    "license": "MIT",
+    "language": "Shell",
+    "stars": 282093,
+    "forks": 23641,
+    "open_issues": 157,
+    "watchers": 282093,
+    "created_at": "2026-02-03T11:15:53Z",
+    "updated_at": "2026-10-09T14:02:34Z",
+    "pushed_at": "2026-10-09T10:57:08Z",
+    "latest_release": "v1.3.1",
+    "latest_release_at": "2026-10-04T12:48:18Z",
+    "readme": "<p>\n  <a href=\"https://www.aihero.dev/s/skills-newsletter\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skills-repo-dark_2x.png\">\n      <source media=\"(prefers-color-scheme: light)\" srcset=\"https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png\">\n      <img alt=\"Skills\" src=\"https://res.cloudinary.com/total-typescript/image/upload/v1777382277/skill-repo-light_2x.png\" width=\"369\">\n    </picture>\n  </a>\n</p>\n\n# Skills For Real Engineers\n\n[![skills.sh](https://skills.sh/b/mattpocock/skills)](https://skills.sh/mattpocock/skills)\n\nMy agent skills that I use every day to do real engineering - not vibe coding.\n\nDeveloping real applications is hard. Approaches like GSD, BMAD, and Spec-Kit try to help by owning the process. But while doing so, they take away your control and make bugs in the process hard to resolve.\n\nThese skills are designed to be small, easy to adapt, and composable. They work with any model. They're based on decades of engineering experience. Hack around with them. Make them your own. Enjoy.\n\nIf you want to keep up with changes to these skills, and any new ones I create, you can join ~60,000 other devs on my newsletter:\n\n[Sign Up To The Newsletter](https://www.aihero.dev/s/skills-newsletter)\n\n## Installation (30-second setup)\n\nA plugin updates itself. [skills.sh](https://skills.sh/mattpocock/skills) copies editable files into your project, and you update them by hand. Pick one per agent, because installing both gives you every skill twice.\n\n### 1. Get the skills\n\n<details>\n<summary><strong>Claude Code</strong></summary>\n\n```bash\nclaude plugin install mattpocock-skills@claude-plugins-official\n```\n\nUpdates itself by default.\n\n</details>\n\n<details>\n<summary><strong>Codex</strong></summary>\n\n```bash\ncodex plugin marketplace add mattpocock/skills\ncodex plugin add mattpocock-skills@mattpocock\n```\n\nUpdates itself at startup.\n\n</details>\n\n<details>\n<summary><strong>GitHub Copilot</strong> (CLI and VS Code)</summary>\n\n```bash\ncopilot plugin marketplace add mattpocock/skills\ncopilot plugin install mattpocock-skills@mattpocock\n```\n\nThen, once, add to `~/.copilot/settings.json`:\n\n```json\n{\n  \"extraKnownMarketplaces\": {\n    \"mattpocock\": { \"source\": { \"source\": \"github\", \"repo\": \"mattpocock/skills\" }, \"autoUpdate\": true }\n  }\n}\n```\n\nIn VS Code, run **Chat: Install Plugin From Source** and enter `https://github.com/mattpocock/skills`. It updates daily.\n\n</details>\n\n<details>\n<summary><strong>Gemini CLI</strong> (manual updates)</summary>\n\n```bash\ngemini skills install https://github.com/mattpocock/skills.git --path skills/engineering\ngemini skills install https://github.com/mattpocock/skills.git --path skills/productivity\n```\n\nRe-run both commands to update.\n\n</details>\n\n<details>\n<summary><strong>Any other agent, or editable files</strong> (manual updates)</summary>\n\n```bash\nnpx skills@latest add mattpocock/skills -a <agent>  # cursor, opencode, devin, windsurf, amp, pi; omit -a to choose\n```\n\nWhen the installer asks which skills to take, include `setup-matt-pocock-skills`. To update, run `npx skills@latest update`, and re-run `add` to pick up new skills.\n\n</details>\n\n### 2. Run `/setup-matt-pocock-skills`\n\nIn your agent, run it once per repo. It will:\n\n- Ask you which issue tracker you want to use (GitHub, GitLab, local files, or anything else you describe)\n- Ask you what labels you apply to tickets when you triage them (`/triage` uses labels)\n- Ask you where you want to save any docs we create\n\n### 3. Bam - you're ready to go.\n\n## Why These Skills Exist\n\nI built these skills as a way to fix common failure modes I see with Claude Code, Codex, and other coding agents.\n\n### #1: The Agent Didn't Do What I Want\n\n> \"No-one knows exactly what they want\"\n>\n> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)\n\n**The Problem**. The most common failure mode in software development is misalignment. You think the dev knows what you want. Then you see what they've built - and you realize it didn't understand you at all.\n\nThis is just the same in the AI age. There is a communication gap between you and the agent. The fix for this is a **grilling session** - getting the agent to ask you detailed questions about what you're building.\n\n**The Fix** is to use:\n\n- [`/grill-me`](./skills/productivity/grill-me/SKILL.md) - for non-code uses\n- [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) - same as [`/grill-me`](./skills/productivity/grill-me/SKILL.md), but adds more goodies (see below)\n\nThese are my most popular skills. They help you align with the agent before you get started, and think deeply about the change you're making. Use them _every_ time you want to make a change.\n\n### #2: The Agent Is Way Too Verbose\n\n> With a ubiquitous language, conversations among developers and expressions of the code are all derived from the same domain model.\n>\n> Eric Evans, [Domain-Driven-Design](https://www.amazon.co.uk/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215)\n\n**The Problem**: At the start of a project, devs and the people they're building the software for (the domain experts) are usually speaking different languages.\n\nI felt the same tension with my agents. Agents are usually dropped into a project and asked to figure out the jargon as they go. So they use 20 words where 1 will do.\n\n**The Fix** for this is a shared language. It's a document that helps agents decode the jargon used in the project.\n\n<details>\n<summary>\nExample\n</summary>\n\nHere's an example [glossary](https://github.com/mattpocock/course-video-manager/blob/076a5a7a182db0fe1e62971dd7a68bcadf010f1c/CONTEXT.md) (still named `CONTEXT.md` at that pinned commit, from before the skills renamed the convention), from my `course-video-manager` repo. Which one is easier to read?\n\n- **BEFORE**: \"There's a problem when a lesson inside a section of a course is made 'real' (i.e. given a spot in the file system)\"\n- **AFTER**: \"There's a problem with the materialization cascade\"\n\nThis concision pays off session after session.\n\n</details>\n\nThis is built into [`/grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md). It's a grilling session, but that helps you build a shared language with the AI, and document hard-to-explain decisions in ADR's.\n\nIt's hard to explain how powerful this is. It might be the single coolest technique in this repo. Try it, and see.\n\n> [!TIP]\n> A shared language has many other benefits than reducing verbosity:\n>\n> - **Variables, functions and files are named consistently**, using the shared language\n> - As a result, the **codebase is easier to navigate** for the agent\n> - The agent also **spends fewer tokens on thinking**, because it has access to a more concise language\n\n### #3: The Code Doesn't Work\n\n> \"Always take small, deliberate steps. The rate of feedback is your speed limit. Never take on a task that’s too big.\"\n>\n> David Thomas & Andrew Hunt, [The Pragmatic Programmer](https://www.amazon.co.uk/Pragmatic-Programmer-Anniversary-Journey-Mastery/dp/B0833F1T3V)\n\n**The Problem**: Let's say that you and the agent are aligned on what to build. What happens when the agent _still_ produces crap?\n\nIt's time to look at your feedback loops. Without feedback on how the code it produces actually runs, the agent will be flying blind.\n\n**The Fix**: You need the usual tranche of feedback loops: static types, browser access, and automated tests.\n\nFor automated tests, a red-green-refactor loop is critical. This is where the agent writes a failing test first, then fixes the test. This helps give the agent a consistent level of feedback that results in far better code.\n\nI've built a **[`/tdd`](./skills/engineering/tdd/SKILL.md) skill** you can slot into any project. It encourages red-green-refactor and gives the agent plenty of guidance on what makes good and bad tests.\n\nFor debugging, I've also built a **[`/diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md)** skill that wraps best debugging practices into a disciplined loop, gated phase by phase.\n\n### #4: We Built A Ball Of Mud\n\n> \"Invest in the design of the system _every day_.\"\n>\n> Kent Beck, [Extreme Programming Explained](https://www.amazon.co.uk/Extreme-Programming-Explained-Embrace-Change/dp/0321278658)\n\n> \"The best modules are deep. They allow a lot of functionality to be accessed through a simple interface.\"\n>\n> John Ousterhout, [A Philosophy Of Software Design](https://www.amazon.co.uk/Philosophy-Software-Design-2nd/dp/173210221X)\n\n**The Problem**: Most apps built with agents are complex and hard to change. Because agents can radically speed up coding, they also accelerate software entropy. Codebases get more complex at an unprecedented rate.\n\n**The Fix** for this is a radical new approach to AI-powered development: caring about the design of the code.\n\nThis is built in to every layer of these skills:\n\n- [`/to-spec`](./skills/engineering/to-spec/SKILL.md) quizzes you about which modules you're touching before creating a spec\n\nAnd crucially, [`/improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md) surveys a codebase for deepening opportunities and hands you the candidates. I recommend running it on your codebase once every few days. It is a survey, not a rescue: on a genuinely old codebase it will find real candidates, but it won't untangle the mud for you.\n\n### Summary\n\nSoftware engineering fundamentals matter more than ever. These skills are my best effort at condensing these fundamentals into repeatable practices, to help you ship the best apps of your career. Enjoy.\n\n## Reference\n\nThese split on one axis: who can invoke them. **User-invoked** skills are reachable only when you type them (e.g. `/grill-me`); their job is to orchestrate. **Model-invoked** skills can be invoked by you _or_ reached for automatically by the agent when the task fits; they hold the reusable discipline. A user-invoked skill may invoke model-invoked skills, but never another user-invoked one.\n\n### Engineering\n\nSkills I use daily for code work.\n\n**User-invoked**\n\n- **[ask-matt](./skills/engineering/ask-matt/SKILL.md)**: Ask which skill or flow fits your situation. A router over the user-invoked skills in this repo.\n- **[grill-with-docs](./skills/engineering/grill-with-docs/SKILL.md)**: Grilling session that also builds your project's domain model, sharpening terminology and updating `GLOSSARY.md` and ADRs inline.\n- **[triage](./skills/engineering/triage/SKILL.md)**: Move issues through a state machine of triage roles.\n- **[improve-codebase-architecture](./skills/engineering/improve-codebase-architecture/SKILL.md)**: Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.\n- **[setup-matt-pocock-skills](./skills/engineering/setup-matt-pocock-skills/SKILL.md)**: Configure this repo for the engineering skills (issue tracker, triage labels, domain doc layout). Run once per repo before using the other engineering skills.\n- **[to-spec](./skills/engineering/to-spec/SKILL.md)**: Turn the current conversation into a spec and publish it to the issue tracker. No interview, just synthesizes what you've already discussed.\n- **[to-tickets](./skills/engineering/to-tickets/SKILL.md)**: Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges, written as text in a local file, or as native blocking links on a real tracker.\n- **[implement](./skills/engineering/implement/SKILL.md)**: Build the work described by a spec or set of tickets, driving `/tdd` at pre-agreed seams and closing out with `/code-review` before committing.\n- **[implement-spec](./skills/engineering/implement-spec/SKILL.md)**: Implement a whole spec on one integration branch. Works the tickets as a task graph, running implementer subagents across the ready frontier for maximum concurrency, then closes out with `/code-review`.\n- **[wayfinder](./skills/engineering/wayfinder/SKILL.md)**: Plan a huge chunk of work, more than one agent session can hold, as a shared map of decision tickets on the issue tracker, and resolve them one at a time until the way to the destination is clear.\n- **[retro](./skills/engineering/retro/SKILL.md)**: Suggest improvements to the coding agent's environment (navigation, automated checks, coding standards, steering files, tooling) after a session, most severe first.\n\n**Model-invoked**\n\n- **[prototype](./skills/engineering/prototype/SKILL.md)**: Build a throwaway prototype to answer a design question, either a single shareable HTML file for state/logic questions, or several radically different UI variations toggleable from one route.\n- **[diagnosing-bugs](./skills/engineering/diagnosing-bugs/SKILL.md)**: Disciplined diagnosis loop for hard bugs and performance regressions: build a feedback loop that goes red on this bug → minimise → hypothesise → instrument → fix → regression-test.\n- **[research](./skills/engineering/research/SKILL.md)**: Investigate a question against high-trust primary sources and capture the findings as a cited Markdown file in the repo, run as a background agent.\n- **[tdd](./skills/engineering/tdd/SKILL.md)**: Test-driven development with a red-green-refactor loop. Builds features or fixes bugs one vertical slice at a time.\n- **[domain-modeling](./skills/engineering/domain-modeling/SKILL.md)**: Actively build and sharpen a project's domain model: challenge terms against the glossary, stress-test with edge-case scenarios, and update `GLOSSARY.md` and ADRs inline.\n- **[codebase-design](./skills/engineering/codebase-design/SKILL.md)**: Shared discipline and vocabulary for designing deep modules: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface.\n- **[code-review](./skills/engineering/code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents so neither pollutes the other.\n- **[pr](./skills/engineering/pr/SKILL.md)**: The shape a pull request body should take: a summary as the smallest visual that makes the change clear, before/after evidence that it works, and a merge-danger call (one-way or two-way door, plus blast radius).\n- **[wizard](./skills/engineering/wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.\n\n### Productivity\n\nGeneral workflow tools, not code-specific.\n\n**User-invoked**\n\n- **[grill-me](./skills/productivity/grill-me/SKILL.md)**: Get relentlessly interviewed about a plan or design until every branch of the design tree is resolved.\n- **[handoff](./skills/productivity/handoff/SKILL.md)**: Compact the current conversation into a handoff document so another agent can continue the work.\n- **[teach](./skills/productivity/teach/SKILL.md)**: Teach the user a new skill or concept over multiple sessions, using the current directory as a stateful teaching workspace.\n- **[to-questionnaire](./skills/productivity/to-questionnaire/SKILL.md)**: Turn a decision you can't answer alone into a Markdown questionnaire for the one person who can, filled in async, or together over a meeting. It grills you about the send (who it's for, what you need back), not the subject.\n- **[wait-what](./skills/productivity/wait-what/SKILL.md)**: Fire this the moment a message doesn't land. The agent re-pitches it with the context you're missing, in plain English, using your `GLOSSARY.md` vocabulary.\n\n**Model-invoked**\n\n- **[grilling](./skills/productivity",
+    "topics": [],
+    "weekly_stars": 7703,
+    "weekly_forks": 590,
+    "score": 88.48,
+    "category": "AI Agent",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 7.02,
+      "总Star": 8.0,
+      "提交活跃": 11.9,
+      "Release新鲜度": 6.74,
+      "协作活跃": 6.58,
+      "Fork增长": 5.0,
+      "项目新鲜度": 2.24,
+      "README质量": 10.0,
+      "安装与示例": 2.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "skills 是AI Agent领域项目。Skills for Real Engineers. Straight from my .agents directory.",
+      "why_hot": "近期提交活跃，综合热度得分 88.5；本周新增 Star 7703。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.4,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.4
+      }
+    }
+  },
+  {
+    "full_name": "ollama/ollama",
+    "name": "ollama",
+    "description": "Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+    "html_url": "https://github.com/ollama/ollama",
+    "homepage": "https://ollama.com",
+    "docs_url": "https://ollama.com",
+    "license": "MIT",
+    "language": "Go",
+    "stars": 182490,
+    "forks": 18175,
+    "open_issues": 4229,
+    "watchers": 182490,
+    "created_at": "2023-06-26T19:39:32Z",
+    "updated_at": "2026-10-09T13:49:19Z",
+    "pushed_at": "2026-10-09T10:08:47Z",
+    "latest_release": "v0.40.2",
+    "latest_release_at": "2026-10-08T16:53:47Z",
+    "readme": "<p align=\"center\">\n  <a href=\"https://ollama.com\">\n    <img src=\"https://github.com/ollama/ollama/assets/3325447/0d0b44e2-8f4a-4e99-9b52-a5c1c741c8f7\" alt=\"ollama\" width=\"200\"/>\n  </a>\n</p>\n\n# Ollama\n\nStart building with open models.\n\n## Download\n\n### macOS\n\n```shell\ncurl -fsSL https://ollama.com/install.sh | sh\n```\n\nor [download manually](https://ollama.com/download/Ollama.dmg)\n\n### Windows\n\n```shell\nirm https://ollama.com/install.ps1 | iex\n```\n\nor [download manually](https://ollama.com/download/OllamaSetup.exe)\n\n### Linux\n\n```shell\ncurl -fsSL https://ollama.com/install.sh | sh\n```\n\n[Manual install instructions](https://docs.ollama.com/linux#manual-install)\n\n### Docker\n\nThe official [Ollama Docker image](https://hub.docker.com/r/ollama/ollama) `ollama/ollama` is available on Docker Hub.\n\n### Libraries\n\n- [ollama-python](https://github.com/ollama/ollama-python)\n- [ollama-js](https://github.com/ollama/ollama-js)\n\n### Community\n\n- [Discord](https://discord.gg/ollama)\n- [𝕏 (Twitter)](https://x.com/ollama)\n- [Reddit](https://reddit.com/r/ollama)\n\n## Get started\n\n```\nollama\n```\n\nYou'll be prompted to run a model or connect Ollama to your existing agents or applications such as `Claude Code`, `OpenClaw`, `OpenCode` , `Codex`, `Copilot`,  and more.\n\n### Coding\n\nTo launch a specific integration:\n\n```\nollama launch claude\n```\n\nSupported integrations include [Claude Code](https://docs.ollama.com/integrations/claude-code), [Codex](https://docs.ollama.com/integrations/codex), [Copilot CLI](https://docs.ollama.com/integrations/copilot-cli), [DeepSeek Harness](https://docs.ollama.com/integrations/deepseek-harness), [Droid](https://docs.ollama.com/integrations/droid), and [OpenCode](https://docs.ollama.com/integrations/opencode).\n\n### AI assistant\n\nUse [OpenClaw](https://docs.ollama.com/integrations/openclaw) to turn Ollama into a personal AI assistant across WhatsApp, Telegram, Slack, Discord, and more:\n\n```\nollama launch openclaw\n```\n\n### Chat with a model\n\nRun and chat with [Gemma 4](https://ollama.com/library/gemma4):\n\n```\nollama run gemma4\n```\n\nSee [ollama.com/library](https://ollama.com/library) for the full list.\n\nSee the [quickstart guide](https://docs.ollama.com/quickstart) for more details.\n\n## REST API\n\nOllama has a REST API for running and managing models.\n\n```\ncurl http://localhost:11434/api/chat -d '{\n  \"model\": \"gemma4\",\n  \"messages\": [{\n    \"role\": \"user\",\n    \"content\": \"Why is the sky blue?\"\n  }],\n  \"stream\": false\n}'\n```\n\nSee the [API documentation](https://docs.ollama.com/api) for all endpoints.\n\n### Python\n\n```\npip install ollama\n```\n\n```python\nfrom ollama import chat\n\nresponse = chat(model='gemma4', messages=[\n  {\n    'role': 'user',\n    'content': 'Why is the sky blue?',\n  },\n])\nprint(response.message.content)\n```\n\n### JavaScript\n\n```\nnpm i ollama\n```\n\n```javascript\nimport ollama from \"ollama\";\n\nconst response = await ollama.chat({\n  model: \"gemma4\",\n  messages: [{ role: \"user\", content: \"Why is the sky blue?\" }],\n});\nconsole.log(response.message.content);\n```\n\n## Supported backends\n\n- [llama.cpp](https://github.com/ggml-org/llama.cpp) project founded by Georgi Gerganov.\n\n## Documentation\n\n- [CLI reference](https://docs.ollama.com/cli)\n- [REST API reference](https://docs.ollama.com/api)\n- [Importing models](https://docs.ollama.com/import)\n- [Modelfile reference](https://docs.ollama.com/modelfile)\n- [Building from source](https://github.com/ollama/ollama/blob/main/docs/development.md)\n\n## Community Integrations\n\n> Want to add your project? Open a pull request.\n\n### Chat Interfaces\n\n#### Web\n\n- [Open WebUI](https://github.com/open-webui/open-webui) - Extensible, self-hosted AI interface\n- [Onyx](https://github.com/onyx-dot-app/onyx) - Connected AI workspace\n- [LibreChat](https://github.com/danny-avila/LibreChat) - Enhanced ChatGPT clone with multi-provider support\n- [Lobe Chat](https://github.com/lobehub/lobe-chat) - Modern chat framework with plugin ecosystem ([docs](https://lobehub.com/docs/self-hosting/examples/ollama))\n- [NextChat](https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web) - Cross-platform ChatGPT UI ([docs](https://docs.nextchat.dev/models/ollama))\n- [Perplexica](https://github.com/ItzCrazyKns/Perplexica) - AI-powered search engine, open-source Perplexity alternative\n- [big-AGI](https://github.com/enricoros/big-AGI) - AI suite for professionals\n- [Lollms WebUI](https://github.com/ParisNeo/lollms-webui) - Multi-model web interface\n- [ChatOllama](https://github.com/sugarforever/chat-ollama) - Chatbot with knowledge bases\n- [Bionic GPT](https://github.com/bionic-gpt/bionic-gpt) - On-premise AI platform\n- [Chatbot UI](https://github.com/ivanfioravanti/chatbot-ollama) - ChatGPT-style web interface\n- [Hollama](https://github.com/fmaclen/hollama) - Minimal web interface\n- [Chatbox](https://github.com/Bin-Huang/Chatbox) - Desktop and web AI client\n- [chat](https://github.com/swuecho/chat) - Chat web app for teams\n- [Ollama RAG Chatbot](https://github.com/datvodinh/rag-chatbot.git) - Chat with multiple PDFs using RAG\n- [Tkinter-based client](https://github.com/chyok/ollama-gui) - Python desktop client\n\n#### Desktop\n\n- [Dify.AI](https://github.com/langgenius/dify) - LLM app development platform\n- [AnythingLLM](https://github.com/Mintplex-Labs/anything-llm) - All-in-one AI app for Mac, Windows, and Linux\n- [Maid](https://github.com/Mobile-Artificial-Intelligence/maid) - Cross-platform mobile and desktop client\n- [Witsy](https://github.com/nbonamy/witsy) - AI desktop app for Mac, Windows, and Linux\n- [Cherry Studio](https://github.com/kangfenmao/cherry-studio) - Multi-provider desktop client\n- [Ollama App](https://github.com/JHubi1/ollama-app) - Multi-platform client for desktop and mobile\n- [PyGPT](https://github.com/szczyglis-dev/py-gpt) - AI desktop assistant for Linux, Windows, and Mac\n- [Alpaca](https://github.com/Jeffser/Alpaca) - GTK4 client for Linux and macOS\n- [SwiftChat](https://github.com/aws-samples/swift-chat) - Cross-platform including iOS, Android, and Apple Vision Pro\n- [Enchanted](https://github.com/AugustDev/enchanted) - Native macOS and iOS client\n- [RWKV-Runner](https://github.com/josStorer/RWKV-Runner) - Multi-model desktop runner\n- [Ollama Grid Search](https://github.com/dezoito/ollama-grid-search) - Evaluate and compare models\n- [macai](https://github.com/Renset/macai) - macOS client for Ollama and ChatGPT\n- [AI Studio](https://github.com/MindWorkAI/AI-Studio) - Multi-provider desktop IDE\n- [Reins](https://github.com/ibrahimcetin/reins) - Parameter tuning and reasoning model support\n- [ConfiChat](https://github.com/1runeberg/confichat) - Privacy-focused with optional encryption\n- [LLocal.in](https://github.com/kartikm7/llocal) - Electron desktop client\n- [MindMac](https://mindmac.app) - AI chat client for Mac\n- [Msty](https://msty.app) - Multi-model desktop client\n- [BoltAI for Mac](https://boltai.com) - AI chat client for Mac\n- [IntelliBar](https://intellibar.app/) - AI-powered assistant for macOS\n- [Kerlig AI](https://www.kerlig.com/) - AI writing assistant for macOS\n- [Hillnote](https://hillnote.com) - Markdown-first AI workspace\n- [Perfect Memory AI](https://www.perfectmemory.ai/) - Productivity AI personalized by screen and meeting history\n\n#### Mobile\n\n- [Ollama Android Chat](https://github.com/sunshine0523/OllamaServer) - One-click Ollama on Android\n\n> SwiftChat, Enchanted, Maid, Ollama App, Reins, and ConfiChat listed above also support mobile platforms.\n\n### Code Editors & Development\n\n- [Cline](https://github.com/cline/cline) - VS Code extension for multi-file/whole-repo coding\n- [Continue](https://github.com/continuedev/continue) - Open-source AI code assistant for any IDE\n- [Void](https://github.com/voideditor/void) - Open source AI code editor, Cursor alternative\n- [Copilot for Obsidian](https://github.com/logancyang/obsidian-copilot) - AI assistant for Obsidian\n- [twinny](https://github.com/rjmacarthy/twinny) - Copilot and Copilot chat alternative\n- [gptel Emacs client](https://github.com/karthink/gptel) - LLM client for Emacs\n- [Ollama Copilot](https://github.com/bernardo-bruning/ollama-copilot) - Use Ollama as GitHub Copilot\n- [Obsidian Local GPT](https://github.com/pfrankov/obsidian-local-gpt) - Local AI for Obsidian\n- [Ellama Emacs client](https://github.com/s-kostyaev/ellama) - LLM tool for Emacs\n- [orbiton](https://github.com/xyproto/orbiton) - Config-free text editor with Ollama tab completion\n- [AI ST Completion](https://github.com/yaroslavyaroslav/OpenAI-sublime-text) - Sublime Text 4 AI assistant\n- [VT Code](https://github.com/vinhnx/vtcode) - Rust-based terminal coding agent with Tree-sitter\n- [QodeAssist](https://github.com/Palm1r/QodeAssist) - AI coding assistant for Qt Creator\n- [AI Toolkit for VS Code](https://aka.ms/ai-tooklit/ollama-docs) - Microsoft-official VS Code extension\n- [Open Interpreter](https://docs.openinterpreter.com/language-model-setup/local-models/ollama) - Natural language interface for computers\n- [oxi](https://github.com/maziluiosif/oxi) - Native Rust desktop coding agent with editor, Git panel and terminal\n\n### Libraries & SDKs\n\n- [LiteLLM](https://github.com/BerriAI/litellm) - Unified API for 100+ LLM providers\n- [Semantic Kernel](https://github.com/microsoft/semantic-kernel/tree/main/python/semantic_kernel/connectors/ai/ollama) - Microsoft AI orchestration SDK\n- [LangChain4j](https://github.com/langchain4j/langchain4j) - Java LangChain ([example](https://github.com/langchain4j/langchain4j-examples/tree/main/ollama-examples/src/main/java))\n- [LangChainGo](https://github.com/tmc/langchaingo/) - Go LangChain ([example](https://github.com/tmc/langchaingo/tree/main/examples/ollama-completion-example))\n- [Spring AI](https://github.com/spring-projects/spring-ai) - Spring framework AI support ([docs](https://docs.spring.io/spring-ai/reference/api/chat/ollama-chat.html))\n- [LangChain](https://python.langchain.com/docs/integrations/chat/ollama/) and [LangChain.js](https://js.langchain.com/docs/integrations/chat/ollama/) with [example](https://js.langchain.com/docs/tutorials/local_rag/)\n- [Ollama for Ruby](https://github.com/crmne/ruby_llm) - Ruby LLM library\n- [any-llm](https://github.com/mozilla-ai/any-llm) - Unified LLM interface by Mozilla\n- [OllamaSharp for .NET](https://github.com/awaescher/OllamaSharp) - .NET SDK\n- [LangChainRust](https://github.com/Abraxas-365/langchain-rust) - Rust LangChain ([example](https://github.com/Abraxas-365/langchain-rust/blob/main/examples/llm_ollama.rs))\n- [Agents-Flex for Java](https://github.com/agents-flex/agents-flex) - Java agent framework ([example](https://github.com/agents-flex/agents-flex/tree/main/agents-flex-chat/agents-flex-chat-ollama))\n- [Elixir LangChain](https://github.com/brainlid/langchain) - Elixir LangChain\n- [Ollama-rs for Rust](https://github.com/pepperoni21/ollama-rs) - Rust SDK\n- [LangChain for .NET](https://github.com/tryAGI/LangChain) - .NET LangChain ([example](https://github.com/tryAGI/LangChain/blob/main/examples/LangChain.Samples.OpenAI/Program.cs))\n- [chromem-go](https://github.com/philippgille/chromem-go) - Go vector database with Ollama embeddings ([example](https://github.com/philippgille/chromem-go/tree/v0.5.0/examples/rag-wikipedia-ollama))\n- [LangChainDart](https://github.com/davidmigloz/langchain_dart) - Dart LangChain\n- [LlmTornado](https://github.com/lofcz/llmtornado) - Unified C# interface for multiple inference APIs\n- [Ollama4j for Java](https://github.com/ollama4j/ollama4j) - Java SDK\n- [Ollama for Laravel](https://github.com/cloudstudio/ollama-laravel) - Laravel integration\n- [Ollama for Swift](https://github.com/mattt/ollama-swift) - Swift SDK\n- [LlamaIndex](https://docs.llamaindex.ai/en/stable/examples/llm/ollama/) and [LlamaIndexTS](https://developers.llamaindex.ai/typescript/framework/modules/models/llms/ollama/) - Data framework for LLM apps\n- [Haystack](https://github.com/deepset-ai/haystack-integrations/blob/main/integrations/ollama.md) - AI pipeline framework\n- [Firebase Genkit](https://firebase.google.com/docs/genkit/plugins/ollama) - Google AI framework\n- [Ollama-hpp for C++](https://github.com/jmont-dev/ollama-hpp) - C++ SDK\n- [PromptingTools.jl](https://github.com/svilupp/PromptingTools.jl) - Julia LLM toolkit ([example](https://svilupp.github.io/PromptingTools.jl/dev/examples/working_with_ollama))\n- [Ollama for R - rollama](https://github.com/JBGruber/rollama) - R SDK\n- [Portkey](https://portkey.ai/docs/welcome/integration-guides/ollama) - AI gateway\n- [Testcontainers](https://testcontainers.com/modules/ollama/) - Container-based testing\n- [LLPhant](https://github.com/theodo-group/LLPhant?tab=readme-ov-file#ollama) - PHP AI framework\n\n### Frameworks & Agents\n\n- [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT/blob/master/docs/platform/ollama.md) - Autonomous AI agent platform\n- [crewAI](https://github.com/crewAIInc/crewAI) - Multi-agent orchestration framework\n- [Strands Agents](https://github.com/strands-agents/sdk-python) - Model-driven agent building by AWS\n- [Cheshire Cat](https://github.com/cheshire-cat-ai/core) - AI assistant framework\n- [any-agent](https://github.com/mozilla-ai/any-agent) - Unified agent framework interface by Mozilla\n- [Stakpak](https://github.com/stakpak/agent) - Open source DevOps agent\n- [Hexabot](https://github.com/hexastack/hexabot) - Conversational AI builder\n- [Neuro SAN](https://github.com/cognizant-ai-lab/neuro-san-studio) - Multi-agent orchestration ([docs](https://github.com/cognizant-ai-lab/neuro-san-studio/blob/main/docs/user_guide.md#ollama))\n\n### RAG & Knowledge Bases\n\n- [RAGFlow](https://github.com/infiniflow/ragflow) - RAG engine based on deep document understanding\n- [R2R](https://github.com/SciPhi-AI/R2R) - Open-source RAG engine\n- [MaxKB](https://github.com/1Panel-dev/MaxKB/) - Ready-to-use RAG chatbot\n- [Minima](https://github.com/dmayboroda/minima) - On-premises or fully local RAG\n- [Chipper](https://github.com/TilmanGriesel/chipper) - AI interface with Haystack RAG\n- [ARGO](https://github.com/xark-argo/argo) - RAG and deep research on Mac/Windows/Linux\n- [Archyve](https://github.com/nickthecook/archyve) - RAG-enabling document library\n- [Casibase](https://casibase.org) - AI knowledge base with RAG and SSO\n- [BrainSoup](https://www.nurgo-software.com/products/brainsoup) - Native client with RAG and multi-agent automation\n\n### Bots & Messaging\n\n- [LangBot](https://github.com/RockChinQ/LangBot) - Multi-platform messaging bots with agents and RAG\n- [AstrBot](https://github.com/AstrBotDevs/AstrBot/) - Multi-platform chatbot with RAG and plugins\n- [Discord-Ollama Chat Bot](https://github.com/kevinthedang/discord-ollama) - TypeScript Discord bot\n- [Ollama Telegram Bot](https://github.com/ruecat/ollama-telegram) - Telegram bot\n- [LLM Telegram Bot](https://github.com/innightwolfsleep/llm_telegram_bot) - Telegram bot for roleplay\n\n### Terminal & CLI\n\n- [aichat](https://github.com/sigoden/aichat) - All-in-one LLM CLI with Shell Assistant, RAG, and AI tools\n- [oterm](https://github.com/ggozad/oterm) - Terminal client for Ollama\n- [gollama](https://github.com/sammcj/gollama) - Go-based model manager for Ollama\n- [tlm](https://github.com/yusufcanb/tlm) - Local shell copilot\n- [tenere](https://github.com/pythops/tenere) - TUI for LLMs\n- [ParLlama](https://github.com/paulrobello/parllama) - TUI for Ollama\n- [llm-ollama](https://github.com/taketwo/llm-ollama) - Plugin for [Datasette's LLM CLI](https://llm.datasette.io/en/stable/)\n- [ShellOracle](https://github.com/djcopley/ShellOracle) - Shell command suggestions\n- [LLM-X](https://github.com/mrdjohnson/llm-x) - Progressive web app for LLMs\n- [cmdh](https://github.com/pgibler/cmdh) - Natural language to shell commands\n- [VT](https://github.com/vinhnx/vt.ai) - Minimal multimodal AI chat app\n\n### Productivity & Apps\n\n- [AppFlowy](https://github.com/AppFlowy-IO/AppFlowy) - AI collaborative workspace, self-hostable Notion alternative\n- [Screenpipe](https://github.com/mediar-ai/screenpipe) - 24/7 screen and mic recording with AI-powered searc",
+    "topics": [
+      "deepseek",
+      "gemma",
+      "gemma3",
+      "glm",
+      "go",
+      "golang",
+      "gpt-oss",
+      "llama",
+      "llama3",
+      "llm",
+      "llms",
+      "minimax",
+      "mistral",
+      "ollama",
+      "qwen"
+    ],
+    "weekly_stars": 441,
+    "weekly_forks": 90,
+    "score": 85.25,
+    "category": "人工智能与大模型",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 0.61,
+      "总Star": 8.0,
+      "提交活跃": 11.87,
+      "Release新鲜度": 7.78,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 5.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "ollama 是人工智能与大模型领域项目。Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+      "why_hot": "近期提交活跃，综合热度得分 85.2；本周新增 Star 441。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.3,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.3
+      }
+    }
+  },
+  {
+    "full_name": "openclaw/openclaw",
+    "name": "openclaw",
+    "description": "The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 ",
+    "html_url": "https://github.com/openclaw/openclaw",
+    "homepage": "https://openclaw.ai",
+    "docs_url": "https://openclaw.ai",
+    "license": "MIT",
+    "language": "TypeScript",
+    "stars": 391535,
+    "forks": 82305,
+    "open_issues": 9360,
+    "watchers": 391535,
+    "created_at": "2025-11-24T10:16:47Z",
+    "updated_at": "2026-10-09T13:54:40Z",
+    "pushed_at": "2026-10-09T13:45:01Z",
+    "latest_release": "v2026.9.9",
+    "latest_release_at": "2026-10-08T10:23:23Z",
+    "readme": "# OpenClaw 🦞 — Your assistant, on your devices, in your chats\n\n<p align=\"center\">\n  <picture>\n    <source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-banner-light.png\">\n    <img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/openclaw-banner-dark.png\" alt=\"OpenClaw — EXFOLIATE! EXFOLIATE! Your AI assistant, running on your own devices.\">\n  </picture>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/openclaw/openclaw/actions/workflows/ci.yml\"><img src=\"https://img.shields.io/github/actions/workflow/status/openclaw/openclaw/ci.yml?branch=main&style=flat-square&label=ci\" alt=\"CI status\"></a>\n  <a href=\"https://www.npmjs.com/package/openclaw\"><img src=\"https://img.shields.io/npm/v/openclaw?style=flat-square&label=npm\" alt=\"npm version\"></a>\n  <a href=\"https://nodejs.org\"><img src=\"https://img.shields.io/node/v/openclaw?style=flat-square\" alt=\"Node.js version\"></a>\n  <a href=\"LICENSE\"><img src=\"https://img.shields.io/badge/license-MIT-green?style=flat-square\" alt=\"License: MIT\"></a>\n  <a href=\"https://discord.gg/clawd\"><img src=\"https://img.shields.io/discord/1456350064065904867?label=discord&logo=discord&logoColor=white&color=5865F2&style=flat-square\" alt=\"Discord\"></a>\n</p>\n\nOpenClaw is an open-source AI assistant that runs on your own computer and meets you in the channels you already use: Discord, iMessage, Slack, Teams, Telegram, WhatsApp, and 20+ more, plus native apps for macOS, iOS, Android, Windows, and Linux. One Gateway runs it as a personal assistant on a laptop or as a shared [team deployment](https://docs.openclaw.ai/start/teams); configuration is the only difference.\n\n**Yours, with no catch.** State, memory, and credentials live on your hardware. Models and agent harnesses (Claude, Codex, local models) are plugins you can swap without changing anything else. Your prompts go to the model provider and chat platforms you configure, plus any diagnostics export you enable yourself; by default OpenClaw itself phones home for nothing but a daily version check, anonymous feature statistics are opt-in, and `update.checkOnStart: false` disables both ([what OpenClaw sends](https://docs.openclaw.ai/gateway/telemetry)). OpenClaw is stewarded by the [OpenClaw Foundation](https://openclaw.org), an independent 501(c)(3), and has no paid tier, hosted service, or token. The architecture case — trusted gateway, untrusted execution, deterministic policy — is in [Why OpenClaw](https://docs.openclaw.ai/start/why-openclaw).\n\n[Website](https://openclaw.ai) · [Docs](https://docs.openclaw.ai) · [Getting started](https://docs.openclaw.ai/start/getting-started) · [Why OpenClaw](https://docs.openclaw.ai/start/why-openclaw) · [FAQ](https://docs.openclaw.ai/help/faq) · [Vision](VISION.md) · [DeepWiki](https://deepwiki.com/openclaw/openclaw)\n\n## Install\n\nThe installer supports macOS, Linux, and Windows. It provisions a supported Node.js runtime when needed.\n\n```bash\n# macOS / Linux / WSL2\ncurl -fsSL https://openclaw.ai/install.sh | bash\n```\n\n```powershell\n# Windows PowerShell\niwr -useb https://openclaw.ai/install.ps1 | iex\n```\n\nAlready manage Node.js? Install the published package instead (Node 24.16+ or 26.1+; Node 26 recommended):\n\n```bash\nnpm install -g openclaw@latest --allow-scripts=openclaw\n```\n\nThat command is for npm 12 or npm 11.16+. On npm 11.15 and earlier, omit\n`--allow-scripts=openclaw`. See the\n[installation guide](https://docs.openclaw.ai/install) for the lifecycle script\ncontract, Docker, Nix, and other deployment paths.\n\n## Quick start\n\nOn a fresh install, the installer scripts start onboarding automatically.\nComplete the wizard they open. If you installed the package directly with npm,\npnpm, or Bun, run:\n\n```bash\nopenclaw onboard --install-daemon\n```\n\nAfter onboarding:\n\n```bash\nopenclaw gateway status\nopenclaw dashboard\n```\n\nOnboarding verifies model access, creates the workspace, and configures the Gateway. The last command opens the Control UI; send a message there to confirm the assistant is working. See the [getting started guide](https://docs.openclaw.ai/start/getting-started) for channel setup and troubleshooting.\n\n## How it fits together\n\n- The [Gateway](https://docs.openclaw.ai/gateway) is the local control plane for sessions, tools, events, and channel connections.\n- The [Control UI](https://docs.openclaw.ai/web/control-ui), CLI, and [TUI](https://docs.openclaw.ai/web/tui) connect to the Gateway.\n- [Channels](https://docs.openclaw.ai/channels) bring the assistant to WhatsApp, Telegram, Slack, Discord, Google Chat, Signal, iMessage, and other messaging services.\n- [Companion apps and nodes](https://docs.openclaw.ai/platforms) add voice, Canvas, camera, screen, and device-local actions on supported platforms.\n\nOpenClaw works with hosted and local [model providers](https://docs.openclaw.ai/concepts/model-providers). Its [tools](https://docs.openclaw.ai/tools), [skills](https://docs.openclaw.ai/tools/skills), and [plugins](https://docs.openclaw.ai/plugins) extend what an assistant can do.\n\n## Security\n\nTreat inbound messages as untrusted input. DM-capable channels pair unknown senders by default; approve a pairing request with `openclaw pairing approve <channel> <code>`.\n\nTools run on the host for the main session unless you configure sandboxing. Read the [security guide](https://docs.openclaw.ai/gateway/security), [exposure runbook](https://docs.openclaw.ai/gateway/security/exposure-runbook), and [sandboxing guide](https://docs.openclaw.ai/gateway/sandboxing) before connecting other users or exposing the Gateway remotely.\n\n## Documentation\n\n| Goal                             | Start here                                                                                                                                                                                                                                                           |\n| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |\n| Configure models and auth        | [Models](https://docs.openclaw.ai/concepts/models) · [Model providers](https://docs.openclaw.ai/concepts/model-providers)                                                                                                                                            |\n| Connect a messaging service      | [Channels](https://docs.openclaw.ai/channels)                                                                                                                                                                                                                        |\n| Add tools, skills, and plugins   | [Tools](https://docs.openclaw.ai/tools) · [Skills](https://docs.openclaw.ai/tools/skills) · [Plugins](https://docs.openclaw.ai/plugins) · [ClawHub](https://clawhub.ai)                                                                                              |\n| Run apps and device nodes        | [Platforms](https://docs.openclaw.ai/platforms) · [Nodes](https://docs.openclaw.ai/nodes)                                                                                                                                                                            |\n| Use the CLI and chat commands    | [CLI reference](https://docs.openclaw.ai/cli) · [Slash commands](https://docs.openclaw.ai/tools/slash-commands)                                                                                                                                                      |\n| Configure or operate the Gateway | [Configuration](https://docs.openclaw.ai/gateway/configuration) · [Architecture](https://docs.openclaw.ai/concepts/architecture) · [Updating](https://docs.openclaw.ai/install/updating) · [Release channels](https://docs.openclaw.ai/install/development-channels) |\n\n## Development\n\nThe repository is a pnpm workspace. Plain `npm install` at the repository root is not supported.\n\n```bash\ngit clone https://github.com/openclaw/openclaw.git\ncd openclaw\npnpm install\npnpm build\npnpm ui:build\n```\n\nSee [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and the [source setup guide](https://docs.openclaw.ai/start/setup) for the development loop.\n\n## Governance\n\nOpenClaw is developed in the open by the [OpenClaw Foundation](https://openclaw.org), an independent 501(c)(3). The Foundation employs the core team and signs releases. Donors and infrastructure sponsors support the Foundation; none of them own or direct the project. OpenAI is a donor, not an owner.\n\n## Community\n\nSee [CONTRIBUTING.md](CONTRIBUTING.md) for maintainers and contribution guidelines; AI-assisted PRs are welcome.\n\nUse the [issue chooser](https://github.com/openclaw/openclaw/issues/new/choose) for bugs and feature requests, ask setup questions in [Discord](https://discord.gg/clawd), and report vulnerabilities through [SECURITY.md](SECURITY.md). New capabilities usually belong in plugins built on the [plugin SDK](https://docs.openclaw.ai/plugins/building-plugins) and shared through [ClawHub](https://clawhub.ai).\n\nOpenClaw was built for **Molty**, a space lobster AI assistant, by Peter Steinberger and the community. Explore the [project lore](https://docs.openclaw.ai/start/lore), [soul.md](https://soul.md), [Peter's site](https://steipete.me), [Star History](https://www.star-history.com/#openclaw/openclaw&type=date&legend=top-left), and [@openclaw](https://x.com/openclaw).\n\nSpecial thanks to [Mario Zechner](https://mariozechner.at/) for his support and for [pi](https://github.com/earendil-works/pi), and to Adam Doppelt for the lobster.bot domain.\n\n## Donors and sponsors\n\nThe Foundation is funded by donors including Amazon, Lobster Computer Company, Offline Holdings, OpenAI, Red Hat, and the University of Michigan, with infrastructure support from Blacksmith, Convex, GitHub, NVIDIA, and Vercel.\n\n<table>\n  <tr>\n    <td align=\"center\"><a href=\"https://blacksmith.sh/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/blacksmith-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/blacksmith.svg\" alt=\"Blacksmith\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://www.convex.dev/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/convex-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/convex.svg\" alt=\"Convex\" height=\"24\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://github.com/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/github-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/github.svg\" alt=\"GitHub\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://www.nvidia.com/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/nvidia.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/nvidia-dark.svg\" alt=\"NVIDIA\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://github.com/openai\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/openai-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/openai.svg\" alt=\"OpenAI\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://www.redhat.com/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"docs/assets/sponsors/redhat-light.svg\"><img src=\"docs/assets/sponsors/redhat.svg\" alt=\"Red Hat\" height=\"28\"></picture></a></td>\n    <td align=\"center\"><a href=\"https://vercel.com/\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/vercel-light.svg\"><img src=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/assets/sponsors/vercel.svg\" alt=\"Vercel\" height=\"24\"></picture></a></td>\n  </tr>\n</table>\n\n## Contributors\n\nThanks to all clawtributors:\n\n<!-- clawtributors:start -->\n\n<a href=\"https://github.com/steipete\"><img src=\"https://avatars.githubusercontent.com/u/58493?v=4&s=48\" width=\"48\" height=\"48\" alt=\"steipete\"></a> <a href=\"https://github.com/vincentkoc\"><img src=\"https://avatars.githubusercontent.com/u/25068?v=4&s=48\" width=\"48\" height=\"48\" alt=\"vincentkoc\"></a> <a href=\"https://github.com/Takhoffman\"><img src=\"https://avatars.githubusercontent.com/u/781889?v=4&s=48\" width=\"48\" height=\"48\" alt=\"Takhoffman\"></a> <a href=\"https://github.com/obviyus\"><img src=\"https://avatars.githubusercontent.com/u/22031114?v=4&s=48\" width=\"48\" height=\"48\" alt=\"obviyus\"></a> <a href=\"https://github.com/gumadeiras\"><img src=\"https://avatars.githubusercontent.com/u/5599352?v=4&s=48\" width=\"48\" height=\"48\" alt=\"gumadeiras\"></a> <a href=\"https://github.com/mbelinky\"><img src=\"https://avatars.githubusercontent.com/u/132747814?v=4&s=48\" width=\"48\" height=\"48\" alt=\"Mariano Belinky\"></a> <a href=\"https://github.com/vignesh07\"><img src=\"https://avatars.githubusercontent.com/u/1436853?v=4&s=48\" width=\"48\" height=\"48\" alt=\"vignesh07\"></a> <a href=\"https://github.com/joshavant\"><img src=\"https://avatars.githubusercontent.com/u/830519?v=4&s=48\" width=\"48\" height=\"48\" alt=\"joshavant\"></a> <a href=\"https://github.com/scoootscooob\"><img src=\"https://avatars.githubusercontent.com/u/167050519?v=4&s=48\" width=\"48\" height=\"48\" alt=\"scoootscooob\"></a> <a href=\"https://github.com/jacobtomlinson\"><img src=\"https://avatars.githubusercontent.com/u/1610850?v=4&s=48\" width=\"48\" height=\"48\" alt=\"jacobtomlinson\"></a>\n<a href=\"https://github.com/shakkernerd\"><img src=\"https://avatars.githubusercontent.com/u/165377636?v=4&s=48\" width=\"48\" height=\"48\" alt=\"shakkernerd\"></a> <a href=\"https://github.com/sebslight\"><img src=\"https://avatars.githubusercontent.com/u/19554889?v=4&s=48\" width=\"48\" height=\"48\" alt=\"sebslight\"></a> <a href=\"https://github.com/tyler6204\"><img src=\"https://avatars.githubusercontent.com/u/64381258?v=4&s=48\" width=\"48\" height=\"48\" alt=\"tyler6204\"></a> <a href=\"https://github.com/ngutman\"><img src=\"https://avatars.githubusercontent.com/u/1540134?v=4&s=48\" width=\"48\" height=\"48\" alt=\"ngutman\"></a> <a href=\"https://github.com/thewilloftheshadow\"><img src=\"https://avatars.githubusercontent.com/u/35580099?v=4&s=48\" width=\"48\" height=\"48\" alt=\"thewilloftheshadow\"></a> <a href=\"https://github.com/Sid-Qin\"><img src=\"https://avatars.githubusercontent.com/u/201593046?v=4&s=48\" width=\"48\" height=\"48\" alt=\"Sid-Qin\"></a> <a href=\"https://github.com/mcaxtr\"><img src=\"https://avatars.githubusercontent.com/u/7562095?v=4&s=48\" width=\"48\" height=\"48\" alt=\"mcaxtr\"></a> <a href=\"https://github.com/eleqtrizit\"><img src=\"https://avatars.githubusercontent.com/u/31522568?v=4&s=48\" width=\"48\" height=\"48\" alt=\"eleqtrizit\"></a> <a href=\"https://github.com/BunsDev\"><img src=\"https://avatars.githubusercontent.com/u/68980965?v=4&s=48\" width=\"48\" height=\"48\" alt=\"BunsDev\"></a> <a href=\"https://github.com/cpojer\"><img src=\"https://avatars.githubusercontent.com/u/13352?v=4&s=48\" width=\"48\" height=\"48\" alt=\"cpojer\"></a>\n<a href=\"https://github.com/Glucksberg\"><img src=\"https://avatars.githubusercontent.com/u/80581902?v=4&s=48\" width=\"48\" height=\"48\" alt=\"Glucksberg\"></a> <a href=\"https://github.com/osolmaz\"><img src=\"https://avatars.githubusercontent.com/u/2453968?v=4&s=48\" width=\"48\" height=\"48\" alt=\"osolmaz\"></a> <a href=\"https://github.com",
+    "topics": [
+      "ai",
+      "assistant",
+      "crustacean",
+      "molty",
+      "openclaw",
+      "own-your-data",
+      "personal"
+    ],
+    "weekly_stars": 331,
+    "weekly_forks": 64,
+    "score": 84.37,
+    "category": "人工智能与大模型",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 0.21,
+      "总Star": 8.0,
+      "提交活跃": 11.99,
+      "Release新鲜度": 7.71,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 1.45,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "openclaw 是人工智能与大模型领域项目。The AI that really does things. Any OS. Any Platform. The lobster way. 🦞 ",
+      "why_hot": "近期提交活跃，综合热度得分 84.4；本周新增 Star 331。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.2,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.2
+      }
+    }
+  },
+  {
+    "full_name": "n8n-io/n8n",
+    "name": "n8n",
+    "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
+    "html_url": "https://github.com/n8n-io/n8n",
+    "homepage": "https://n8n.io",
+    "docs_url": "https://n8n.io",
+    "license": "NOASSERTION",
+    "language": "TypeScript",
+    "stars": 206804,
+    "forks": 61032,
+    "open_issues": 1174,
+    "watchers": 206804,
+    "created_at": "2019-06-22T09:24:21Z",
+    "updated_at": "2026-10-09T13:58:51Z",
+    "pushed_at": "2026-10-09T14:02:03Z",
+    "latest_release": "n8n@2.42.6",
+    "latest_release_at": "2026-10-09T07:25:32Z",
+    "readme": "![Banner image](https://user-images.githubusercontent.com/10284570/173569848-c624317f-42b1-45a6-ab09-f0ea3c247648.png)\n\n# n8n – The Platform for AI Agents and Workflow Automation\n\nFair-code platform to build and deploy AI agents and workflows. Combine a visual canvas with custom code, run it self-hosted or in the [cloud](https://app.n8n.cloud/login), and connect to 1500+ integrations. AI automation you can trust with real work, from prototype to production.\n\n![n8n.io - Screenshot](https://raw.githubusercontent.com/n8n-io/n8n/master/assets/n8n-screenshot-readme.png)\n\n## Key Capabilities\n\n- **AI-Native Automation Platform**: Build and operationalize AI workflows and multi-step agents using your own data, models, and tools\n- **Model Flexibility, No Lock-In**: Connect to OpenAI, Anthropic, Google, or open-source models and switch providers without changing your architecture\n- **From Prototype to Production**: Design multi-step AI workflows with logic, tool use, human approvals, and full observability\n- **Code When You Need It**: Combine visual building with JavaScript, Python, and npm packages for advanced AI workflows\n- **Enterprise-Ready AI**: Self-host or deploy securely with role-based access, audit trails, and support for sensitive data\n- **Leverage What Already Exists**: 1500+ integrations and 9,000+ workflow [templates](https://n8n.io/workflows) to connect AI with your existing systems\n\n## Quick Start\n\nTry n8n instantly with our install script (requires [Docker](https://www.docker.com/)):\n\n```sh\ncurl -fsSL https://get.n8n.io | sh\n```\n\nOr deploy manually with [Docker](https://docs.n8n.io/hosting/installation/docker/):\n\n```\ndocker volume create n8n_data\ndocker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n\n```\n\nAccess the editor at http://localhost:5678\n\n## Resources\n\n- 📚 [Documentation](https://docs.n8n.io)\n- 🔧 [1500+ Integrations](https://n8n.io/integrations)\n- 💡 [Example Workflows](https://n8n.io/workflows)\n- 🤖 [AI & LangChain Guide](https://docs.n8n.io/advanced-ai/)\n- 👥 [Community Forum](https://community.n8n.io)\n- 📖 [Community Tutorials](https://community.n8n.io/c/tutorials/28)\n\n## Support\n\nNeed help? Our community forum is the place to get support and connect with other users:\n[community.n8n.io](https://community.n8n.io)\n\n## License\n\nn8n is [fair-code](https://faircode.io) distributed under the [Sustainable Use License](https://github.com/n8n-io/n8n/blob/master/LICENSE.md) and [n8n Enterprise License](https://github.com/n8n-io/n8n/blob/master/LICENSE_EE.md).\n\n- **Source Available**: Always visible source code\n- **Self-Hostable**: Deploy anywhere\n- **Extensible**: Add your own nodes and functionality\n\n[Enterprise Licenses](mailto:license@n8n.io) available for additional features and support.\n\nAdditional information about the license model can be found in the [docs](https://docs.n8n.io/sustainable-use-license/).\n\n## Contributing\n\nFound a bug 🐛 or have a feature idea ✨? Check our [Contributing Guide](https://github.com/n8n-io/n8n/blob/master/CONTRIBUTING.md) for a setup guide & best practices.\n\n## Join the Team\n\nWant to shape the future of automation? Check out our [job posts](https://n8n.io/careers) and join our team!\n\n## What does n8n mean?\n\n**Short answer:** It means \"nodemation\" and is pronounced as n-eight-n.\n\n**Long answer:** \"I get that question quite often (more often than I expected) so I decided it is probably best to answer it here. While looking for a good name for the project with a free domain I realized very quickly that all the good ones I could think of were already taken. So, in the end, I chose nodemation. 'node-' in the sense that it uses a Node-View and that it uses Node.js and '-mation' for 'automation' which is what the project is supposed to help with. However, I did not like how long the name was and I could not imagine writing something that long every time in the CLI. That is when I then ended up on 'n8n'.\" - **Jan Oberhauser, Founder and CEO, n8n.io**\n",
+    "topics": [
+      "ai",
+      "apis",
+      "automation",
+      "cli",
+      "data-flow",
+      "development",
+      "integration-framework",
+      "integrations",
+      "ipaas",
+      "low-code",
+      "low-code-platform",
+      "mcp",
+      "mcp-client",
+      "mcp-server",
+      "n8n",
+      "no-code",
+      "self-hosted",
+      "typescript",
+      "workflow",
+      "workflow-automation"
+    ],
+    "weekly_stars": 296,
+    "weekly_forks": 56,
+    "score": 84.29,
+    "category": "自动化工具",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 0.36,
+      "总Star": 8.0,
+      "提交活跃": 12.0,
+      "Release新鲜度": 7.93,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 4.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "n8n 是自动化工具领域项目。Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations.",
+      "why_hot": "近期提交活跃，综合热度得分 84.3；本周新增 Star 296。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.2,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.2
+      }
+    }
+  },
+  {
+    "full_name": "anomalyco/opencode",
+    "name": "opencode",
+    "description": "The open source coding agent.",
+    "html_url": "https://github.com/anomalyco/opencode",
+    "homepage": "https://opencode.ai",
+    "docs_url": "https://opencode.ai",
+    "license": "MIT",
+    "language": "TypeScript",
+    "stars": 212334,
+    "forks": 28361,
+    "open_issues": 6199,
+    "watchers": 212334,
+    "created_at": "2025-04-30T20:08:00Z",
+    "updated_at": "2026-10-09T13:56:30Z",
+    "pushed_at": "2026-10-09T12:20:37Z",
+    "latest_release": "v1.18.35",
+    "latest_release_at": "2026-10-06T20:18:39Z",
+    "readme": "<p align=\"center\">\n  <a href=\"https://opencode.ai\">\n    <picture>\n      <source srcset=\"packages/console/app/src/asset/logo-ornate-dark.svg\" media=\"(prefers-color-scheme: dark)\">\n      <source srcset=\"packages/console/app/src/asset/logo-ornate-light.svg\" media=\"(prefers-color-scheme: light)\">\n      <img src=\"packages/console/app/src/asset/logo-ornate-light.svg\" alt=\"OpenCode logo\">\n    </picture>\n  </a>\n</p>\n<p align=\"center\">The open source AI coding agent.</p>\n<p align=\"center\">\n  <a href=\"https://opencode.ai/discord\"><img alt=\"Discord\" src=\"https://img.shields.io/discord/1391832426048651334?style=flat-square&label=discord\" /></a>\n  <a href=\"https://www.npmjs.com/package/opencode-ai\"><img alt=\"npm\" src=\"https://img.shields.io/npm/v/opencode-ai?style=flat-square\" /></a>\n  <a href=\"https://github.com/anomalyco/opencode/actions/workflows/publish.yml\"><img alt=\"Build status\" src=\"https://img.shields.io/github/actions/workflow/status/anomalyco/opencode/publish.yml?style=flat-square&branch=dev\" /></a>\n</p>\n\n<p align=\"center\">\n  <a href=\"README.md\">English</a> |\n  <a href=\"README.zh.md\">简体中文</a> |\n  <a href=\"README.zht.md\">繁體中文</a> |\n  <a href=\"README.ko.md\">한국어</a> |\n  <a href=\"README.de.md\">Deutsch</a> |\n  <a href=\"README.es.md\">Español</a> |\n  <a href=\"README.fr.md\">Français</a> |\n  <a href=\"README.it.md\">Italiano</a> |\n  <a href=\"README.da.md\">Dansk</a> |\n  <a href=\"README.ja.md\">日本語</a> |\n  <a href=\"README.pl.md\">Polski</a> |\n  <a href=\"README.ru.md\">Русский</a> |\n  <a href=\"README.bs.md\">Bosanski</a> |\n  <a href=\"README.ar.md\">العربية</a> |\n  <a href=\"README.no.md\">Norsk</a> |\n  <a href=\"README.br.md\">Português (Brasil)</a> |\n  <a href=\"README.th.md\">ไทย</a> |\n  <a href=\"README.tr.md\">Türkçe</a> |\n  <a href=\"README.uk.md\">Українська</a> |\n  <a href=\"README.bn.md\">বাংলা</a> |\n  <a href=\"README.gr.md\">Ελληνικά</a> |\n  <a href=\"README.vi.md\">Tiếng Việt</a>\n</p>\n\n[![OpenCode Terminal UI](packages/web/src/assets/lander/screenshot.png)](https://opencode.ai)\n\n---\n\n### Installation\n\n```bash\n# YOLO\ncurl -fsSL https://opencode.ai/install | bash\n\n# Package managers\nnpm i -g opencode-ai@latest        # or bun/pnpm/yarn\nscoop install opencode             # Windows\nchoco install opencode             # Windows\nbrew install anomalyco/tap/opencode # macOS and Linux (recommended, always up to date)\nbrew install opencode              # macOS and Linux (official brew formula, updated less)\nsudo pacman -S opencode            # Arch Linux (Stable)\nparu -S opencode-bin               # Arch Linux (Latest from AUR)\nmise use -g opencode               # Any OS\nnix run nixpkgs#opencode           # or github:anomalyco/opencode for latest dev branch\n```\n\n> [!TIP]\n> Remove versions older than 0.1.x before installing.\n\n### Desktop App (BETA)\n\nOpenCode is also available as a desktop application. Download directly from the [releases page](https://github.com/anomalyco/opencode/releases) or [opencode.ai/download](https://opencode.ai/download).\n\n| Platform              | Download                           |\n| --------------------- | ---------------------------------- |\n| macOS (Apple Silicon) | `opencode-desktop-mac-arm64.dmg`   |\n| macOS (Intel)         | `opencode-desktop-mac-x64.dmg`     |\n| Windows               | `opencode-desktop-windows-x64.exe` |\n| Linux                 | `.deb`, `.rpm`, or `.AppImage`     |\n\n```bash\n# macOS (Homebrew)\nbrew install --cask opencode-desktop\n# Windows (Scoop)\nscoop bucket add extras; scoop install extras/opencode-desktop\n```\n\n#### Installation Directory\n\nThe install script respects the following priority order for the installation path:\n\n1. `$OPENCODE_INSTALL_DIR` - Custom installation directory\n2. `$XDG_BIN_DIR` - XDG Base Directory Specification compliant path\n3. `$HOME/bin` - Standard user binary directory (if it exists or can be created)\n4. `$HOME/.opencode/bin` - Default fallback\n\n```bash\n# Examples\nOPENCODE_INSTALL_DIR=/usr/local/bin curl -fsSL https://opencode.ai/install | bash\nXDG_BIN_DIR=$HOME/.local/bin curl -fsSL https://opencode.ai/install | bash\n```\n\n### Agents\n\nOpenCode includes two built-in agents you can switch between with the `Tab` key.\n\n- **build** - Default, full-access agent for development work\n- **plan** - Read-only agent for analysis and code exploration\n  - Denies file edits by default\n  - Asks permission before running bash commands\n  - Ideal for exploring unfamiliar codebases or planning changes\n\nAlso included is a **general** subagent for complex searches and multistep tasks.\nThis is used internally and can be invoked using `@general` in messages.\n\nLearn more about [agents](https://opencode.ai/docs/agents).\n\n### Documentation\n\nFor more info on how to configure OpenCode, [**head over to our docs**](https://opencode.ai/docs).\n\n### Contributing\n\nIf you're interested in contributing to OpenCode, please read our [contributing docs](./CONTRIBUTING.md) before submitting a pull request.\n\n### Building on OpenCode\n\nIf you are working on a project that's related to OpenCode and is using \"opencode\" as part of its name, for example \"opencode-dashboard\" or \"opencode-mobile\", please add a note to your README to clarify that it is not built by the OpenCode team and is not affiliated with us in any way.\n\n---\n\n**Join our community** [Discord](https://discord.gg/opencode) | [X.com](https://x.com/opencode)\n",
+    "topics": [],
+    "weekly_stars": 910,
+    "weekly_forks": 305,
+    "score": 83.33,
+    "category": "AI Agent",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 1.08,
+      "总Star": 8.0,
+      "提交活跃": 11.94,
+      "Release新鲜度": 7.32,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "opencode 是AI Agent领域项目。The open source coding agent.",
+      "why_hot": "近期提交活跃，综合热度得分 83.3；本周新增 Star 910。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.2,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.2
+      }
+    }
+  },
+  {
+    "full_name": "affaan-m/ECC",
+    "name": "ECC",
+    "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+    "html_url": "https://github.com/affaan-m/ECC",
+    "homepage": "https://ecc.tools",
+    "docs_url": "https://ecc.tools",
+    "license": "MIT",
+    "language": "JavaScript",
+    "stars": 275712,
+    "forks": 41149,
+    "open_issues": 272,
+    "watchers": 275712,
+    "created_at": "2026-01-18T00:51:51Z",
+    "updated_at": "2026-10-09T14:00:23Z",
+    "pushed_at": "2026-10-05T04:55:16Z",
+    "latest_release": "v2.2.3",
+    "latest_release_at": "2026-10-01T23:00:36Z",
+    "readme": "<p align=\"center\">\n  <img src=\"assets/hero.png\" alt=\"ECC - the agent harness operating system\" width=\"100%\" />\n</p>\n\n<p align=\"center\">\n  <a href=\"https://www.star-history.com/affaan-m/ecc\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://api.star-history.com/badge?repo=affaan-m/ECC&type=trending&theme=dark\" />\n      <img src=\"https://api.star-history.com/badge?repo=affaan-m/ECC&type=trending\" alt=\"GitHub Trending Repository of the Day\" height=\"46\" />\n    </picture>\n  </a>\n  <a href=\"https://www.star-history.com/affaan-m/ecc\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://api.star-history.com/badge?repo=affaan-m/ECC&type=rank&theme=dark\" />\n      <img src=\"https://api.star-history.com/badge?repo=affaan-m/ECC&type=rank\" alt=\"Star History Global Rank\" height=\"46\" />\n    </picture>\n  </a>\n</p>\n\n<p align=\"center\">\n  <strong>Language:</strong>\n  <a href=\"README.md\">English</a> |\n  <a href=\"docs/pt-BR/README.md\">Português (Brasil)</a> |\n  <a href=\"README.zh-CN.md\">简体中文</a> |\n  <a href=\"docs/zh-TW/README.md\">繁體中文</a> |\n  <a href=\"docs/ja-JP/README.md\">日本語</a> |\n  <a href=\"docs/ko-KR/README.md\">한국어</a> |\n  <a href=\"docs/tr/README.md\">Türkçe</a> |\n  <a href=\"docs/ru/README.md\">Русский</a> |\n  <a href=\"docs/vi-VN/README.md\">Tiếng Việt</a> |\n  <a href=\"docs/th/README.md\">ไทย</a> |\n  <a href=\"docs/de-DE/README.md\">Deutsch</a> |\n  <a href=\"docs/es/README.md\">Español</a> |\n  <a href=\"docs/uk-UA/README.md\">Українська</a> |\n  <a href=\"docs/pl/README.md\">Polski</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://discord.gg/36yGMHGFbR\"><img src=\"https://img.shields.io/discord/1496644400590094540?logo=discord&logoColor=white&label=Discord&color=5865F2\" alt=\"Discord\" /></a>\n  <a href=\"https://ecc.tools\"><img src=\"https://img.shields.io/badge/Website-ecc.tools-E07856?logo=googlechrome&logoColor=white\" alt=\"Website\" /></a>\n  <a href=\"https://github.com/apps/ecc-tools\"><img src=\"https://img.shields.io/badge/GitHub%20App-ECC%20Tools-181717?logo=github&logoColor=white\" alt=\"GitHub App\" /></a>\n  <a href=\"LICENSE\"><img src=\"https://img.shields.io/badge/license-MIT-blue.svg\" alt=\"MIT license\" /></a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://github.com/affaan-m/ECC\"><img src=\"https://img.shields.io/github/stars/affaan-m/ECC?style=flat\" alt=\"GitHub stars\" /></a>\n  <a href=\"https://github.com/affaan-m/ECC/forks\"><img src=\"https://img.shields.io/github/forks/affaan-m/ECC?style=flat\" alt=\"GitHub forks\" /></a>\n  <a href=\"https://github.com/affaan-m/ECC/graphs/contributors\"><img src=\"https://img.shields.io/github/contributors/affaan-m/ECC?style=flat\" alt=\"Contributors\" /></a>\n  <a href=\"https://github.com/marketplace/ecc-tools\"><img src=\"https://img.shields.io/endpoint?url=https%3A%2F%2Fapi.ecc.tools%2Fbadge%2Finstalls&logo=github\" alt=\"GitHub App installs\" /></a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://www.npmjs.com/package/ecc-universal\"><img src=\"https://img.shields.io/npm/dw/ecc-universal?label=ecc-universal&logo=npm\" alt=\"ecc-universal npm downloads\" /></a>\n  <a href=\"https://www.npmjs.com/package/ecc-agentshield\"><img src=\"https://img.shields.io/npm/dw/ecc-agentshield?label=ecc-agentshield&logo=npm\" alt=\"ecc-agentshield npm downloads\" /></a>\n</p>\n\n<p align=\"center\">\n  <img src=\"https://img.shields.io/badge/-Shell-4EAA25?logo=gnu-bash&logoColor=white\" alt=\"Shell\" />\n  <img src=\"https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript&logoColor=white\" alt=\"TypeScript\" />\n  <img src=\"https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white\" alt=\"Python\" />\n  <img src=\"https://img.shields.io/badge/-Go-00ADD8?logo=go&logoColor=white\" alt=\"Go\" />\n  <img src=\"https://img.shields.io/badge/-Java-ED8B00?logo=openjdk&logoColor=white\" alt=\"Java\" />\n  <img src=\"https://img.shields.io/badge/-Perl-39457E?logo=perl&logoColor=white\" alt=\"Perl\" />\n  <img src=\"https://img.shields.io/badge/-Markdown-000000?logo=markdown&logoColor=white\" alt=\"Markdown\" />\n</p>\n\n> [!WARNING]\n> **Official sources only.** Install ECC only from verified channels: the GitHub repository [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC), the npm packages [`ecc-universal`](https://www.npmjs.com/package/ecc-universal) and [`ecc-agentshield`](https://www.npmjs.com/package/ecc-agentshield), the [GitHub App](https://github.com/apps/ecc-tools), the plugin slug `ecc@ecc`, and the project website [ecc.tools](https://ecc.tools). Third-party re-uploads and unofficial mirrors are not maintained or reviewed by the project and may contain malware.\n\n## Install with Claude Code\n\nUse the [guided setup](#install-ecc) or [native plugin commands](#claude-code-details). Both install the same `ecc@ecc` plugin. Choose one and do not stack a full manual Claude install on top.\n\n<div align=\"center\">\n\n<table aria-label=\"ECC primary links\">\n<tr>\n<td width=\"33%\" align=\"center\">\n  <a href=\"https://ecc.tools/pricing\">\n    <img src=\"assets/images/community/ecc-tools-mark.svg\" height=\"42\" alt=\"ECC Tools\" /><br />\n    <strong>ECC Pro + GitHub App</strong>\n  </a><br />\n  <sub><a href=\"https://github.com/apps/ecc-tools\">Install free</a> · <a href=\"https://ecc.tools/pricing\">Private repos from $19/seat/mo</a></sub>\n</td>\n<td width=\"33%\" align=\"center\">\n  <a href=\"https://github.com/sponsors/affaan-m\">\n    <img src=\"assets/images/community/heart.svg\" height=\"42\" alt=\"\" /><br />\n    <strong>Sponsor ECC</strong>\n  </a><br />\n  <sub>Fund the open-source project</sub>\n</td>\n<td width=\"33%\" align=\"center\">\n  <a href=\"https://discord.gg/36yGMHGFbR\">\n    <img src=\"assets/images/community/discord.svg\" height=\"42\" alt=\"Discord\" /><br />\n    <strong>Community</strong>\n  </a><br />\n  <sub>Discord · Q&amp;A · Show and Tell</sub>\n</td>\n</tr>\n</table>\n\n</div>\n\n<sub>**OSS stays free.** This repo is MIT-licensed forever. ECC Pro is the hosted GitHub App for private repos. <a href=\"https://github.com/sponsors/affaan-m\">Sponsors</a> and <a href=\"https://ecc.tools/pricing\">Pro subscribers</a> fund the work. That's why a single maintainer ships weekly across 7 harnesses.</sub>\n\n<div align=\"center\">\n\n<sub><strong>Partners &amp; sponsors</strong></sub>\n\n<p align=\"center\" aria-label=\"Partners and sponsors\">\n  <a href=\"https://www.coderabbit.ai\" title=\"CodeRabbit\"><img src=\"assets/images/sponsors/coderabbit.png\" height=\"54\" alt=\"CodeRabbit\" /></a>&nbsp;&nbsp;&nbsp;\n  <a href=\"https://www.greptile.com/go/ecc\" title=\"Greptile\"><img src=\"assets/images/sponsors/greptile.png\" height=\"54\" alt=\"Greptile\" /></a>&nbsp;&nbsp;&nbsp;\n  <a href=\"https://platform.kimi.ai?aff=ecc\" title=\"Moonshot AI - Kimi\"><picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"assets/images/sponsors/moonshot-dark.png\" /><img src=\"assets/images/sponsors/moonshot.png\" width=\"132\" alt=\"Moonshot AI - Kimi\" /></picture></a>&nbsp;&nbsp;&nbsp;\n  <a href=\"https://compute.itomarkets.com\" title=\"Itô Markets\"><picture><source media=\"(prefers-color-scheme: light)\" srcset=\"assets/images/sponsors/ito-transparent-light.png\" /><img src=\"assets/images/sponsors/ito-transparent.png\" width=\"96\" alt=\"Itô Markets\" /></picture></a>&nbsp;&nbsp;&nbsp;\n  <a href=\"https://serpapi.com/github-ecc\" title=\"SerpApi: Web Search API\"><picture><source media=\"(prefers-color-scheme: dark)\" srcset=\"assets/images/sponsors/serpapi-logo-dark-mode.svg\" /><img src=\"assets/images/sponsors/serpapi-logo-light-mode.svg\" width=\"200\" alt=\"SerpApi: Web Search API\" /></picture></a>\n</p>\n\n<sub><strong>Past sponsors:</strong> <a href=\"https://www.atlascloud.ai/?utm_source=github&amp;utm_medium=link&amp;utm_campaign=ECC\">Atlas Cloud</a> · <a href=\"https://github.com/mikejmorgan-ai\">Mike Morgan (inactive)</a></sub>\n\n<sub><strong>Community sponsors:</strong> <a href=\"https://github.com/jasonwu513\">@jasonwu513</a> · <a href=\"https://github.com/1anter\">@1anter</a> · <a href=\"https://github.com/massimotodaro\">@massimotodaro</a> · <a href=\"https://github.com/meadmccabe\">@meadmccabe</a></sub>\n\n<sub><a href=\"https://github.com/sponsors/affaan-m\"><strong>Become a Sponsor</strong></a> · <a href=\"SPONSORS.md\">Sponsor Tiers</a> · <a href=\"SPONSORING.md\">Sponsorship Program</a></sub>\n\n</div>\n\n<p align=\"center\"><a href=\"#install-ecc\">Jump to install ↓</a></p>\n\n# ECC\n\nYour agent can write code, but ECC gives it a coordinated engineering system and toolbox: it plans before it builds, verifies changes with tests, reviews its own work from a fresh context, remembers what matters, and turns repeated wins into reusable skills and workflows.\n\n```text\nplan -> test -> implement -> review -> verify -> remember -> improve\n```\n\nInstead of rebuilding that process in every prompt, you install it once and make it part of how your agent works.\n\n> Optimize the context window. Persist everything else.\n\nECC is MIT-licensed open source. It works best with Claude Code today, has a supported Codex sync path, and provides capability-limited adapters for Cursor, OpenCode, Gemini, Zed, GitHub Copilot, Antigravity, Qwen, and other harnesses. See the [support status matrix](#platform-support) before assuming feature parity.\n\nAccess to 68 agents, 293 skills, and 94 legacy command shims, plus hooks, rules, memory, continuous learning, and AgentShield security scanning. The agents are specialized for planning, review, build repair, security, architecture, and domain work.\n\n| Included         |       Count | What it gives you                                                                    |\n| ---------------- | ----------: | ------------------------------------------------------------------------------------ |\n| Agents           |   68 agents | Planning, review, build repair, security, architecture, and domain work              |\n| Skills           |  293 skills | TDD, research, security, docs, frontend, data, ML, operations, and more              |\n| Commands         | 94 commands | Convenient entry points while ECC moves to a skills-first surface                    |\n| Hooks and memory |     Runtime | Enforcement, session summaries, continuous learning, instincts, and context controls |\n| Rules            |   Selective | Always-loaded standards you choose by language or project                            |\n| AgentShield      |    Included | Scanning for prompts, hooks, MCP config, permissions, secrets, and agent files       |\n\n<p align=\"center\">\n  <a href=\"https://www.star-history.com/affaan-m/ecc\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"https://api.star-history.com/svg?repos=affaan-m/ECC&type=Date&theme=dark\" />\n      <img src=\"https://api.star-history.com/svg?repos=affaan-m/ECC&type=Date\" alt=\"Live star history chart for affaan-m/ECC\" width=\"100%\" />\n    </picture>\n  </a>\n</p>\n\n## Install ECC\n\n> [!IMPORTANT]\n> ECC 2.2 includes guided package setup for Claude Code, Codex, and Kimi Code.\n> The universal package requires Node.js 18 or newer. Claude plugin setup also\n> requires Git and Claude Code 2.1 or newer on `PATH`.\n\n### Recommended: universal guided setup\n\nFor Claude Code plugin setup, updates, scope changes, and hook-profile changes:\n\n```bash\nnpx ecc-universal@2.2.3 setup\n```\n\n#### Windows first-time walkthrough\n\nIf you are new to command-line tools, use this copy-and-paste path:\n\n1. Install Node.js 18 or newer, Git, and Claude Code.\n2. Open **PowerShell** from the Windows Start menu.\n3. Confirm that each prerequisite is available:\n\n   ```powershell\n   node --version\n   git --version\n   claude --version\n   ```\n\n4. Run the guided installer:\n\n   ```powershell\n   npx ecc-universal@2.2.3 setup\n   ```\n\n5. For a typical personal setup, choose **Global user**, choose **Standard** hooks, and confirm.\n6. Start a new Claude Code session and run `/plugin list` to verify that `ecc@ecc` is enabled.\n\nThis path does not require cloning the repository. If any prerequisite command is not found, install or repair that prerequisite before rerunning ECC setup.\n\nIf npm reports a version or cache error, confirm the registry version before retrying:\n\n```bash\nnpm view ecc-universal version\n```\n\nECC 2.2 supports the same guided setup through modern package runners:\n\n| Package runner | Guided setup command |\n|---|---|\n| npm / npx | `npx ecc-universal@2.2.3 setup` |\n| pnpm | `pnpm dlx ecc-universal@2.2.3 setup` |\n| Yarn 2+ | `yarn dlx ecc-universal@2.2.3 setup` |\n| Bun | `bunx ecc-universal@2.2.3 setup` |\n\nThe examples select [the published ECC 2.2.3 release](https://www.npmjs.com/package/ecc-universal/v/2.2.3), matching this repository's release version. A version pin is not a security audit or an integrity check. Review the release source and registry integrity before running package code; use a reviewed checkout for unreleased changes.\n\nYarn Classic 1 does not provide `yarn dlx`; use `npx`, install the package globally, or upgrade Yarn for a temporary one-shot run.\n\nThe wizard inventories the official marketplace and every native Claude install scope before making changes, then installs, updates, or safely moves `ecc@ecc` to the scope you choose. Rerun the same command whenever you want to update ECC, change scope, or change its hook profile. This setup wizard currently configures the Claude Code plugin; use the multi-harness wizard below for Codex or Kimi Code.\n\nTo configure more than one coding agent in one reviewed flow, use the multi-harness wizard:\n\n```bash\nnpx ecc-universal@2.2.3 install --guided\n```\n\nIt lets you select any combination of Claude Code, Codex, and Kimi Code, shows each install channel and destination, preflights every selection before the first write, and asks for one final confirmation.\n\n| Harness | Guided install behavior |\n|---|---|\n| Claude Code | Native `ecc@ecc` plugin with one `user`, `project`, or `local` scope and an ECC hook profile |\n| Codex | Native Codex marketplace/plugin lifecycle; hook review and trust remain Codex-owned |\n| Kimi Code | Managed project files under `./.kimi-code`; ECC hooks, model/provider settings, and authentication are not configured |\n\nFor automation, make every provider-specific choice explicit:\n\n```bash\nnpx ecc-universal@2.2.3 install --guided \\\n  --harness claude --harness codex --harness kimi \\\n  --claude-scope local --claude-hooks standard \\\n  --profile core --yes\n```\n\nVerify the native guided Codex path and managed Kimi path without writing first:\n\n```bash\nnpx ecc-universal@2.2.3 install --guided --harness codex --dry-run\nnpx ecc-universal@2.2.3 install --profile core --target kimi --dry-run\n```\n\nAdditional package-name commands are also available through the 2.2 alias:\n\n```bash\nnpx ecc-universal@2.2.3 consult \"security reviews\" --target claude\nnpx ecc-universal@2.2.3 install --profile minimal --target claude --with capability:machine-learning\nnpx ecc-universal@2.2.3 doctor --target kimi\n```\n\nDo not use `npx ecc-install --profile minimal --target claude`: `ecc-install` is a binary name inside `ecc-universal`, not a separately published npm package.\n\nECC also ships advanced managed adapters for `cursor`, `antigravity`, `gemini`, `opencode`, `codebuddy`, `joycode`, `qwen`, `zed`, `hermes`, and `openclaw`. Those targets still use their documented `ecc install --target ...` paths until each adapter has passed the guided collision, update, repair, and uninstall lifecycle matrix. Neither wizard silently installs into every detected harness.\n\n### Pick one path only (per harness)\n\nYou can use ECC with Claude Code, Codex, and other harnesses at the same time. Choose one install method for each harness:\n\n- **Recommended default:** run the guided Claude plugin setup above\n- **Also supported for Claude Code:** use the [native plugin commands](#claude-code-details)\n- **Available in release 2.2:** guided package setup for Claude Code, Codex, and Kimi Code\n- **Works:** Claude Code plugin + Codex native plugin\n- **Works:** Claude Code plugin + the legacy Codex sync flow\n- **Avoid:** Claude Code plugin + full Claude manual install\n- **Avoid:** Codex sync + Codex marketplace plugin\n\n**Do not stack install methods.** Installing ECC twice into the same harness can duplicate skills, c",
+    "topics": [
+      "ai-agents",
+      "anthropic",
+      "claude",
+      "claude-code",
+      "developer-tools",
+      "llm",
+      "mcp",
+      "productivity"
+    ],
+    "weekly_stars": 4747,
+    "weekly_forks": 642,
+    "score": 83.32,
+    "category": "AI Agent",
+    "score_details": {
+      "周新增Star": 22.0,
+      "异常增速": 4.38,
+      "总Star": 8.0,
+      "提交活跃": 8.5,
+      "Release新鲜度": 6.09,
+      "协作活跃": 7.29,
+      "Fork增长": 5.0,
+      "项目新鲜度": 2.06,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "ECC 是AI Agent领域项目。The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+      "why_hot": "近期提交活跃，综合热度得分 83.3；本周新增 Star 4747。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.2,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.2
+      }
+    }
+  },
+  {
+    "full_name": "microsoft/vscode",
+    "name": "vscode",
+    "description": "Visual Studio Code",
+    "html_url": "https://github.com/microsoft/vscode",
+    "homepage": "https://code.visualstudio.com",
+    "docs_url": "https://code.visualstudio.com",
+    "license": "MIT",
+    "language": "TypeScript",
+    "stars": 193493,
+    "forks": 44775,
+    "open_issues": 21648,
+    "watchers": 193493,
+    "created_at": "2015-09-03T20:23:38Z",
+    "updated_at": "2026-10-09T13:23:09Z",
+    "pushed_at": "2026-10-09T13:53:48Z",
+    "latest_release": "1.141.0",
+    "latest_release_at": "2026-10-07T11:01:16Z",
+    "readme": "# Visual Studio Code - Open Source (\"Code - OSS\")\n[![Feature Requests](https://img.shields.io/github/issues/microsoft/vscode/feature-request.svg)](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)\n[![Bugs](https://img.shields.io/github/issues/microsoft/vscode/bug.svg)](https://github.com/microsoft/vscode/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)\n\n## The Repository\n\nThis repository (\"`Code - OSS`\") is where we (Microsoft) develop the [Visual Studio Code](https://code.visualstudio.com) product together with the community. Not only do we work on code and issues here, but we also publish our [roadmap](https://github.com/microsoft/vscode/wiki/Roadmap), [monthly iteration plans](https://github.com/microsoft/vscode/wiki/Iteration-Plans), and our [endgame plans](https://github.com/microsoft/vscode/wiki/Running-the-Endgame). This source code is available to everyone under the standard [MIT license](https://github.com/microsoft/vscode/blob/main/LICENSE.txt).\n\n## Visual Studio Code\n\n<p align=\"center\">\n  <img alt=\"VS Code in action\" src=\"https://github.com/user-attachments/assets/56af271c-949d-454c-a3ea-16188c063414\">\n</p>\n\n[Visual Studio Code](https://code.visualstudio.com) is a distribution of the `Code - OSS` repository with Microsoft-specific customizations released under a traditional [Microsoft product license](https://code.visualstudio.com/License/).\n\n[Visual Studio Code](https://code.visualstudio.com) combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle. It provides comprehensive code editing, navigation, and understanding support along with lightweight debugging, a rich extensibility model, and lightweight integration with existing tools.\n\nVisual Studio Code is updated monthly with new features and bug fixes. You can download it for Windows, macOS, and Linux on the [Visual Studio Code website](https://code.visualstudio.com/Download). To get the latest releases every day, install the [Insiders build](https://code.visualstudio.com/insiders).\n\n## Contributing\n\nThere are many ways in which you can participate in this project, for example:\n\n* [Submit bugs and feature requests](https://github.com/microsoft/vscode/issues), and help us verify them as they are checked in\n* Review [source code changes](https://github.com/microsoft/vscode/pulls)\n* Review the [documentation](https://github.com/microsoft/vscode-docs) and make pull requests for anything from typos to new content.\n\nIf you are interested in fixing issues and contributing directly to the codebase, please see the document [How to Contribute](https://github.com/microsoft/vscode/wiki/How-to-Contribute), which covers the following:\n\n* [How to build and run from source](https://github.com/microsoft/vscode/wiki/How-to-Contribute)\n* [The development workflow, including debugging and running tests](https://github.com/microsoft/vscode/wiki/How-to-Contribute#debugging)\n* [Coding guidelines](https://github.com/microsoft/vscode/wiki/Coding-Guidelines)\n* [Submitting pull requests](https://github.com/microsoft/vscode/wiki/How-to-Contribute#pull-requests)\n* [Finding an issue to work on](https://github.com/microsoft/vscode/wiki/How-to-Contribute#where-to-contribute)\n* [Contributing to translations](https://aka.ms/vscodeloc)\n\n## Feedback\n\n* Ask a question on [Stack Overflow](https://stackoverflow.com/questions/tagged/vscode)\n* [Request a new feature](CONTRIBUTING.md)\n* Upvote [popular feature requests](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)\n* [File an issue](https://github.com/microsoft/vscode/issues)\n* Connect with the extension author community on [GitHub Discussions](https://github.com/microsoft/vscode-discussions/discussions) or [Slack](https://aka.ms/vscode-dev-community)\n* Follow [@code](https://x.com/code) and let us know what you think!\n\nSee our [wiki](https://github.com/microsoft/vscode/wiki/Feedback-Channels) for a description of each of these channels and information on some other available community-driven channels.\n\n## Related Projects\n\nMany of the core components and extensions to VS Code live in their own repositories on GitHub. For example, the [node debug adapter](https://github.com/microsoft/vscode-node-debug) and the [mono debug adapter](https://github.com/microsoft/vscode-mono-debug) repositories are separate from each other. For a complete list, please visit the [Related Projects](https://github.com/microsoft/vscode/wiki/Related-Projects) page on our [wiki](https://github.com/microsoft/vscode/wiki).\n\n## Bundled Extensions\n\nVS Code includes a set of built-in extensions located in the [extensions](extensions) folder, including grammars and snippets for many languages. Extensions that provide rich language support (inline suggestions, Go to Definition) for a language have the suffix `language-features`. For example, the `json` extension provides coloring for `JSON` and the `json-language-features` extension provides rich language support for `JSON`.\n\n## Development Container\n\nThis repository includes a Visual Studio Code Dev Containers / GitHub Codespaces development container.\n\n* For [Dev Containers](https://aka.ms/vscode-remote/download/containers), use the **Dev Containers: Clone Repository in Container Volume...** command, which creates a Docker volume for better disk I/O on macOS and Windows.\n  * If you already have VS Code and Docker installed, you can also click [here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode) to get started. This will cause VS Code to automatically install the Dev Containers extension if needed, clone the source code into a container volume, and spin up a dev container for use.\n\n* For Codespaces, install the [GitHub Codespaces](https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces) extension in VS Code, and use the **Codespaces: Create New Codespace** command.\n\nDocker / the Codespace should have at least **4 cores and 6 GB of RAM (8 GB recommended)** to run a full build. See the [development container README](.devcontainer/README.md) for more information.\n\n## Code of Conduct\n\nThis project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.\n\n## License\n\nCopyright (c) Microsoft Corporation. All rights reserved.\n\nLicensed under the [MIT](LICENSE.txt) license.\n",
+    "topics": [
+      "editor",
+      "electron",
+      "microsoft",
+      "typescript",
+      "visual-studio-code"
+    ],
+    "weekly_stars": 142,
+    "weekly_forks": 755,
+    "score": 80.49,
+    "category": "Web 前端",
+    "score_details": {
+      "周新增Star": 19.85,
+      "异常增速": 0.18,
+      "总Star": 8.0,
+      "提交活跃": 12.0,
+      "Release新鲜度": 7.47,
+      "协作活跃": 8.0,
+      "Fork增长": 5.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 4.99,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "vscode 是Web 前端领域项目。Visual Studio Code",
+      "why_hot": "近期提交活跃，综合热度得分 80.5；本周新增 Star 142。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 4.0,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 4.0
+      }
+    }
+  },
+  {
+    "full_name": "Significant-Gravitas/AutoGPT",
+    "name": "AutoGPT",
+    "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+    "html_url": "https://github.com/Significant-Gravitas/AutoGPT",
+    "homepage": "https://agpt.co",
+    "docs_url": "https://agpt.co",
+    "license": "NOASSERTION",
+    "language": "Python",
+    "stars": 187496,
+    "forks": 45929,
+    "open_issues": 688,
+    "watchers": 187496,
+    "created_at": "2023-03-16T09:21:07Z",
+    "updated_at": "2026-10-09T13:52:21Z",
+    "pushed_at": "2026-10-09T13:51:43Z",
+    "latest_release": "autogpt-platform-beta-v0.8.3",
+    "latest_release_at": "2026-10-08T05:35:51Z",
+    "readme": "<p align=\"center\">\n  <a href=\"https://platform.agpt.co/signup?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=hero_banner\">\n    <img src=\"docs/home/.gitbook/assets/Banner_image.png\" alt=\"AutoGPT\" width=\"100%\" />\n  </a>\n</p>\n\n<h1 align=\"center\">AutoGPT — AI agents that finish the work</h1>\n\n<p align=\"center\">\n  <strong>Get 10 hours back every week.</strong><br />\n  Describe what you want done. AutoGPT builds the agent, runs it, and reports back.\n</p>\n\n<p align=\"center\">\n  <a href=\"https://platform.agpt.co/signup?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=header_get_started\"><strong>Get started</strong></a>\n  ·\n  <a href=\"https://platform.agpt.co/tour?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=tour_header\">Tour</a>\n  ·\n  <a href=\"https://agpt.co/pricing?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=header_pricing\">Pricing</a>\n  ·\n  <a href=\"https://docs.agpt.co\">Docs</a>\n  ·\n  <a href=\"https://discord.gg/autogpt\">Discord</a>\n  ·\n  <a href=\"#self-host-autogpt\">Self-host</a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://discord.gg/autogpt\">\n    <img src=\"https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white\" alt=\"Join Discord\" />\n  </a>\n  <a href=\"https://docs.agpt.co\">\n    <img src=\"https://img.shields.io/badge/Docs-read-0A7AFF?logo=gitbook&logoColor=white\" alt=\"Read the docs\" />\n  </a>\n</p>\n\n---\n\n## The open-source platform for AI agents\n\nAutoGPT lets you build, deploy, and run AI agents that carry out complete workflows. Describe an outcome in plain English or shape every step in the visual builder, then run the agent on demand, on a schedule, or from a trigger.\n\n**185,000+ GitHub stars. Cited by:**\n\n| | |\n|---|---|\n| “Next frontier of prompt engineering imo: ‘AutoGPTs’.” | **Andrej Karpathy**, founding member of OpenAI |\n| “If you have a phone you can run AutoGPT. You don't even need to learn how to code.” | **Amjad Masad**, co-founder & CEO of Replit |\n| “AutoGPT might be the next big step in AI.” | **Lior Alexander**, CEO of AlphaSignal |\n\n---\n\n## Four surfaces, one platform\n\n<table>\n  <tr>\n    <td width=\"50%\" align=\"center\" valign=\"top\">\n      <a href=\"https://agpt.co/product/autopilot/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=autopilot\">\n        <img src=\"docs/content/imgs/readme/autogpt_autopilot_chat.jpg\" alt=\"AutoPilot chat creating an AutoGPT agent\" />\n      </a>\n      <br /><strong><a href=\"https://agpt.co/product/autopilot/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=autopilot\">AutoPilot</a></strong>\n      <br />Describe the job in plain English and turn the conversation into a working agent.\n    </td>\n    <td width=\"50%\" align=\"center\" valign=\"top\">\n      <a href=\"https://agpt.co/product/agents/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=agents\">\n        <img src=\"docs/content/imgs/readme/autogpt_agent_dashboard.jpg\" alt=\"Agents dashboard showing statuses, runs, and costs\" />\n      </a>\n      <br /><strong><a href=\"https://agpt.co/product/agents/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=agents\">Agents</a></strong>\n      <br />See every agent, run, cost, and action that needs your attention.\n    </td>\n  </tr>\n  <tr>\n    <td width=\"50%\" align=\"center\" valign=\"top\">\n      <a href=\"https://agpt.co/product/marketplace/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=marketplace\">\n        <img src=\"docs/content/imgs/readme/autogpt_marketplace.png\" alt=\"AutoGPT Marketplace showing ready-made community agents\" />\n      </a>\n      <br /><strong><a href=\"https://agpt.co/product/marketplace/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=marketplace\">Marketplace</a></strong>\n      <br />Start from proven agents, add one to your library, and customize it for your work.\n    </td>\n    <td width=\"50%\" align=\"center\" valign=\"top\">\n      <a href=\"https://agpt.co/product/build/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=build\">\n        <img src=\"docs/content/imgs/readme/build_screen.jpg\" alt=\"The AutoGPT Build canvas showing a real agent workflow\" />\n      </a>\n      <br /><strong><a href=\"https://agpt.co/product/build/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=build\">Build</a></strong>\n      <br />Drag, connect, branch, and inspect blocks for exact control over every step.\n    </td>\n  </tr>\n</table>\n\n---\n\n## Get started\n\n### AutoGPT Platform — public, hosted, and managed\n\nThe hosted Platform is publicly available. We manage the infrastructure, model access, credentials, reliability, and updates so you can focus on the work your agents perform.\n\n**[Get started on AutoGPT Platform →](https://platform.agpt.co/signup?utm_source=github&utm_medium=referral&utm_campaign=autogpt_readme&utm_content=platform_get_started)**\n\n[Take the interactive tour →](https://platform.agpt.co/tour?utm_source=github&utm_medium=referral&utm_campaign=autogpt_readme&utm_content=tour_get_started)\n\n- AutoPilot, Agents, Marketplace, and Build\n- 45+ connected platforms and hundreds of AI models\n- No model API keys or infrastructure setup\n- Agents that run on demand, on schedules, and from triggers\n\nThe hosted Platform is a paid service with usage-based agent runs. [Compare plans and pricing →](https://agpt.co/pricing?utm_source=github&utm_medium=referral&utm_campaign=autogpt_readme&utm_content=platform_pricing)\n\n### Self-host AutoGPT\n\n> [!NOTE]\n> Self-hosting is the free path. You provide the infrastructure and model API keys, and you maintain the deployment. If you want zero setup, use the [managed Platform](https://platform.agpt.co/signup?utm_source=github&utm_medium=referral&utm_campaign=autogpt_readme&utm_content=self_host_note).\n\nThe Linux and macOS single-container release installer is coming with the next\nappliance release. Until the public installer endpoint and image tags pass the\n[documented release gates](docs/platform/installer.md#maintainer-release-gates),\nuse the [manual self-hosting guide](https://docs.agpt.co/platform/getting-started).\n\nThe release installer will require an already-running local Docker daemon using\nLinux containers on `amd64` or `arm64`. It pulls the published appliance and\nruns its immutable digest; it does not install Docker or build from source.\nWindows users should continue with the manual self-hosting guide for now.\n\n[Read the self-hosting guide →](https://docs.agpt.co/platform/getting-started)\n\n---\n\n## Managed Platform vs. self-hosting\n\n| | **AutoGPT Platform** | **Self-hosted** |\n|---|---|---|\n| Access | Public signup | Operate the published appliance or a development checkout |\n| Cost | Paid plan plus agent usage | No license fee; pay your own infrastructure and model providers |\n| Setup | Managed | Docker and configuration required |\n| Model access | Built in | Bring your own API keys |\n| Updates and operations | Managed by AutoGPT | Managed by you |\n| Core builder and agent runtime | Included | Included |\n| Data and infrastructure control | Hosted by AutoGPT | Runs on your infrastructure |\n| Support | Plan-dependent | Community support |\n\nBoth paths use the same repository. Choose the managed Platform when you want agents running immediately; self-host when infrastructure control matters more than operational convenience.\n\n---\n\n## Why the hosted Platform is paid\n\nEvery agent run consumes real model usage, compute, storage, secrets management, and operational support. The managed Platform covers that infrastructure and funds continued development of the open-source project.\n\nSelf-hosting remains available without a license fee for people and teams that want to provide and operate those resources themselves.\n\n---\n\n## What you can automate\n\n| Area | Example |\n|---|---|\n| **Executive operations** | Prepare a daily brief from internal and external signals |\n| **Sales** | Research every account before tomorrow's meetings |\n| **Marketing** | Turn a launch brief into campaign drafts across channels |\n| **Engineering** | Triage incidents and start with a likely cause |\n| **Customer support** | Draft replies, collect context, and flag escalations |\n| **Research** | Monitor sources and return structured reports when something changes |\n\n---\n\n## Integrations\n\nConnect the apps that are yours. AutoGPT provides access to hundreds of AI models and connects agents to 45+ platforms, including:\n\n`Gmail` · `Google Calendar` · `Google Docs` · `Google Sheets` · `GitHub` · `Slack` · `Discord` · `Notion` · `HubSpot` · `Linear` · `Airtable` · `Jira` · `Salesforce` · `Stripe` · `Webflow`\n\n[Explore the integrations →](https://agpt.co/docs/integrations)\n\n---\n\n## Community and support\n\n| Resource | Link |\n|---|---|\n| Discord | [Join the AutoGPT community](https://discord.gg/autogpt) |\n| Documentation | [docs.agpt.co](https://docs.agpt.co) |\n| Bug reports | [GitHub Issues](https://github.com/Significant-Gravitas/AutoGPT/issues/new/choose) |\n| Feature requests | [GitHub Issues](https://github.com/Significant-Gravitas/AutoGPT/issues/new/choose) |\n| Contributing | [CONTRIBUTING.md](CONTRIBUTING.md) |\n\n---\n\n## License\n\n| Component | License | What it means |\n|---|---|---|\n| `autogpt_platform/` | [Polyform Shield](https://polyformproject.org/licenses/shield/1.0.0) | Free for personal and internal business use; cannot be sold as a competing hosted service |\n| `classic/` and everything else | [MIT](LICENSE) | Permissive open-source use |\n\n---\n\n## AutoGPT Classic\n\nLooking for the original standalone AutoGPT agent? It remains available in [`classic/`](classic/) under the MIT License.\n\n- [Build an agent with Forge](classic/forge/README.md)\n- [Benchmark an agent with `agbenchmark`](https://pypi.org/project/agbenchmark/)\n- [Explore the Classic project](classic/README.md)\n\n---\n\n## Contributors\n\n<a href=\"https://github.com/Significant-Gravitas/AutoGPT/graphs/contributors\">\n  <img src=\"https://contrib.rocks/image?repo=Significant-Gravitas/AutoGPT&max=1000&columns=10\" alt=\"AutoGPT contributors\" />\n</a>\n\n<p align=\"center\">\n  <a href=\"https://platform.agpt.co/signup?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=autogpt_readme&amp;utm_content=footer_get_started\"><strong>Get started with AutoGPT →</strong></a>\n</p>\n\n---\n\n<!-- Keep these links. Translations will automatically update with the README. -->\n[Deutsch](https://zdoc.app/de/Significant-Gravitas/AutoGPT) |\n[Español](https://zdoc.app/es/Significant-Gravitas/AutoGPT) |\n[français](https://zdoc.app/fr/Significant-Gravitas/AutoGPT) |\n[日本語](https://zdoc.app/ja/Significant-Gravitas/AutoGPT) |\n[한국어](https://zdoc.app/ko/Significant-Gravitas/AutoGPT) |\n[Português](https://zdoc.app/pt/Significant-Gravitas/AutoGPT) |\n[Русский](https://zdoc.app/ru/Significant-Gravitas/AutoGPT) |\n[中文](https://zdoc.app/zh/Significant-Gravitas/AutoGPT)\n",
+    "topics": [
+      "agentic-ai",
+      "agents",
+      "ai",
+      "artificial-intelligence",
+      "autonomous-agents",
+      "claude",
+      "gpt",
+      "llama-api",
+      "llm",
+      "openai",
+      "python"
+    ],
+    "weekly_stars": 0,
+    "weekly_forks": 0,
+    "score": 55.65,
+    "category": "人工智能与大模型",
+    "score_details": {
+      "周新增Star": 0.0,
+      "异常增速": 0.0,
+      "总Star": 8.0,
+      "提交活跃": 11.99,
+      "Release新鲜度": 7.66,
+      "协作活跃": 8.0,
+      "Fork增长": 0.0,
+      "项目新鲜度": 0.0,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "AutoGPT 是人工智能与大模型领域项目。AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+      "why_hot": "近期提交活跃，综合热度得分 55.6；本周新增 Star 0。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 2.8,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 5,
+        "推荐指数": 2.8
+      }
+    }
+  },
+  {
+    "full_name": "sganggs/Stronghold-Protocol",
+    "name": "Stronghold-Protocol",
+    "description": "明日方舟「卫戍协议：盟约」非官方同人复刻：浏览器自走棋塔防，单人或 1–4 人联机合作（非商业）",
+    "html_url": "https://github.com/sganggs/Stronghold-Protocol",
+    "homepage": "",
+    "docs_url": "https://github.com/sganggs/Stronghold-Protocol#readme",
+    "license": "GPL-3.0",
+    "language": "JavaScript",
+    "stars": 1045,
+    "forks": 240,
+    "open_issues": 77,
+    "watchers": 1045,
+    "created_at": "2026-10-02T09:38:41Z",
+    "updated_at": "2026-10-09T13:45:41Z",
+    "pushed_at": "2026-10-08T19:32:08Z",
+    "latest_release": "v0.2.2",
+    "latest_release_at": "2026-10-08T19:32:00Z",
+    "readme": "# 卫戍协议：盟约 · Stronghold Protocol: Alliance\n\n《明日方舟》季节性自走棋塔防玩法「卫戍协议：盟约」的**非官方同人复刻**：浏览器即开即玩，单人或 1–4 人联机合作。\n\n![version](https://img.shields.io/badge/version-0.2.2-2ea44f)\n![license](https://img.shields.io/badge/code%20license-GPL--3.0--or--later-blue)\n![node](https://img.shields.io/badge/node-22%20%7C%2024-339933)\n\n## 声明\n\n> [!IMPORTANT]\n> - 本项目是玩家自制的**非官方同人作品**，与上海鹰角网络科技有限公司（Hypergryph）、Yostar 及其关联方**没有任何关系**，未获其授权或认可。\n> - 《明日方舟》及「卫戍协议」相关的名称、角色、美术、音乐、音效、文本与数据等素材，版权归原权利人所有。这些素材**不适用**本项目的 GPL-3.0 许可证；GPL 只覆盖本项目自己编写的代码。\n> - 仅供学习交流与个人非商业使用。**严禁任何形式的盈利**，包括但不限于：售卖本项目或整合包、付费下载或付费分发、收费服务器或收费代开、广告 / 打赏 / 会员等变现方式，以及其他任何商业用途。\n> - 仓库源码不包含游戏的美术与音频素材（只有由官方数据表生成的数据和几张游戏截图，同样不适用 GPL）；[Releases](../../releases/latest) 中的完整包为了方便玩家附带了素材（精简包不带，首次启动时从公开镜像下载），下载即视为同意本声明。请勿将素材用于本项目以外的用途或单独再分发。完整条款见 [NOTICE.md](NOTICE.md)。\n> - 权利人如认为本项目侵犯其权益，请通过 Issue 联系，我们会**立即删除**相关内容。\n> - 本项目按「现状」提供，**不提供任何担保**，使用风险自负。\n\nEnglish summary: [below](#english).\n\n| 同盟房间 | 策略轮选 | 休整期（商店 / 盟约） |\n|---|---|---|\n| ![房间](docs/img/room.jpg) | ![策略](docs/img/band-draft.jpg) | ![休整期](docs/img/prep.jpg) |\n| **部署方向轮盘** | **作战** | **最终攻势** |\n| ![方向](docs/img/facing-wheel.jpg) | ![作战](docs/img/combat.jpg) | ![最终攻势](docs/img/final-assault.jpg) |\n\n## 目录\n\n- [声明](#声明) · [简介](#简介) · [功能一览](#功能一览)\n- [快速开始](#快速开始)：[整合包](#方式一整合包推荐) · [从源码运行](#方式二从源码运行) · [系统要求](#系统要求) · [端口与配置](#端口与配置) · [局域网联机](#和朋友一起玩局域网)\n- [联机方式](#联机方式) · [操作](#操作) · [文档](#文档) · [开发与测试](#开发与测试) · [项目结构](#项目结构)\n- [许可证](#许可证) · [致谢与数据来源](#致谢与数据来源) · [贡献](#贡献)\n\n## 简介\n\n「卫戍协议：盟约」是自走棋 + 塔防：休整期在调度中心招募干员、摆阵、配装备，作战期干员自动部署，迎击从红门涌来的敌人，漏过去的敌人扣目标生命值。本项目在浏览器里复刻了这一玩法，规则和数值尽量对照官方数据表与 PRTS 核对。\n\n- **独立模拟**（单人）与**同盟模拟**（1–4 人**合作**，没有 PvP；空位可以加 AI 队友）。\n- 服务器是一个 Node.js 程序，**战斗在各玩家的浏览器里模拟**（和官方一样），服务器只管经济与回合，一台低功耗小主机就能开服。\n- 当前版本 0.2.2：干员可以单独设置潜能和练度（默认满潜、精英2 Lv.60），新增日文语音和统计数据页，按官方补上失衡、整数秒攻击间隔 30 帧等规则，并修复了 0.2.1 发布后玩家和 GitHub 上反馈的问题，详见 [CHANGELOG.md](CHANGELOG.md)。仍有少数规则按推断实现，与官方不一致的地方欢迎在 Issue 里反馈。\n\n## 功能一览\n\n- **完整的一局**：确认本局信息 → 策略轮选（40 名策略）→ 14 回合 → 结算称号；险境及以上满足条件时进入第 15 回合「隐秘核心」。\n- **4 种难度**：标准 / 险境 / 绝境 / 终极，独立与同盟各一套参数，均取自官方数据。\n- **休整期**：招募、刷新、冻结、升级调度中心；整备区与临时整备区；从整备区拖到棋盘部署，用**方向轮盘**选择朝向。同盟模拟的卡池共用。\n- **晋升精锐**：3 名同名干员自动合成精锐，并获得一次高一阶的免费招募。\n- **干员与调配**：112 名可招募干员（+ 精锐）及其技能、天赋和特质；开局前可以为每名干员选择携带的技能（283 个技能全部手工实现）和精锐的模组。\n- **盟约与层数**：23 个盟约（8 个势力核心盟约 + 附加盟约），层数整局保留，每个盟约最多 999 层。\n- **装备与机变**：装备与法术，同名装备合成、特定组合赋予盟约效果；已配发的装备锁定在干员身上。部分回合开始前有机变选卡（装备、资金、干员、层数、悬赏等）。\n- **自动作战**：技能按官方「技能策略」自动释放；按接触半径阻挡，阻挡者倒下时由接触的干员接替；元素损伤与元素爆发；召唤物由玩家手动摆放；推开 / 拉拽按力度与重量计算；被击倒的干员留在原地显示再部署倒计时。\n- **地形与敌人**：阻隔工事、射击台、源石流吹风机、沼泽、排气格栅、涨潮等地形装置；空中与近地悬浮敌人、悬赏敌人。\n- **联防**：有人漏怪、又有人完美作战时，完美作战的队友带着阵容帮忙拦截漏掉的敌人。\n- **最终攻势与隐秘核心**：两人共享一个战场，全队共同削减同一条领袖血条；10 个敌方领袖，巨型领袖约 5×3 格的受击范围，以及官方的限伤规则。\n- **结算称号**：卫戍之星、不朽盟约、坚若磐石等 6 个称号。\n- **断线重连**：同盟模拟断线后 10 分钟内重新打开页面即可回到原座位，掉线期间按原阵容自动作战，也可以「暂离」交给 AI 托管；独立模拟 24 小时内可以回来继续（同一个浏览器）。\n- **交互细节**：漏怪时顶栏的目标生命值实时减少（结算时确定）；点选、拖放和配发装备都按地上的方格；购买、升级和机变选卡都需要点两次确认；只有一名玩家时除作战外不计时。\n- **画面与声音**：真实 Spine 小人、官方 BGM 与音效、表情（6 套 × 6 个）、作战特效；可选的官方 3D 棋盘（需要从本机客户端提取贴图）。\n- **手机与电脑**：触摸拖拽、长按查看详情，推荐横屏；设置里可以调低画质。\n\n## 快速开始\n\n### 方式一：整合包（推荐）\n\n[Releases](../../releases/latest) 里有两种整合包，代码和运行依赖完全相同，二选一；已经装好 0.2.x 的，升级时只下载更新包即可：\n\n- **完整包** `Stronghold-Protocol-v<版本>.zip`（约 505 MB，解压后约 710 MB）：附带全部美术 / 音频（含中文、日文两套干员语音和官方 3D 棋盘贴图），解压就能玩，不需要再下载任何东西。**推荐。**\n- **精简包** `Stronghold-Protocol-v<版本>-lite.zip`（约 22 MB）：不带素材，第一次启动时自动从公开镜像下载美术、Spine 模型、音频、字体、表情和「玩法说明」教程图（约 550 MB，可中断，再次启动会续传）；官方 3D 棋盘等本地客户端素材不在其中（见下面的「本地客户端素材」）。适合下载大文件不方便的情况。\n- **更新包** `Stronghold-Protocol-v<版本>-update.zip`（0.2.1 起提供，大小看改动多少，通常只有几 MB）：只含比之前的 0.2.x 版本改动过的文件，用来把已经装好的 0.2.x（完整包或精简包装的都行）升级到新版本，不用重新下载整个包。用法：先停止服务器（关掉窗口；装了开机自启的运行 `scripts\\install-service-windows.ps1 -Stop`），把 zip 里 `Stronghold-Protocol` 文件夹的全部内容合并到安装文件夹、覆盖同名文件（Windows 资源管理器里复制粘贴即可；macOS 不要用访达拖放，它会整个替换文件夹，请用 `unzip -o`，见 [docs/DEPLOY.md](docs/DEPLOY.md) 第 1.5 节），再照常启动。启动时会先核对全部程序文件、删除新版本不再用的旧文件，然后正常运行；如果这个文件夹不是更新包对应的版本（例如 0.1.x，或者程序文件被改过），会提示下载完整包，服务器不启动。全新安装请用完整包或精简包。\n\n两种包都只含运行和部署需要的文件（服务器、客户端、数据、启动脚本、setup / doctor / 素材下载工具、许可证与说明、[docs/PLAYING.md](docs/PLAYING.md) 和 [docs/DEPLOY.md](docs/DEPLOY.md)）；测试、开发工具和设计文档只在源码仓库里。\n\n1. **安装 Node.js 22 或 24（LTS）**\n   - Windows：在 PowerShell 里运行 `winget install OpenJS.NodeJS.LTS`，或到 <https://nodejs.org/zh-cn/download> 下载安装包。\n   - macOS：`brew install node@22`，或到官网下载安装包。\n   - Linux：发行版的包管理器、nvm 或 fnm。\n2. **下载**：在 [Releases](../../releases/latest) 页面下载最新版本的完整包（或精简包），解压到一个路径较短的文件夹（Windows 上建议不要放在 OneDrive 同步的目录里）。\n3. **启动**\n   - Windows：双击 **`scripts\\start-windows.bat`**。如果弹出「安全警告」，点「运行」；Windows 防火墙弹窗请勾选「专用网络」并允许。\n   - macOS / Linux：在解压出的文件夹里运行 `./scripts/start.sh`（或 `bash scripts/start.sh`）。\n4. 浏览器会自动打开 `http://localhost:3000`。窗口里列出的局域网地址可以直接发给同一网络的朋友。关闭窗口（或按 `Ctrl+C`）即停止服务器。\n\n### 方式二：从源码运行\n\n```bash\ngit clone https://github.com/sganggs/Stronghold-Protocol.git\ncd Stronghold-Protocol\nnpm install        # 安装依赖（postinstall 会把 pixi / preact / three 复制到 public/vendor）\nnpm run setup      # 检查环境，并从公开镜像下载约 550 MB 美术 / 音频（可中断，再次运行会续传）\nnpm start          # 启动服务器：http://localhost:3000\n```\n\n也可以直接运行启动脚本（Windows `scripts\\start-windows.bat`，macOS / Linux `scripts/start.sh`）：首次会自动安装依赖、下载素材，然后启动服务器并打开浏览器。\n\n- **本地客户端素材（可选）**：官方 3D 棋盘、部分官方界面图标（交流按钮与表情面板的边框、模组类型图标等）、灼热 / 炽焰源石虫和 39 个召唤物（多数自选召唤物）的官方模型需要从本机的《明日方舟》PC 客户端提取（Windows 原生客户端、macOS 的 CrossOver 或 PlayCover）。`npm run setup` 检测到客户端时会询问是否提取（需要 Python 3.8+，依赖装在项目内的 `.venv-extract`，不影响系统）；之后可以用 `node tools/setup.mjs --local` 重新提取，或用 `--game \"<…/StreamingAssets/AB/Windows>\"` 指定路径。没有客户端时游戏照常运行，这几样换成替代样式：2D 棋盘、样式相近的图标、染色的普通源石虫、召唤物头像。表情和「玩法说明」的教程图随上面的素材一起从公开镜像下载，不需要客户端。没有客户端的服务器（例如 Linux VPS）也可以从**同一版本**的整合包（完整包；精简包没有）里复制 `public/assets/local/` 和 `data/local-assets.json`，见 [docs/DEPLOY.md](docs/DEPLOY.md) 的「本地客户端素材」。\n- 素材下载优先使用 GitHub，失败时自动改用 jsDelivr 镜像。\n- `npm run doctor`（即 `node tools/doctor.mjs`）可以随时诊断：Node 版本、素材是否完整、端口占用、局域网地址和防火墙。\n\n### 系统要求\n\n| 项目 | 要求 |\n|---|---|\n| 开服的电脑 | Windows / macOS / Linux，Node.js 22 或 24（LTS）；磁盘约 700–850 MB（素材、依赖与本地提取贴图：完整包解压后约 710 MB）；内存空闲约 100 MB，每局再加几 MB |\n| 玩家 | 支持 WebGL 的现代浏览器（Chrome / Edge / Firefox / Safari 最新版），电脑、手机或平板（横屏） |\n| 网络 | 首次进入游戏时，每位玩家要从开服的电脑下载几十 MB 素材（之后走浏览器缓存）；对局中流量很小 |\n\n显卡较弱时可以在「设置」里调低画质，或在网址后加 `?board=2d`（强制 2D 棋盘）/ `?render=fallback`（不用 WebGL 的简化画面）。\n\n### 端口与配置\n\n默认监听 **TCP 3000**。换端口：启动脚本加 `--port 3001`，或设置环境变量 `PORT`。\n\n| 环境变量 | 默认 | 说明 |\n|---|---|---|\n| `PORT` | `3000` | 监听端口 |\n| `HOST` | `::` | 监听地址。默认 `::` 是双栈：同一个端口同时接受 IPv6 和 IPv4；`0.0.0.0` = 只 IPv4；`127.0.0.1` = 只允许本机，放在反向代理后面时使用 |\n| `SP_COMBAT` | `client` | `client`：各玩家浏览器模拟自己的战斗（服务器负载极低）；`server`：由服务器模拟并推流 |\n| `SP_VERIFY` | `off` | 服务器复算客户端上报的战斗结果：`off` / `sample`（约 1/8 抽查）/ `all`（全部复算，更耗 CPU） |\n| `TRUST_PROXY` | `auto` | 是否信任 `X-Forwarded-For` 等转发头：`auto` 只信任来自本机 / 内网的代理；`1` 总是；`0` 从不 |\n| `DEBUG` | 空 | 设为任意值输出详细日志 |\n| `SP_NO_BROWSER` | 空 | 设为 `1` 时启动脚本不自动打开浏览器 |\n\n设置方式：macOS / Linux `PORT=8080 npm start`；PowerShell `$env:PORT=8080; npm start`；cmd `set \"PORT=8080\" && npm start`。健康检查：`GET /healthz`。\n\n### 和朋友一起玩（局域网）\n\n1. 打开页面 → 输入昵称 → **同盟模拟** → 创建房间。房主选择难度，可以添加 / 移除 AI 队友；开始前也可以把其他博士移出房间（对方可凭密钥重新加入）。\n2. 把 4 位字母的**同盟密钥**，或「复制链接」得到的 `http://<地址>:3000/?room=密钥` 发给朋友。\n3. 所有人点「准备就绪」后房主开始。\n4. 同一 Wi-Fi / 路由器下的朋友打开启动窗口里列出的地址（形如 `http://192.168.x.x:3000`）即可。打不开时多半是防火墙：Windows 首次启动时在弹窗中允许「专用网络」，或运行 `npm run doctor` 查看具体命令；访客 Wi-Fi 常开启「AP 隔离」，也会导致连不上。\n\n刷新页面或断线后，同盟模拟 10 分钟内、独立模拟 24 小时内重新打开即可回到原座位。服务器把房间和对局都保存在内存里，**重启服务器会结束所有对局**。\n\n## 联机方式\n\n朋友不在同一个局域网时，下面是几类常见做法，按自己的情况选一种即可。这里只做简单介绍，提到的工具和服务只是举例，本项目与它们没有任何关系，也不做推荐；具体的安装、费用和使用规则请以各自的官方说明为准。部署细节（防火墙、开机自启、反向代理与 HTTPS、Docker）见 **[docs/DEPLOY.md](docs/DEPLOY.md)**。\n\n| 方式 | 怎么做 | 适合 |\n|---|---|---|\n| **同一局域网直连** | 把启动窗口里的局域网地址发给朋友 | 同一个家、宿舍或网吧 |\n| **组网工具（虚拟局域网）** | 例如 Tailscale、ZeroTier、EasyTier、蒲公英：开服的人和朋友都安装同一个工具并加入同一个网络，朋友用开服电脑的虚拟 IP 访问 `http://<虚拟 IP>:3000` | 固定的几个熟人；不暴露到公网。朋友也要装客户端，部分工具需要注册账号；跨地区时可能走中继而变慢 |\n| **内网穿透 / 隧道** | 只有开服的人运行客户端，朋友直接打开网址。例如自建的 frp（需要一台有公网 IP 的服务器）、Cloudflare 的 `cloudflared tunnel --url http://localhost:3000`（临时地址，每次启动都会变；国内访问延迟可能较高）、国内的樱花 frp 一类公共穿透服务（通常需要实名，大陆节点承载网页可能有备案要求） | 不想改路由器、没有公网 IP；免费线路带宽小时，首次加载素材会慢一些 |\n| **云服务器 / VPS 直接部署** | 在 VPS 上运行整合包，或用仓库自带的 `Dockerfile`；用 Caddy / Nginx 加上 HTTPS。选离玩家近、线路好的地区（面向大陆玩家时，境外机房要关注回程线路，否则晚高峰延迟可能很高；大陆服务器绑定域名需要 ICP 备案） | 想长期开服、玩家分布在不同地区 |\n\n通用注意事项：\n\n- 游戏是**单个常驻 Node.js 进程 + WebSocket**（路径 `/ws`），只能跑一个实例，必须部署在域名根路径；Vercel 之类的 Serverless 平台和 GitHub Pages 之类的静态托管都不适用。反向代理要转发 WebSocket 升级。\n- 游戏没有账号系统，**知道地址的人都能进来**。请只把地址发给朋友，不要公开发布，也不要搭建公开大厅；这同时能降低素材版权方面的风险。\n- 有公网 IPv4 时也可以在路由器上做端口转发，但这会把家里的电脑直接暴露在公网上，优先考虑上面的方式。\n\n## 操作\n\n| 操作 | 方法 |\n|---|---|\n| 购买 / 升级调度中心 / 机变选卡 | 点一次选中，再点一次确认（`D` 升级） |\n| 部署 / 移动干员 | 从整备区拖到棋盘格 → 出现方向轮盘 → 往上 / 右 / 下 / 左滑动选择朝向后松手；松在中心或点「✕ 点击取消」取消。拖动时指针 / 手指所在的格子就是落点，能放下时模型直接站在这一格上（不能放下时跟在指针下） |\n| 调整朝向 | 把干员拖回它自己的格子，再选方向 |\n| 出售 / 撤退 / 销毁装备 | 点击单位所在的格子 → 底部按钮「出售 +1」「撤退」；也可以把棋盘上的干员拖回整备区撤退。整备区里的装备与法术只能「销毁」，已配发的装备锁定在干员身上（干员出售或合成精锐时退回整备区） |\n| 装备 | 把装备拖到干员所在的格子上（每人 2 件；满了会弹出替换窗口，被替换的一件会被销毁）；法术拖到地块上并选方向 |\n| 查看详情 | 右键或长按单位 / 卡牌（属性为实时数值，高于基础值为绿色、低于为红色） |\n| 快捷键 | `R` 刷新 · `F` 冻结 · `D` 升级 · `Q` 撤退 / `X` 出售选中的干员 · `Space` 准备就绪 · `Esc` 取消 / 关闭；除 `Esc` 外都可以在「设置 → 快捷键」里改成别的键（[玩法指南 §11](docs/PLAYING.md#11-快捷键)） |\n| 方向轮盘键盘操作 | 方向键预览 · `Enter` 确认 · `Esc` 取消 |\n| 暂停（独立模拟） | 作战中（含最终攻势 / 隐秘核心）点顶栏的「暂停」或按 `Space`，再点「继续作战」（或 `Space`）继续；同盟模拟的作战不能暂停 |\n| 表情 | 左下角「交流」，左右滑动（或方向键）换主题，冷却 1 秒 |\n| 观战 | 自己的作战结束后（或休整期）点左侧队友头像 →「前往查看」；不参战的朋友可以在大厅输入同盟密钥点「观战」（每个同盟最多 2 名观战者，本作新增） |\n| 统计（本机） | 标题画面右上角、大厅、等待室的「统计」：胜率、策略通过率、称号、战斗累计和对局记录（点一行回看结算页）；只存在本机浏览器里，可以导出 / 导入，没清完第一个回合就退出的对局不计入统计（[玩法指南 §12](docs/PLAYING.md#13-统计本机)） |\n\n完整的规则、数值和小技巧见 **[docs/PLAYING.md](docs/PLAYING.md)**（游戏内左下角也有「玩法说明」）。\n\n## 文档\n\n| 文档 | 内容 |\n|---|---|\n| [CHANGELOG.md](CHANGELOG.md) | 更新记录：每个版本修复了什么、哪些反馈经核实不是问题 |\n| [docs/PLAYING.md](docs/PLAYING.md) | 玩法指南：流程、经济、招募与晋升、摆阵、联防、盟约、最终攻势、结算称号 |\n| [docs/DEPLOY.md](docs/DEPLOY.md) | 部署指南：Windows 开服与开机自启、防火墙、组网 / 隧道、反向代理与 HTTPS、Docker、systemd、排错 |\n| [docs/WINDOWS.md](docs/WINDOWS.md) | Windows 便携包：怎么打一份「零安装」包（`scripts/make-windows-bundle.mjs`）、包里放了什么、授权注意事项 |\n| [docs/DESIGN.md](docs/DESIGN.md) | 架构与契约（英文）：索引，按章节号找到文件；现行规则在 `docs/design/`（范围与目录分工、坐标与时间、战斗引擎、对局、网络协议、渲染与 UI），各次试玩和各版本的规则修订与依据在 `docs/history/` |\n| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | 代码地图（英文）：服务器、联机协议和前后端共用的战斗模拟，0.2.0 重构后的目录，数据流，黄金结果与导入边界，常见改动从哪里入手 |\n| [CONTRIBUTING.md](CONTRIBUTING.md) | 参与贡献：准备环境、运行测试、忠实原则、提交与 PR 约定、怎样添加自选干员（中文，末尾附英文摘要） |\n| [docs/SIM.md](docs/SIM.md) | 战斗模拟引擎参考（英文）：钩子、技能描述格式、职业默认行为 |\n| [docs/META.md](docs/META.md) | 对局与经济引擎（英文）：回合流程、商店、联防、最终攻势的实现细节 |\n| [docs/DATA.md](docs/DATA.md) | 由官方数据表生成的游戏数据（英文） |\n| [docs/ASSETS.md](docs/ASSETS.md) | 素材来源、目录结构与清单（英文） |\n| [docs/I18N.md](docs/I18N.md) | 界面语言（英文）：界面文字、游戏文本与服务器消息怎样翻译，覆盖范围；**添加一种语言只需在 `public/i18n/` 放一个语言文件**（社区翻译步骤见「Adding a language」，内容包格式见 [docs/PACKS.md](docs/PACKS.md)） |\n| [docs/BALANCE.md](docs/BALANCE.md) | 难度模型与测量（英文） |\n| [docs/research/](docs/research/00-INDEX.md) | 官方规则、数据与界面的调研记录 |\n\n## 开发与测试\n\n```bash\nnpm run dev                 # node --watch：改动服务器代码后自动重启\nnode --test                 # 单元 + 集成测试（约 3170 项；缺少素材 / 浏览器的用例会自动跳过）\nSP_E2E=1 node --test test/ui/mock.e2e.test.js        # 浏览器端到端测试，需要本机 Chrome（CHROME_PATH 可指定路径）\nSP_REAL_E2E=1 node --test test/ui/real.e2e.test.js   # 需要 Chrome + 已下载的素材\nRENDER_E2E=1 node --test 'test/render/*.browser.test.js'   # 渲染测试，部分需要本地提取的棋盘贴图\nGOLDEN_FULL=1 node --test test/golden.test.js           # 黄金结果：固定种子的整套战斗与人机对局摘要（默认只跑快速子集）\nnode tools/perfbench.mjs --cpu 1,4,6 --profile             # 真实战斗的帧耗时基准（Chrome 降速 CPU 近似中低端手机），需要 Chrome + 已下载的素材\n```\n\n- 游戏数据由 `npm run build-data`（`tools/build-data.mjs`）从官方数据表生成，不要手工修改 `data/*.json`。\n- 性能测试：`/dev/battle-perf.html` 在浏览器里跑一场真实战斗（对局用的战斗运行器、模拟和渲染），实时显示帧率与逐帧耗时；在手机上打开后点击「开始测量（10 秒）」，生成的报告可以复制后附在反馈中。用到的战斗来自 `node tools/capture-specs.mjs` 从固定种子的机器人对局里截取的数据（`public/dev/perf/`）。\n- 只重构、不改玩法的提交不能改变 `test/golden/*.json`；有意改变玩法时运行 `npm run golden:update`，检查差异后随改动一起提交（见 [test/golden/README.md](test/golden/README.md)）。\n- GitHub Actions（[.github/workflows/ci.yml](.github/workflows/ci.yml)）在 Ubuntu 与 Windows、Node 22 / 24 上运行 `npm ci`、`node --test` 和服务器冒烟测试。\n- 代码怎么分层、改某个规则该从哪个文件入手，见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。\n\n## 项目结构\n\n| 路径 | 内容 |\n|---|---|\n| `server/` | 入口 `index.js`；Node HTTP 静态服务 + WebSocket（`/ws`，代码在 `http/`）、大厅、对局引擎（`match/`）、战斗模拟（`sim/`，浏览器与服务器共用） |\n| `shared/` | 前后端共用的常量与网络协议 |\n| `public/` | 浏览器客户端（原生 ES 模块，PixiJS + pixi-spine、three.js 3D 棋盘、Preact + htm UI） |\n| `data/` | 由官方数据表生成的游戏数据与素材清单 `assets.json` |\n| `tools/` | `setup.mjs` / `doctor.mjs`、素材下载 `fetch-assets.mjs`、数据构建、本地提取 `local-extract/` |\n| `scripts/` | 启动脚本（Windows / macOS / Linux）、Windows 开机自启 |\n| `docs/` | 文档与调研 |\n| `test/` | `node:test` 测试 |\n\n## 许可证\n\n- **代码**：本项目自己编写的代码以 **GPL-3.0-or-later** 发布，全文见 [LICENSE](LICENSE)；另附一条 GPL 第 7 条的附加许可，允许与 pixi-spine 中的 Spine Runtimes 组合分发（见 [NOTICE.md](NOTICE.md)）。\n- **游戏素材不在许可范围内**：《明日方舟》相关的美术、音乐、音效、文本与数据等版权归原权利人所有，不适用 GPL，使用限制见上方的[声明](#声明)和 [NOTICE.md](NOTICE.md)。\n- **第三方组件**各自遵循其许可证：通过 npm 安装的库（整合包的 `node_modules` 中附带各自的许可证文件）、`tools/local-extract/aklz4.py` 的算法（BSD-3-Clause），以及字体等，清单与许可证全文见 [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md)。\n\n## 致谢与数据来源\n\n- 游戏数据：[Kengxxiao/ArknightsGameData](https://github.com/Kengxxiao/ArknightsGameData)。\n- 素材来源：[yuanyan3060/ArknightsGameResource](https://github.com/yuanyan3060/ArknightsGameResource)、[fexli/ArknightsResource](https://github.com/fexli/ArknightsResource)、[isHarryh/Ark-Models](https://github.com/isHarryh/Ark-Models)、[ArknightsAssets/ArknightsAssets2](https://github.com/ArknightsAssets/ArknightsAssets2)；字体来自 [TimWangZi/The-font-of-Arknights](https://github.com/TimWangZi/The-font-of-Arknights) 与 Google Fonts（Noto Sans SC）。详见 [docs/ASSETS.md](docs/ASSETS.md)。\n- 规则核对参考：[PRTS 明日方舟中文 Wiki](https://prts.wiki/)。\n- LZ4AK 解包：`tools/local-extract/aklz4.py` 的算法来自 [isHarryh/Ark-Unpacker](https://github.com/isHarryh/Ark-Unpacker)（BSD-3-Clause，经 MooncellWiki/UnityPy）；解析 Unity 资源使用 [UnityPy](https://github.com/K0lb3/UnityPy)（MIT）。\n- 库：[PixiJS](https://pixijs.com/)（MIT）、[pixi-spine](https://github.com/pixijs/spine)（MIT；其中包含的 Spine Runtime 另受 [Spine Runtimes License](https://esotericsoftware.com/spine-runtimes-license) 约束）、[three.js](https://threejs.org/)（MIT）、[Preact](https://preactjs.com/) + [htm](https://github.com/developit/htm)（MIT）、[ws](https://github.com/websockets/ws)（MIT）。\n\n感谢以上项目的作者与维护者，以及鹰角网络带来的这款游戏。\n\n## 贡献\n\n欢迎提 Issue 反馈 bug、与官方规则不一致的地方或改进建议，也欢迎提交 Pull Request：\n\n- 准备环境、运行测试、忠实原则和提交约定见 [CONTRIBUTING.md](CONTRIBUTING.md)。\n- 提交前请运行 `node --test`，并同步更新相关文档；文档使用简体中文，代码与注释使用英文。\n- 提交的代码将以 GPL-3.0-or-later 发布。\n- 请不要提交任何游戏素材文件（`public/assets/` 等目录已被 `.gitignore` 排除）。\n- 本项目坚持非商业：请不要提交广告、付费、打赏等任何形式的变现功能。\n\n---\n\n## English\n\nAn **unofficial, non-commercial fan remake** of Arknights' seasonal auto-chess tower-defense mode *Stronghold Protocol: Alliance*, played in the browser: solo, or 1–4 player co-op (AI teammates can fill seats). Combat is simulated in each player's browser, so a low-power PC can host.\n\n- **Run:** download the full bundle `Stronghold-Protocol-v<version>.zip` (~505 MB, all the art inside, the Chinese and Japanese operator voices included) from [Releases](../../releases/latest) — or the lite one, `…-lite.zip` (~22 MB), which downloads the art (~550 MB) on its first start; from 0.2.1 on, `…-update.zip` holds only the files changed since the earlier 0.2.x releases: stop the server, extract it over an existing 0.2.x folder and start again (the first start deletes the files the new version dropped and verifies the install) — install Node.js 22 or 24, then double-click `scripts\\start-windows.bat` (Windows) or run `./scripts/start.sh` (macOS / Linux) and open <http://localhost:3000>. From source: `npm install && npm run setup && npm start` (setup downloads ~550 MB of art from public mirrors, the emotes and the how-to-play pages included; the official 3D board, some official HUD icons, two enemy models and 39 summon models are extracted from a local Arknights client — without one the game uses the 2D board and look-alike stand-ins (the summons show their avatars), and a server can copy `public/assets/local/` and `data/local-assets.json` from the full bundle of the same version).\n- **Languages:** Chinese (the default), ",
+    "topics": [
+      "arknights",
+      "auto-chess",
+      "fan-game",
+      "nodejs",
+      "tower-defense",
+      "websocket"
+    ],
+    "weekly_stars": 0,
+    "weekly_forks": 0,
+    "score": 54.71,
+    "category": "编程开发工具",
+    "score_details": {
+      "周新增Star": 0.0,
+      "异常增速": 0.0,
+      "总Star": 5.43,
+      "提交活跃": 11.38,
+      "Release新鲜度": 7.81,
+      "协作活跃": 5.66,
+      "Fork增长": 0.0,
+      "项目新鲜度": 4.92,
+      "README质量": 10.0,
+      "安装与示例": 3.0,
+      "维护状态": 5.0,
+      "实用价值": 1.5
+    },
+    "analysis": {
+      "summary": "Stronghold-Protocol 是编程开发工具领域项目。明日方舟「卫戍协议：盟约」非官方同人复刻：浏览器自走棋塔防，单人或 1–4 人联机合作（非商业）",
+      "why_hot": "近期提交活跃，综合热度得分 54.7；本周新增 Star 0。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 2.7,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 2.5348333333333333,
+        "推荐指数": 2.7
+      }
+    }
+  },
+  {
+    "full_name": "storytold/wordcraft",
+    "name": "wordcraft",
+    "description": "An open-source, clean-room reimplementation of Microsoft Word in pure Rust",
+    "html_url": "https://github.com/storytold/wordcraft",
+    "homepage": "https://getartcraft.com/apps/wordcraft",
+    "docs_url": "https://getartcraft.com/apps/wordcraft",
+    "license": "Apache-2.0",
+    "language": "Rust",
+    "stars": 1247,
+    "forks": 421,
+    "open_issues": 39,
+    "watchers": 1247,
+    "created_at": "2026-10-07T08:34:24Z",
+    "updated_at": "2026-10-09T14:01:34Z",
+    "pushed_at": "2026-10-09T13:22:42Z",
+    "latest_release": "v0.3.0",
+    "latest_release_at": "2026-10-08T14:41:46Z",
+    "readme": "<p align=\"center\">\n  <a href=\"https://getartcraft.com/\">\n    <picture>\n      <source media=\"(prefers-color-scheme: dark)\" srcset=\"docs/brand/artcraft-logo-white.svg\">\n      <img alt=\"ArtCraft\" src=\"docs/brand/artcraft-logo.svg\" width=\"200\">\n    </picture>\n  </a>\n</p>\n\n<h1 align=\"center\">WordCraft</h1>\n\n<p align=\"center\">\n  <b>Writing and document design; an open-source, clean-room reimplementation of Microsoft Word, rebuilt in pure Rust.</b>\n</p>\n\n<p align=\"center\">\n  A fast, open-source word processor with the Word workflow you already know: the ribbon, styles,\n  tables, track changes, references and mail merge. It reads and writes .docx, runs natively on\n  macOS, Windows, Linux and BSD, and in the browser via WebAssembly.<br>\n  <i>By the ArtCraft team.</i>\n</p>\n\n<p align=\"center\">\n  <img alt=\"Written in Rust\" src=\"https://img.shields.io/badge/written%20in-Rust-2b47b5?style=flat-square&logo=rust&logoColor=white\">\n  <img alt=\"Runs on macOS, Windows, Linux, BSD and the web\" src=\"https://img.shields.io/badge/runs%20on-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux%20%C2%B7%20BSD%20%C2%B7%20Web-3b5bdb?style=flat-square\">\n  <img alt=\"License: MIT OR Apache-2.0\" src=\"https://img.shields.io/badge/license-MIT%20%2F%20Apache--2.0-2b47b5?style=flat-square\">\n  <img alt=\"Agent-drivable over MCP\" src=\"https://img.shields.io/badge/agents-MCP%20%C2%B7%20CLI-3b5bdb?style=flat-square\">\n</p>\n\n<p align=\"center\">\n  <a href=\"https://discord.gg/artcraft\"><img alt=\"Join the ArtCraft community on Discord\" src=\"https://img.shields.io/badge/Join%20us%20on%20Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white\" height=\"40\"></a>\n</p>\n\n<p align=\"center\">\n  <a href=\"https://getartcraft.com/apps/wordcraft\"><b>WordCraft on getartcraft.com</b></a> ·\n  <a href=\"https://getartcraft.com/\">ArtCraft</a> ·\n  <a href=\"https://getartcraft.com/apps\">All Crafting Apps</a>\n</p>\n\n<br>\n\n<p align=\"center\">\n  <img src=\"docs/images/hero.png\" alt=\"WordCraft with the Home tab of the ribbon open over a two-page document titled The Open Studio Handbook. The Navigation pane on the left lists the document's headings, the Styles gallery shows live previews of Normal, Heading 1, Title and Subtitle, and a word in the first paragraph is selected.\" width=\"100%\">\n  <br><sub><b>The Open Studio Handbook</b>, WordCraft's built-in sample: the ribbon, live Styles gallery, rulers and the Navigation pane.</sub>\n</p>\n\n> [!NOTE]\n> **ArtCraft is a community of artists from all walks of life.** Painters, photographers,\n> filmmakers, illustrators, designers, animators, hobbyists, and people who picked up a pencil\n> last week. If you make things, you're one of us. **[Come say hi on Discord](https://discord.gg/artcraft).**\n\n<p align=\"center\">\n  <a href=\"#a-tour\">A tour</a> ·\n  <a href=\"#why-wordcraft\">Why WordCraft</a> ·\n  <a href=\"#what-works-today\">What works today</a> ·\n  <a href=\"#quick-start\">Quick start</a> ·\n  <a href=\"#for-agents-cli-and-mcp\">For agents</a> ·\n  <a href=\"#architecture\">Architecture</a> ·\n  <a href=\"#roadmap\">Roadmap</a> ·\n  <a href=\"#downloads\">Downloads</a> ·\n  <a href=\"#the-crafting-apps\">The Crafting Apps</a> ·\n  <a href=\"#license-and-credits\">License and credits</a>\n</p>\n\n## A tour\n\nEvery screenshot below is WordCraft itself, rendered offscreen by its own UI test harness\n(`cargo run -p wordcraft-ui-egui --example ui_shot`).\n\n<table>\n<tr>\n<td width=\"50%\" valign=\"top\"><img src=\"docs/images/review.png\" alt=\"The Review tab with Track Changes on: the word forty is inserted in magenta and thirty struck through; three commented phrases are shaded and joined by dashed leader lines to comment balloons in a grey markup area to the right of the page\" width=\"100%\"><p align=\"center\"><sub><b>Review.</b> Track changes, comment balloons in the margin, accept and reject, spelling and grammar as you type.</sub></p></td>\n<td width=\"50%\" valign=\"top\"><img src=\"docs/images/references.png\" alt=\"The References tab with two pages side by side: a table of contents with dotted leaders and page numbers on page one, and a styled table, numbered list and hyperlink on page two\" width=\"100%\"><p align=\"center\"><sub><b>References.</b> Tables of contents, footnotes, citations in APA, MLA, Chicago or IEEE, index and captions.</sub></p></td>\n</tr>\n<tr>\n<td width=\"50%\" valign=\"top\"><img src=\"docs/images/design.png\" alt=\"The Design tab showing style-set previews; the document is set in a serif theme with plum headings underlined by thin rules and a pale diagonal DRAFT watermark behind the text\" width=\"100%\"><p align=\"center\"><sub><b>Design.</b> Themes, style sets, paragraph spacing, watermarks, page colour and borders.</sub></p></td>\n<td width=\"50%\" valign=\"top\"><img src=\"docs/images/dark.png\" alt=\"WordCraft in dark mode with the Insert tab open and formatting marks shown: pilcrows at paragraph ends and dots for spaces\" width=\"100%\"><p align=\"center\"><sub><b>Dark mode</b> with formatting marks, and the Insert tab: tables, pictures, shapes, links, headers, footers, fields and symbols.</sub></p></td>\n</tr>\n<tr>\n<td colspan=\"2\"><img src=\"docs/images/layout.png\" alt=\"The Layout tab at 80% zoom: the first paragraph opens with a three-line drop cap E, a dark blue circle sits beside the second section with its paragraph wrapping around it and hyphenating art-ist at the line end, every line is numbered in the left margin and a thin blue border surrounds the page\" width=\"100%\"><p align=\"center\"><sub><b>Layout.</b> Drop caps, text wrapping around pictures and shapes, automatic hyphenation, line numbers and page borders.</sub></p></td>\n</tr>\n<tr>\n<td colspan=\"2\"><img src=\"docs/images/backstage.png\" alt=\"The File tab start page with a Good morning greeting, thumbnails of the Blank document, Studio handbook, Letter, Résumé and Report templates, and a list of recent documents\" width=\"100%\"><p align=\"center\"><sub><b>File.</b> Start from a template, open recent documents, edit properties, export to PDF and other formats.</sub></p></td>\n</tr>\n</table>\n\n## Why WordCraft\n\n- **Familiar.** Word's ribbon tabs, groups, shortcuts and behaviour: Enter continues a list,\n  Tab demotes it, Ctrl/⌘+B bolds the word under the caret, the Styles gallery previews styles live,\n  F4 repeats, F7 checks spelling, F8 extends the selection.\n- **Your files.** Opens and saves .docx (OOXML), and also .odt, .rtf, .html, .md, .txt; exports PDF\n  with real, selectable text, links and bookmarks.\n- **Fast.** Paragraph layout is cached, so typing in a 188-page document re-lays it out in about\n  1.4 ms; pages render on demand.\n- **Everywhere.** One Rust codebase for macOS, Windows, Linux, BSD and the web. No Electron, no\n  Tauri: native [egui](https://github.com/emilk/egui) on the GPU.\n- **Built for agents.** Every action is a command with an id. The same 389 commands drive the\n  ribbon, keyboard shortcuts, the command search, a command-line tool, a JSON control channel and\n  an MCP server.\n- **Private.** Spelling, grammar and everything else work offline.\n- **Open.** MIT OR Apache-2.0. Clean-room: built from public specifications and observation, with\n  every asset original or openly licensed.\n\n## What works today\n\n| Area | Highlights |\n|---|---|\n| **Writing** | Fast typing with IME, smart quotes, AutoCorrect, list autoformat (`* `, `1. `), dashes; word, sentence, paragraph selection; drag-select; clipboard with formatting; undo/redo; find and replace with regex |\n| **Formatting** | Fonts, sizes, bold/italic/underline styles, strike, sub/superscript, caps, highlight, colours, character spacing, Format Painter, Change Case, Clear Formatting |\n| **Paragraphs** | Alignment, indents (draggable on the ruler), spacing, line spacing, tabs with leaders, borders, shading, keep with next, widow/orphan control |\n| **Styles** | Built-in style set, live gallery, Styles pane, create/modify/update styles, style sets, themes |\n| **Lists** | Bullets, numbering, multilevel, restart, set value, custom formats |\n| **Tables** | Insert by grid, merge/split, styles with banded rows, borders, shading, header rows repeated across pages, rows that split across pages, sort, formulas, text ↔ table |\n| **Pages** | Margins, orientation, size, columns, page/column/section breaks, headers and footers (first page, odd/even), page numbers, watermark, page borders, line numbers, vertical alignment, drop caps, automatic hyphenation |\n| **Objects** | Pictures (resize, crop, recolour, brightness/contrast, transparency, background removal, picture styles, rotate), shapes, text boxes, floating position with text wrapping (square, top and bottom, behind or in front of text) |\n| **References** | Table of contents, footnotes and endnotes, citations and bibliography (APA, MLA, Chicago, IEEE), captions, table of figures, cross-references, index, table of authorities |\n| **Review** | Spelling and grammar with suggestions, thesaurus, word count, comments in margin balloons or a pane, track changes, accept/reject, compare documents, restrict editing, accessibility checker, document inspector |\n| **Mailings** | Mail merge from CSV, merge fields, address block, greeting line, rules, preview, finish to a document; envelopes and labels |\n| **View** | Print layout, web layout, draft, read mode, focus, zoom, one/multiple pages, page width, Navigation pane, rulers, gridlines, dark mode; interface in English, 简体中文, 繁體中文 or 日本語 (follows the system language by default) |\n| **Files** | .docx read/write (opens in Word), PDF export, .odt, .rtf, .html, .md, .txt import/export, page images |\n\nThe honest picture, area by area, is in [ROADMAP.md](ROADMAP.md) and the generated\n[feature parity report](docs/parity.md).\n\n## Quick start\n\n```sh\ngit clone https://github.com/storytold/wordcraft\ncd wordcraft\ncargo run --release -p wordcraft -- --sample        # the desktop app with the sample document\ncargo run --release -p wordcraft -- report.docx     # open a document\n```\n\nCommand line:\n\n```sh\nwordcraft-cli convert report.docx report.pdf        # docx, pdf, odt, rtf, html, md, txt, png\nwordcraft-cli text report.docx                      # plain text\nwordcraft-cli inspect report.docx                   # structure as JSON\nwordcraft-cli run --template sample \\\n  --cmd 'select.text={\"text\":\"Membership\"}' --cmd format.bold --save out.docx\n```\n\nWeb: `cd apps/wordcraft-web && trunk serve`, then open <http://127.0.0.1:8771/?sample>.\n\n## For agents: CLI and MCP\n\nWordCraft was designed to be driven by people *and* by AI agents.\n\n```sh\nclaude mcp add wordcraft -- wordcraft-cli mcp                  # headless documents\nwordcraft --control 7981 &                                     # or drive the running app…\nclaude mcp add wordcraft-app -- wordcraft-cli mcp --connect 127.0.0.1:7981\n```\n\nTools include `list_commands`, `execute`, `batch`, `type_text`, `select_text`, `inspect_document`,\n`render_page`, `save_document`, and, with a running app, `screenshot`, `click` and `key`. Agents\ncan check their work through `inspect_document` without screenshots. See [docs/mcp.md](docs/mcp.md)\nand the [control protocol](docs/control-protocol.md). Macros record any sequence of commands and\nplay it back (`tools.recordMacro`, `tools.macros`).\n\n## Logs\n\nThe desktop app writes its log records to standard error and to `logs/wordcraft.log` next to its\npreferences: on Linux `$XDG_CONFIG_HOME/wordcraft/logs/` (by default `~/.config/wordcraft/logs/`),\non macOS `~/Library/Application Support/WordCraft/logs/`, on Windows `%APPDATA%\\WordCraft\\logs\\`.\nA start from a desktop menu or the Dock has no terminal, so this file is what to attach to a bug\nreport: unreadable parts of a .docx, pictures or fonts a PDF export had to leave out and panics the\ncommand guard recovered from land there. Each launch moves the previous log to `wordcraft.1.log`\n(and that one to `wordcraft.2.log`), so the log of a run that crashed survives the next start; a\nlog stops growing at 16 MiB. `--version` writes no file, and runs with `WORDCRAFT_NO_PREFS` (agents'\ntest runs) log to standard error only. Document text is never logged; a panic message leaves out\nthe text it quotes.\n\nBy default WordCraft's own crates log at `info` and everything else at `warn`. `RUST_LOG` replaces\nthat with env_logger-style directives, for example `RUST_LOG=debug`,\n`RUST_LOG=warn,wordcraft_docx=trace` or `RUST_LOG=info,wgpu_core=warn`; a directive ending in `*`\ncovers every target starting with it (`wordcraft*=debug`). The logger is\n`apps/wordcraft/src/logging.rs`.\n\n## Architecture\n\n| Layer | Crate | Job |\n|---|---|---|\n| L0 | `wordcraft-geom` | units and measurements |\n| L1 | `wordcraft-doc`, `wordcraft-fonts`, `wordcraft-proof` | document model and editing; fonts and shaping; spelling, grammar, hyphenation |\n| L2 | `wordcraft-layout`, `wordcraft-docx`, `wordcraft-formats` | line breaking, pagination, tables, notes, hit testing; OOXML; ODT/RTF/HTML/Markdown/TXT |\n| L3 | `wordcraft-render`, `wordcraft-pdf` | rasteriser (vello_cpu); PDF (krilla) |\n| L4 | `wordcraft-engine` | session, undo, 389 commands, Word feature catalog |\n| L5 | `wordcraft-mcp` | MCP server |\n| L6 | `wordcraft-ui-egui` | the Word-style front end (swappable) |\n| apps | `wordcraft`, `wordcraft-cli`, `wordcraft-web` | desktop, command line, browser |\n\n`cargo xtask ci` runs formatting, clippy, ~250 tests, the asset-attribution check, the layering\ncheck and the wasm build. Contributor and agent instructions: [AGENTS.md](AGENTS.md).\n\n## Roadmap\n\nWordCraft covers 87% of Word's ribbon features with commands today; counting depth and\nfidelity, we estimate about 62% of real feature parity. An alpha for everyday writing is close:\nthe remaining work is mostly testing against real-world .docx files, native printing and the\nfirst signed builds. Charts, SmartArt, the equation editor and the Draw tab come after.\nDetails and estimates: [ROADMAP.md](ROADMAP.md).\n\n## Downloads\n\n**Download WordCraft** from GitHub: the [latest release](https://github.com/storytold/wordcraft/releases/latest) has every build listed below, and [all releases](https://github.com/storytold/wordcraft/releases) has earlier versions and their notes. `<ver>` in the file names is the version number, and `SHA256SUMS.txt` lists a checksum for every file.\n\n### Windows\n\n| Build | Installer | Portable |\n|---|---|---|\n| x64 (64-bit Intel/AMD) | `wordcraft-<ver>-windows-x64.msi` | `wordcraft-<ver>-windows-x64-portable.zip` |\n| arm64 (Snapdragon and other ARM PCs) | `wordcraft-<ver>-windows-arm64.msi` | `wordcraft-<ver>-windows-arm64-portable.zip` |\n| x86 (32-bit) | `wordcraft-<ver>-windows-x86.msi` | `wordcraft-<ver>-windows-x86-portable.zip` |\n\nInstallers and executables are code-signed.\n\n**If the app doesn't open on Windows:** the desktop app initializes only DirectX 12 by default.\nLetting wgpu also create an OpenGL instance can crash some graphics drivers (AMD's\n`atio6axx.dll`) before the window appears, so the app would flash in Task Manager and quit.\n`WGPU_BACKEND` overrides the default for troubleshooting (for example `dx12` or `vulkan`). In\nPowerShell, from the folder containing the executable:\n\n```powershell\n$env:WGPU_BACKEND = \"vulkan\"\n& .\\wordcraft.exe\nRemove-Item Env:WGPU_BACKEND                     # restore the default for later launches\n```\n\nAn explicit `gl` override can bring the driver crash back on affected systems. The macOS, Linux\nand web backend defaults are unchanged.\n\n### macOS\n\n| Build | File | Notes |\n|---|---|---|\n| App, universal (Apple silicon + Intel) | `wordcraft-<ver>-macos-universal.dmg` | Signed and notarized |\n| Command-line tool, universal | `wordcraft-cli-<ver>-macos-universal.zip` | Signed and notarized |\n\n### Linux\n\n| Format | x86_64 | aarch64 (ARM64) | Notes |\n|---|---|---|---|\n| AppImage | `wordcraft-<ver>-linux-x86_64.AppImage` | `wordcraft-<ver>-linux-aarch64.AppImage` | Runs anywhere; updates itself with [AppImageUpdate](https://github.com/AppImageCommunity/AppImageUpdate) (`.zsync` files) |\n| Flatpak | `wordcraft-<ver>-linux-x86_64.flatpak` | `wordcraft-<ver>-linux-aarch64.flatpak` | Sandboxed; `flatpak install --user <fil",
+    "topics": [],
+    "weekly_stars": 0,
+    "weekly_forks": 0,
+    "score": 54.08,
+    "category": "编程开发工具",
+    "score_details": {
+      "周新增Star": 0.0,
+      "异常增速": 0.0,
+      "总Star": 5.57,
+      "提交活跃": 11.98,
+      "Release新鲜度": 7.76,
+      "协作活跃": 4.8,
+      "Fork增长": 0.0,
+      "项目新鲜度": 4.98,
+      "README质量": 10.0,
+      "安装与示例": 2.0,
+      "维护状态": 5.0,
+      "实用价值": 2.0
+    },
+    "analysis": {
+      "summary": "wordcraft 是编程开发工具领域项目。An open-source, clean-room reimplementation of Microsoft Word in pure Rust",
+      "why_hot": "近期提交活跃，综合热度得分 54.1；本周新增 Star 0。首次运行时增长数字可能为估算。",
+      "principle": "通过可复用的开源组件、命令行或服务接口完成核心任务；具体架构以官方文档为准。",
+      "features": [
+        "提供可复用的核心能力和公开源码",
+        "README 包含安装或使用线索",
+        "社区可通过 Issue 与 PR 协作",
+        "支持从最小示例逐步扩展"
+      ],
+      "scenarios": [
+        "学生：用最小示例理解该领域的工程结构",
+        "程序员：在测试环境验证后集成到个人项目",
+        "团队：用于原型评估和技术选型对比"
+      ],
+      "audience": "适合有一定编程基础的用户、专业开发者和评估型团队；零基础用户应优先选择带安装包或图形界面的项目。",
+      "quickstart": [
+        "阅读官方 README 并确认系统要求",
+        "在隔离环境按官方命令安装",
+        "运行最小示例或演示项目",
+        "验证数据、权限和许可证后再扩大使用"
+      ],
+      "pros": [
+        "近期活跃",
+        "源码透明",
+        "可从小规模试用"
+      ],
+      "limitations": [
+        "热门不等于稳定",
+        "安装方式可能随版本变化",
+        "生产使用前需要安全审计"
+      ],
+      "platforms": "以官方 README 为准，通常支持 Windows、macOS 或 Linux 中的部分平台",
+      "difficulty": "中等",
+      "production": "需完成版本锁定、安全审计和压力测试后再决定",
+      "ratings": {
+        "热度": 2.7,
+        "实用性": 4.0,
+        "创新性": 3.8,
+        "易用性": 3.2,
+        "项目成熟度": 2.5415666666666668,
+        "推荐指数": 2.7
+      }
+    }
+  }
+]
