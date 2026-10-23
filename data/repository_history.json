@@ -1,21 +1,21 @@
 {
   "openclaw/openclaw": {
     "full_name": "openclaw/openclaw",
-    "stars": 392160,
-    "forks": 82462,
-    "open_issues": 9405,
-    "updated_at": "2026-10-16T12:00:49Z",
-    "latest_release": "v2026.10.4",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "stars": 392829,
+    "forks": 82566,
+    "open_issues": 8865,
+    "updated_at": "2026-10-23T12:15:42Z",
+    "latest_release": "v2026.10.6",
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "n8n-io/n8n": {
     "full_name": "n8n-io/n8n",
-    "stars": 207626,
-    "forks": 61152,
-    "open_issues": 1181,
-    "updated_at": "2026-10-16T12:02:04Z",
-    "latest_release": "n8n@2.43.7",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "stars": 208381,
+    "forks": 61216,
+    "open_issues": 1211,
+    "updated_at": "2026-10-23T11:59:21Z",
+    "latest_release": "n8n@2.44.6",
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "ollama/ollama": {
     "full_name": "ollama/ollama",
@@ -28,39 +28,39 @@
   },
   "Significant-Gravitas/AutoGPT": {
     "full_name": "Significant-Gravitas/AutoGPT",
-    "stars": 187607,
-    "forks": 45919,
-    "open_issues": 697,
-    "updated_at": "2026-10-16T11:50:49Z",
-    "latest_release": "autogpt-platform-beta-v0.8.4",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "stars": 187716,
+    "forks": 45905,
+    "open_issues": 704,
+    "updated_at": "2026-10-23T12:06:54Z",
+    "latest_release": "autogpt-platform-beta-v0.9.0",
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "anomalyco/opencode": {
     "full_name": "anomalyco/opencode",
-    "stars": 214158,
-    "forks": 28741,
-    "open_issues": 4359,
-    "updated_at": "2026-10-16T11:59:24Z",
-    "latest_release": "v1.19.2",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "stars": 220432,
+    "forks": 29475,
+    "open_issues": 3684,
+    "updated_at": "2026-10-23T12:18:49Z",
+    "latest_release": "v1.19.4",
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "microsoft/vscode": {
     "full_name": "microsoft/vscode",
-    "stars": 193746,
-    "forks": 45676,
-    "open_issues": 21851,
-    "updated_at": "2026-10-16T12:00:55Z",
-    "latest_release": "1.142.0",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "stars": 194237,
+    "forks": 45563,
+    "open_issues": 22084,
+    "updated_at": "2026-10-23T12:16:43Z",
+    "latest_release": "1.143.1",
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "mattpocock/skills": {
     "full_name": "mattpocock/skills",
-    "stars": 293526,
-    "forks": 24610,
-    "open_issues": 187,
-    "updated_at": "2026-10-16T12:01:52Z",
+    "stars": 301415,
+    "forks": 25337,
+    "open_issues": 200,
+    "updated_at": "2026-10-23T12:19:16Z",
     "latest_release": "v1.3.1",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "CluvexStudio/Aether": {
     "full_name": "CluvexStudio/Aether",
@@ -82,21 +82,21 @@
   },
   "yt-dlp/yt-dlp": {
     "full_name": "yt-dlp/yt-dlp",
-    "stars": 198343,
-    "forks": 17298,
-    "open_issues": 2704,
-    "updated_at": "2026-10-16T11:57:36Z",
-    "latest_release": "2026.08.19",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "stars": 200699,
+    "forks": 17504,
+    "open_issues": 2718,
+    "updated_at": "2026-10-23T12:19:26Z",
+    "latest_release": "2026.10.21",
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "react/react": {
     "full_name": "react/react",
-    "stars": 251152,
-    "forks": 51511,
-    "open_issues": 1445,
-    "updated_at": "2026-10-16T10:54:54Z",
+    "stars": 251710,
+    "forks": 51570,
+    "open_issues": 1472,
+    "updated_at": "2026-10-23T12:08:08Z",
     "latest_release": "v19.3.1",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "andrewyng/openworker": {
     "full_name": "andrewyng/openworker",
@@ -109,12 +109,12 @@
   },
   "affaan-m/ECC": {
     "full_name": "affaan-m/ECC",
-    "stars": 280873,
-    "forks": 41769,
-    "open_issues": 217,
-    "updated_at": "2026-10-16T12:00:44Z",
+    "stars": 286944,
+    "forks": 42559,
+    "open_issues": 263,
+    "updated_at": "2026-10-23T12:18:49Z",
     "latest_release": "v2.2.3",
-    "collected_at": "2026-10-16T21:02:07.966013+09:00"
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   },
   "wassgha/rescript": {
     "full_name": "wassgha/rescript",
@@ -169,5 +169,14 @@
     "updated_at": "2026-10-09T14:01:34Z",
     "latest_release": "v0.3.0",
     "collected_at": "2026-10-09T23:02:33.442401+09:00"
+  },
+  "Gathin23/cleanyourtv": {
+    "full_name": "Gathin23/cleanyourtv",
+    "stars": 26297,
+    "forks": 2895,
+    "open_issues": 78,
+    "updated_at": "2026-10-23T12:19:25Z",
+    "latest_release": "v2.6.0",
+    "collected_at": "2026-10-23T21:19:29.216169+09:00"
   }
 }
