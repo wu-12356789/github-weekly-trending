@@ -1,21 +1,21 @@
 {
   "openclaw/openclaw": {
     "full_name": "openclaw/openclaw",
-    "stars": 394042,
-    "forks": 82805,
-    "open_issues": 7646,
-    "updated_at": "2026-11-06T14:42:17Z",
-    "latest_release": "v2026.11.1",
-    "collected_at": "2026-11-06T23:43:35.209122+09:00"
+    "stars": 394439,
+    "forks": 82882,
+    "open_issues": 8122,
+    "updated_at": "2026-11-13T14:55:48Z",
+    "latest_release": "v2026.11.3",
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
   },
   "n8n-io/n8n": {
     "full_name": "n8n-io/n8n",
-    "stars": 209682,
-    "forks": 61380,
-    "open_issues": 1214,
-    "updated_at": "2026-11-06T14:42:08Z",
-    "latest_release": "n8n@2.46.6",
-    "collected_at": "2026-11-06T23:43:35.209122+09:00"
+    "stars": 210379,
+    "forks": 61498,
+    "open_issues": 1211,
+    "updated_at": "2026-11-13T14:54:52Z",
+    "latest_release": "n8n@2.47.7",
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
   },
   "ollama/ollama": {
     "full_name": "ollama/ollama",
@@ -37,30 +37,30 @@
   },
   "anomalyco/opencode": {
     "full_name": "anomalyco/opencode",
-    "stars": 224965,
-    "forks": 30354,
-    "open_issues": 4126,
-    "updated_at": "2026-11-06T14:42:38Z",
+    "stars": 226583,
+    "forks": 30675,
+    "open_issues": 4000,
+    "updated_at": "2026-11-13T14:53:31Z",
     "latest_release": "v1.19.5",
-    "collected_at": "2026-11-06T23:43:35.209122+09:00"
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
   },
   "microsoft/vscode": {
     "full_name": "microsoft/vscode",
-    "stars": 194853,
-    "forks": 44404,
-    "open_issues": 22079,
-    "updated_at": "2026-11-06T14:43:04Z",
-    "latest_release": "1.145.2",
-    "collected_at": "2026-11-06T23:43:35.209122+09:00"
+    "stars": 195361,
+    "forks": 43824,
+    "open_issues": 21612,
+    "updated_at": "2026-11-13T14:10:19Z",
+    "latest_release": "1.146.0",
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
   },
   "mattpocock/skills": {
     "full_name": "mattpocock/skills",
-    "stars": 316249,
-    "forks": 26453,
-    "open_issues": 216,
-    "updated_at": "2026-11-06T14:42:57Z",
+    "stars": 323536,
+    "forks": 27152,
+    "open_issues": 244,
+    "updated_at": "2026-11-13T15:00:16Z",
     "latest_release": "v1.3.2",
-    "collected_at": "2026-11-06T23:43:35.209122+09:00"
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
   },
   "CluvexStudio/Aether": {
     "full_name": "CluvexStudio/Aether",
@@ -91,12 +91,12 @@
   },
   "react/react": {
     "full_name": "react/react",
-    "stars": 252101,
-    "forks": 51794,
-    "open_issues": 1503,
-    "updated_at": "2026-11-06T14:43:25Z",
+    "stars": 252576,
+    "forks": 52560,
+    "open_issues": 1526,
+    "updated_at": "2026-11-13T14:58:36Z",
     "latest_release": "v19.3.1",
-    "collected_at": "2026-11-06T23:43:35.209122+09:00"
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
   },
   "andrewyng/openworker": {
     "full_name": "andrewyng/openworker",
@@ -109,12 +109,12 @@
   },
   "affaan-m/ECC": {
     "full_name": "affaan-m/ECC",
-    "stars": 298301,
-    "forks": 44104,
-    "open_issues": 236,
-    "updated_at": "2026-11-06T14:42:47Z",
+    "stars": 302286,
+    "forks": 44588,
+    "open_issues": 272,
+    "updated_at": "2026-11-13T14:59:17Z",
     "latest_release": "v2.2.3",
-    "collected_at": "2026-11-06T23:43:35.209122+09:00"
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
   },
   "wassgha/rescript": {
     "full_name": "wassgha/rescript",
@@ -187,5 +187,32 @@
     "updated_at": "2026-11-06T14:42:54Z",
     "latest_release": "v0.4.0",
     "collected_at": "2026-11-06T23:43:35.209122+09:00"
+  },
+  "tangerineturtle1/NX2navi": {
+    "full_name": "tangerineturtle1/NX2navi",
+    "stars": 3742,
+    "forks": 271,
+    "open_issues": 641,
+    "updated_at": "2026-11-13T15:00:36Z",
+    "latest_release": "v0.10.0",
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
+  },
+  "jhaizhou-ops/S2Arm": {
+    "full_name": "jhaizhou-ops/S2Arm",
+    "stars": 2844,
+    "forks": 521,
+    "open_issues": 359,
+    "updated_at": "2026-11-13T15:00:15Z",
+    "latest_release": "v0.3.5",
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
+  },
+  "NousResearch/hermes-agent": {
+    "full_name": "NousResearch/hermes-agent",
+    "stars": 263131,
+    "forks": 59249,
+    "open_issues": 53448,
+    "updated_at": "2026-11-13T15:00:18Z",
+    "latest_release": "v0.23.1",
+    "collected_at": "2026-11-14T00:01:11.142143+09:00"
   }
 }
